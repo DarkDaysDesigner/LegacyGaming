@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legacy Gaming | CS 1.6 Community #136 & #114</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@600;700&family=Rajdhani:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-dark: #070709;
+      --card-bg: rgba(15, 8, 10, 0.85);
+      --card-hover: rgba(24, 10, 13, 0.95);
+      --red: #e50914;
+      --red-glow: rgba(229, 9, 20, 0.5);
+      --red-soft: rgba(229, 9, 20, 0.15);
+      --text: #f8fafc;
+      --text-muted: #a1a1aa;
+      --border: rgba(229, 9, 20, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* RUSSIAN DESIGN ARKA PLAN KATMANLARI */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: 
+        linear-gradient(rgba(229, 9, 20, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(229, 9, 20, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .bg-stripes {
+      position: fixed;
+      top: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 140vh;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(229, 9, 20, 0.05),
+        rgba(229, 9, 20, 0.05) 15px,
+        transparent 15px,
+        transparent 40px
+      );
+      pointer-events: none;
+      z-index: -1;
+      transform: rotate(10deg);
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 75vw;
+      height: 450px;
+      background: radial-gradient(circle, rgba(229, 9, 20, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* NAVBAR */
+    nav {
+      background: rgba(10, 4, 6, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--red);
+      box-shadow: 0 4px 25px rgba(229, 9, 20, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Teko', sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+    }
+
+    .nav-logo span {
+      color: var(--red);
+      text-shadow: 0 0 15px var(--red-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #d4d4d8;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+      text-shadow: 0 0 10px var(--red-glow);
+    }
+
+    .nav-btn {
+      border: 1px solid var(--red);
+      background: var(--red-soft);
+      padding: 6px 14px;
+      border-radius: 6px;
+      color: #fff !important;
+    }
+
+    .nav-btn:hover {
+      background: var(--red);
+      box-shadow: 0 0 15px var(--red-glow);
+    }
+
+    /* HERO BÖLÜMÜ (BANNER AÇIK VE VURGULU) */
+    .hero {
+      text-align: center;
+      padding: 70px 20px 40px;
+      position: relative;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 4px;
+      color: var(--red);
+      text-transform: uppercase;
+      background: rgba(229, 9, 20, 0.1);
+      border: 1px solid var(--red);
+      padding: 5px 16px;
+      border-radius: 50px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 15px var(--red-soft);
+    }
+
+    .hero h1 {
+      font-family: 'Teko', sans-serif;
+      font-size: 85px;
+      line-height: 0.9;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 35px var(--red-glow), 0 4px 15px rgba(0, 0, 0, 0.9);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    .hero p {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #d4d4d8;
+      text-transform: uppercase;
+      margin-bottom: 35px;
+    }
+
+    /* SUNUCU KARTLARI */
+    .servers-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      max-width: 950px;
+      margin: 0 auto 30px;
+    }
+
+    .server-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 26px;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .server-card:hover {
+      background: var(--card-hover);
+      transform: translateY(-4px);
+      border-color: var(--red);
+      box-shadow: 0 15px 35px var(--red-soft);
+    }
+
+    /* Sol Kırmızı Çizgi */
+    .server-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--red);
+      box-shadow: 0 0 15px var(--red);
+    }
+
+    .server-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .server-title {
+      font-family: 'Teko', sans-serif;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: 1px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .server-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      background: var(--red);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .server-ip-box {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px dashed rgba(229, 9, 20, 0.4);
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .server-ip {
+      font-family: 'Rajdhani', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1.5px;
+    }
+
+    .server-players-wrap {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 12px;
+      margin-bottom: 18px;
+    }
+
+    .players-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .players-title span.count {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .players-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      max-height: 125px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .players-grid::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .players-grid::-webkit-scrollbar-thumb {
+      background: var(--red);
+      border-radius: 4px;
+    }
+
+    .player-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-left: 2px solid var(--red);
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #e4e4e7;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      border: none;
+      transition: 0.25s;
+    }
+
+    .btn-connect {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 0 15px var(--red-soft);
+    }
+
+    .btn-connect:hover {
+      filter: brightness(1.2);
+      transform: scale(1.02);
+    }
+
+    .btn-copy {
+      background: #18181b;
+      color: #fff;
+      border: 1px solid #27272a;
+    }
+
+    .btn-copy:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    /* TOPLULUK BUTONLARI */
+    .comm-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .comm-btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      background: rgba(24, 10, 13, 0.9);
+      border: 1px solid var(--border);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+    }
+
+    .comm-btn:hover {
+      background: var(--red);
+      box-shadow: 0 0 20px var(--red-glow);
+    }
+
+    /* GENEL BÖLÜM ALANLARI */
+    .container {
+      max-width: 950px;
+      margin: 40px auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .section-title {
+      font-family: 'Teko', sans-serif;
+      font-size: 38px;
+      color: #fff;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 6px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title span {
+      color: var(--red);
+    }
+
+    /* ETKİNLİK KARTLARI */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--red);
+      border-radius: 8px;
+      padding: 22px;
+      position: relative;
+    }
+
+    .event-badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      background: var(--red-soft);
+      border: 1px solid var(--red);
+      color: var(--red);
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .event-title {
+      font-family: 'Teko', sans-serif;
+      font-size: 28px;
+      color: #fff;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      margin-bottom: 5px;
+    }
+
+    .event-time {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 8px;
+    }
+
+    .event-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ŞİKAYET FORMU */
+    .complaint-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .input-group input, .input-group textarea, .input-group select {
+      width: 100%;
+      padding: 13px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      color: #fff;
+      outline: none;
+      font-family: inherit;
+      transition: 0.3s;
+    }
+
+    .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 10px var(--red-soft);
+    }
+
+    /* MODAL VE ADMİN ALANI */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #0d0608;
+      border: 1px solid var(--red);
+      border-radius: 10px;
+      padding: 35px;
+      width: 360px;
+      text-align: center;
+      box-shadow: 0 0 40px var(--red-glow);
+    }
+
+    #adminArea {
+      display: none;
+      background: #0d0608;
+      border: 1px solid var(--red);
+      border-radius: 12px;
+      padding: 30px;
+      margin-top: 30px;
+    }
+
+    .complaint-card {
+      background: rgba(0, 0, 0, 0.6);
+      border-left: 3px solid var(--red);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: auto;
+      font-size: 13px;
+      color: #71717a;
+      letter-spacing: 1px;
+    }
+  </style>
+
+  <!-- FIREBASE KÜTÜPHANELERİ -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+</head>
+<body>
+
+  <!-- RUSSIAN DESIGN ARKA PLAN ÇİZGİLERİ VE IZGARA -->
+  <div class="bg-grid"></div>
+  <div class="bg-stripes"></div>
+  <div class="bg-glow"></div>
+
+  <!-- ÜST MENÜ -->
+  <nav>
+    <div class="nav-logo">
+      <i class="fa-solid fa-crosshairs" style="color: var(--red);"></i>
+      LEGACY <span>GAMING</span>
+    </div>
+    <div class="nav-links">
+      <a href="#servers">Sunucular</a>
+      <a href="#events">Etkinlikler</a>
+      <a href="#complaint">Şikayet & Destek</a>
+      <a onclick="document.getElementById('loginModal').style.display='flex'" class="nav-btn">Yönetim</a>
+    </div>
+  </nav>
+
+  <!-- HERO & BANNER BÖLÜMÜ -->
+  <div class="hero">
+    <div class="hero-tag">CS 1.6 RUSSIAN DESIGN // SINCE 2014</div>
+    <h1>LEGACY <span>GAMING</span></h1>
+    <p>TÜRKİYE'NİN EN KÖKLÜ CS 1.6 JAILBREAK & PRO TOPLULUĞU</p>
+
+    <!-- SUNUCU KARTLARI (#136 ve #114) -->
+    <div class="servers-grid" id="servers">
+      
+      <!-- 136 SUNUCUSU -->
+      <div class="server-card">
+        <div class="server-head">
+          <div class="server-title">LEGACY JAILBREAK</div>
+          <span class="server-badge">#136 JB</span>
+        </div>
+        <div class="server-ip-box">
+          <span class="server-ip">95.173.173.136</span>
+          <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
+        </div>
+        <div class="server-players-wrap">
+          <div class="players-title">
+            <span>Canlı Oyuncu Durumu</span>
+            <span class="count"><span id="count_136">0</span> / 32</span>
+          </div>
+          <div class="players-grid" id="list_136"></div>
+        </div>
+        <div class="card-actions">
+          <a href="steam://connect/95.173.173.136" class="btn btn-connect">
+            <i class="fa-solid fa-play"></i> Hemen Bağlan
+          </a>
+          <button class="btn btn-copy" onclick="copyIp('95.173.173.136')">
+            <i class="fa-regular fa-copy"></i> Kopyala
+          </button>
+        </div>
+      </div>
+
+      <!-- 114 SUNUCUSU -->
+      <div class="server-card">
+        <div class="server-head">
+          <div class="server-title">LEGACY PRO & PUBLIC</div>
+          <span class="server-badge">#114 PRO</span>
+        </div>
+        <div class="server-ip-box">
+          <span class="server-ip">95.173.173.114</span>
+          <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
+        </div>
+        <div class="server-players-wrap">
+          <div class="players-title">
+            <span>Canlı Oyuncu Durumu</span>
+            <span class="count"><span id="count_114">0</span> / 32</span>
+          </div>
+          <div class="players-grid" id="list_114"></div>
+        </div>
+        <div class="card-actions">
+          <a href="steam://connect/95.173.173.114" class="btn btn-connect">
+            <i class="fa-solid fa-play"></i> Hemen Bağlan
+          </a>
+          <button class="btn btn-copy" onclick="copyIp('95.173.173.114')">
+            <i class="fa-regular fa-copy"></i> Kopyala
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HIZLI ERİŞİM BUTONLARI -->
+    <div class="comm-buttons">
+      <a href="ts3server://95.173.173.136" class="comm-btn">
+        <i class="fa-solid fa-headset" style="color: var(--red);"></i> TS3: 95.173.173.136
+      </a>
+      <a href="https://instagram.com/leqacyclan" target="_blank" class="comm-btn">
+        <i class="fa-brands fa-instagram" style="color: var(--red);"></i> Resmi Instagram
+      </a>
+    </div>
+  </div>
+
+  <!-- ETKİNLİK TAKVİMİ -->
+  <div class="container" id="events">
+    <div class="section-title">
+      <i class="fa-solid fa-calendar-days" style="color: var(--red);"></i>
+      HAFTALIK <span>ETKİNLİK TAKVİMİ</span>
+    </div>
+    <div class="events-grid" id="publicEventsGrid"></div>
+  </div>
+
+  <!-- ŞİKAYET VE DESTEK ALANI -->
+  <div class="container" id="complaint">
+    <div id="publicArea">
+      <div class="section-title">
+        <i class="fa-solid fa-shield-halved" style="color: var(--red);"></i>
+        ŞİKAYET VE <span>DESTEK BİLDİRİMİ</span>
+      </div>
+      
+      <div class="complaint-box">
+        <div class="input-group">
+          <label>Oyundaki Nickiniz</label>
+          <input type="text" id="compName" placeholder="Örn: DarkDaysC">
+        </div>
+        <div class="input-group">
+          <label>Konu / Şikayet Edilen Yetkili</label>
+          <input type="text" id="compSubject" placeholder="Örn: Haksız slay / ban">
+        </div>
+        <div class="input-group">
+          <label>Olayın Detayları</label>
+          <textarea id="compText" rows="4" placeholder="Durumu detaylıca anlatınız..."></textarea>
+        </div>
+        <button class="btn btn-connect" onclick="submitComplaint()" style="width: 100%; padding: 14px; font-size: 15px;">
+          <i class="fa-solid fa-paper-plane"></i> Şikayeti Kuruculara Gönder
+        </button>
+      </div>
+    </div>
+
+    <!-- YÖNETİCİ PANELİ -->
+    <div id="adminArea">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 20px;">
+        <h2 style="font-family: 'Teko', sans-serif; font-size: 36px; color: var(--red);">LEGACY YÖNETİM PANELİ</h2>
+        <button class="btn btn-copy" onclick="logoutAdmin()">Çıkış Yap</button>
+      </div>
+
+      <!-- ETKİNLİK EKLEME -->
+      <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 25px;">
+        <h3 style="font-family: 'Teko', sans-serif; font-size: 26px; color: #fff; margin-bottom: 15px;">YENİ ETKİNLİK EKLE</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 12px;">
+          <div class="input-group" style="margin: 0;">
+            <label>Kategori</label>
+            <select id="admEvType">
+              <option value="Hafta Sonu">Hafta Sonu</option>
+              <option value="Hafta İçi">Hafta İçi</option>
+            </select>
+          </div>
+          <div class="input-group" style="margin: 0;">
+            <label>Etkinlik Adı</label>
+            <input type="text" id="admEvTitle" placeholder="Örn: Ödüllü İsyan Gecesi">
+          </div>
+          <div class="input-group" style="margin: 0;">
+            <label>Saat</label>
+            <input type="text" id="admEvTime" placeholder="Örn: 21:30">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Açıklama</label>
+          <input type="text" id="admEvDesc" placeholder="Detay ve ödül bilgisi...">
+        </div>
+        <button class="btn btn-connect" onclick="addNewEvent()" style="width: 100%;">
+          <i class="fa-solid fa-plus"></i> Takvime Ekle
+        </button>
+        <div id="adminEventsList" style="margin-top: 15px;"></div>
+      </div>
+
+      <!-- ŞİKAYETLER HAVUZU -->
+      <h3 style="font-family: 'Teko', sans-serif; font-size: 26px; color: var(--red); margin-bottom: 15px;">GELEN ŞİKAYETLER</h3>
+      <div id="complaintsList"></div>
+    </div>
+  </div>
+
+  <!-- YÖNETİCİ GİRİŞ MODALI -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2 style="font-family: 'Teko', sans-serif; font-size: 34px; color: var(--red); margin-bottom: 5px;">YÖNETİCİ GİRİŞİ</h2>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Legacy Gaming Yönetim Paneli</p>
+      <input type="text" id="adminUser" placeholder="Kullanıcı Adı" style="width: 100%; padding: 12px; margin-bottom: 12px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 6px;">
+      <input type="password" id="adminPass" placeholder="Şifre" style="width: 100%; padding: 12px; margin-bottom: 20px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 6px;">
+      <button class="btn btn-connect" onclick="checkLogin()" style="width: 100%; margin-bottom: 10px;">Giriş Yap</button>
+      <button class="btn btn-copy" onclick="document.getElementById('loginModal').style.display='none'" style="width: 100%;">Kapat</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2014 - 2026 Legacy Gaming. Tüm hakları saklıdır. <br>
+    CS 1.6 Russian Design Theme // #136 & #114
+  </footer>
+
+  <script>
+    // ================= FIREBASE AYARLARI =================
+    const firebaseConfig = {
+      apiKey: "AIzaSyBh5_pUr2jd0TAPthsr2-sNm3D1RJLB-4U",
+      authDomain: "siyasetweb.firebaseapp.com",
+      databaseURL: "https://siyasetweb-default-rtdb.firebaseio.com",
+      projectId: "siyasetweb",
+      storageBucket: "siyasetweb.firebasestorage.app",
+      messagingSenderId: "931082534512",
+      appId: "1:931082534512:web:853156d1fdc28ec1263eb5"
+    };
+
+    let db = null;
+    try {
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.database();
+    } catch(e) {
+      console.warn("Firebase başlatılamadı:", e);
+    }
+
+    let cloudComplaints = [];
+    let cloudEvents = [];
+
+    const DEFAULT_EVENTS = [
+      { type: "Hafta Sonu", title: "Resmi Klan Toplantısı", time: "Cumartesi & Pazar | 20:30", desc: "TS3 adresinde genel klan durumu, terfiler ve yetki dağıtımı." },
+      { type: "Hafta Sonu", title: "Nakit / Ödüllü İsyan", time: "Cumartesi & Pazar | 21:30", desc: "Paralı ödüllü isyan gecesi! İsyan atan takıma ve korumalara nakit ödül." },
+      { type: "Hafta İçi", title: "Pro Maç & JB İsyan Gecesi", time: "Hafta İçi Her Gün | 21:00", desc: "136 ve 114 sunucularında kesintisiz eğlence ve turnuvalar." }
+    ];
+
+    if (db) {
+      db.ref('legacy_complaints').on('value', snapshot => {
+        cloudComplaints = [];
+        snapshot.forEach(child => {
+          cloudComplaints.push({ id: child.key, ...child.val() });
+        });
+        renderComplaints();
+      });
+
+      db.ref('legacy_events').on('value', snapshot => {
+        cloudEvents = [];
+        if (snapshot.exists()) {
+          snapshot.forEach(child => {
+            cloudEvents.push({ id: child.key, ...child.val() });
+          });
+        } else {
+          DEFAULT_EVENTS.forEach(ev => db.ref('legacy_events').push(ev));
+        }
+        renderPublicEvents();
+        renderAdminEvents();
+      });
+    }
+
+    // ================= 136 & 114 SAATLİK CANLI AKTİFLİK DÖNGÜSÜ =================
+    const playersPool = [
+      "DarkDaysC", "LegacyReis", "RussianPro", "Kemal", "Kado", "Efsane", "ProGamer",
+      "JailbreakKing", "Komutcu", "Cemil", "Mesut", "Sly", "Shadow", "Reis",
+      "VipPlayer", "RedBull", "Kobra", "Spectre", "Ghost", "Terminator",
+      "Alpha", "Bravo", "Delta", "SniperTr", "Baskan", "Kral", "Bomba", "Headshot"
+    ];
+
+    function calculateDynamicPlayers() {
+      const now = new Date();
+      const h = now.getHours() + (now.getMinutes() / 60);
+
+      // Sabah (05:00 - 12:00) -> Max 10 (5 - 10 arası)
+      if (h >= 5 && h < 12) {
+        return Math.floor(Math.random() * 6) + 5;
+      }
+      // Öğlen (12:00 - 18:00) -> 16 - 20 arası
+      else if (h >= 12 && h < 18) {
+        return Math.floor(Math.random() * 5) + 16;
+      }
+      // Akşam PrimeTime (18:00 - 22:30) -> 20 - 32 arası
+      else if (h >= 18 && h < 22.5) {
+        return Math.floor(Math.random() * 13) + 20;
+      }
+      // Gece (22:30 - 05:00) -> 13 - 18 arası
+      else {
+        return Math.floor(Math.random() * 6) + 13;
+      }
+    }
+
+    function updateLiveServers() {
+      const count136 = calculateDynamicPlayers();
+      let count114 = count136 + (Math.floor(Math.random() * 3) - 1);
+      if (count114 > 32) count114 = 32;
+      if (count114 < 4) count114 = 4;
+
+      // 136 Ekranı
+      document.getElementById('count_136').innerText = count136;
+      const list136 = document.getElementById('list_136');
+      list136.innerHTML = '';
+      for (let i = 0; i < count136; i++) {
+        list136.innerHTML += `<div class="player-pill">👤 ${playersPool[i % playersPool.length]}</div>`;
+      }
+
+      // 114 Ekranı
+      document.getElementById('count_114').innerText = count114;
+      const list114 = document.getElementById('list_114');
+      list114.innerHTML = '';
+      for (let i = 0; i < count114; i++) {
+        const idx = (i + 4) % playersPool.length;
+        list114.innerHTML += `<div class="player-pill">👤 ${playersPool[idx]}</div>`;
+      }
+    }
+
+    window.onload = function() {
+      updateLiveServers();
+      setInterval(updateLiveServers, 60000);
+      renderPublicEvents();
+    };
+
+    function copyIp(ip) {
+      navigator.clipboard.writeText(ip);
+      alert("IP Adresi Kopyalandı: " + ip + "\nKonsola 'connect " + ip + "' yazarak bağlanabilirsiniz.");
+    }
+
+    // --- ŞİKAYET SİSTEMİ ---
+    function submitComplaint() {
+      const name = document.getElementById('compName').value.trim();
+      const subject = document.getElementById('compSubject').value.trim();
+      const text = document.getElementById('compText').value.trim();
+
+      if (!name || !subject || !text) return alert("Lütfen tüm alanları doldurun!");
+
+      const payload = { name, subject, text, date: new Date().toLocaleString('tr-TR') };
+
+      if (db) {
+        db.ref('legacy_complaints').push(payload).then(() => {
+          document.getElementById('compName').value = '';
+          document.getElementById('compSubject').value = '';
+          document.getElementById('compText').value = '';
+          alert("Şikayetiniz ortak yönetici havuzuna iletildi!");
+        });
+      }
+    }
+
+    // --- ETKİNLİK SİSTEMİ ---
+    function addNewEvent() {
+      const type = document.getElementById('admEvType').value;
+      const title = document.getElementById('admEvTitle').value.trim();
+      const time = document.getElementById('admEvTime').value.trim();
+      const desc = document.getElementById('admEvDesc').value.trim();
+
+      if (!title || !time || !desc) return alert("Tüm alanları doldurun!");
+
+      if (db) {
+        db.ref('legacy_events').push({ type, title, time, desc }).then(() => {
+          document.getElementById('admEvTitle').value = '';
+          document.getElementById('admEvTime').value = '';
+          document.getElementById('admEvDesc').value = '';
+          alert("Yeni etkinlik eklendi!");
+        });
+      }
+    }
+
+    function deleteEvent(id) {
+      if (confirm("Bu etkinliği silmek istiyor musunuz?")) {
+        if (db) db.ref('legacy_events').child(id).remove();
+      }
+    }
+
+    function deleteComplaint(id) {
+      if (confirm("Şikayeti silmek istiyor musunuz?")) {
+        if (db) db.ref('legacy_complaints').child(id).remove();
+      }
+    }
+
+    function renderPublicEvents() {
+      const container = document.getElementById('publicEventsGrid');
+      if (!container) return;
+      container.innerHTML = '';
+
+      cloudEvents.forEach(ev => {
+        container.innerHTML += `
+          <div class="event-card">
+            <span class="event-badge">${ev.type}</span>
+            <div class="event-title">${ev.title}</div>
+            <div class="event-time"><i class="fa-regular fa-clock"></i> ${ev.time}</div>
+            <div class="event-desc">${ev.desc}</div>
+          </div>
+        `;
+      });
+    }
+
+    function renderAdminEvents() {
+      const list = document.getElementById('adminEventsList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      cloudEvents.forEach(ev => {
+        list.innerHTML += `
+          <div style="background: rgba(0,0,0,0.6); padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border);">
+            <div>
+              <strong style="color: var(--red);">[${ev.type}] ${ev.title}</strong>
+              <div style="font-size: 12px; color: #fbbf24;">${ev.time}</div>
+            </div>
+            <button onclick="deleteEvent('${ev.id}')" style="background: var(--red); color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Sil</button>
+          </div>
+        `;
+      });
+    }
+
+    function renderComplaints() {
+      const list = document.getElementById('complaintsList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      if (cloudComplaints.length === 0) {
+        list.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">Henüz şikayet bulunmuyor.</p>';
+        return;
+      }
+
+      [...cloudComplaints].reverse().forEach(c => {
+        list.innerHTML += `
+          <div class="complaint-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h4 style="color: var(--red);">Oyuncu: ${c.name}</h4>
+              <button onclick="deleteComplaint('${c.id}')" style="background: #18181b; color: #fff; border: 1px solid var(--red); padding: 4px 8px; border-radius: 4px; cursor: pointer;">Sil</button>
+            </div>
+            <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 8px;">Konu: <b>${c.subject}</b> | Tarih: ${c.date}</span>
+            <p style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 4px; font-size: 13px;">"${c.text}"</p>
+          </div>
+        `;
+      });
+    }
+
+    // --- YÖNETİCİ PANELİ KONTROLÜ ---
+    function checkLogin() {
+      const u = document.getElementById('adminUser').value.trim();
+      const p = document.getElementById('adminPass').value.trim();
+
+      if ((u === 'murat1233180' && p === '8514126c') || (u === 'kado' && p === 'kadohan')) {
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('publicArea').style.display = 'none';
+        document.getElementById('adminArea').style.display = 'block';
+        document.getElementById('adminUser').value = '';
+        document.getElementById('adminPass').value = '';
+        renderComplaints();
+        renderAdminEvents();
+      } else {
+        alert("Hatalı Kullanıcı Adı veya Şifre!");
+      }
+    }
+
+    function logoutAdmin() {
+      document.getElementById('adminArea').style.display = 'none';
+      document.getElementById('publicArea').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
