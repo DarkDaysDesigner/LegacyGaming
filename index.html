@@ -3,23 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Legacy Gaming | CS 1.6 Russian Design #136 & #114</title>
+  <title>Legacy Gaming Network | Official Hub</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Rajdhani:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
     :root {
-      --bg-pure: #050507;
-      --red-main: #ff0019;
-      --red-dark: #80000d;
-      --red-glow: rgba(255, 0, 25, 0.45);
-      --red-soft: rgba(255, 0, 25, 0.12);
-      --card-bg: rgba(12, 12, 16, 0.88);
-      --border-red: rgba(255, 0, 25, 0.35);
-      --text: #f4f4f5;
-      --text-muted: #a1a1aa;
+      --bg-base: #06070a;
+      --bg-surface: #0b0d14;
+      --card-bg: rgba(15, 18, 28, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      
+      --legacy-red: #ff1e38;
+      --legacy-glow: rgba(255, 30, 56, 0.4);
+      --mc-green: #22c55e;
+      --mc-glow: rgba(34, 197, 94, 0.4);
+      --coc-gold: #f59e0b;
+      --coc-glow: rgba(245, 158, 11, 0.4);
+      --hl-orange: #f97316;
+      
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
     }
 
     * {
@@ -27,1134 +34,1177 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--bg-pure);
+      background-color: var(--bg-base);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(255, 30, 56, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 90% 40%, rgba(34, 197, 94, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+      background-attachment: fixed;
     }
 
-    /* ============================================================
-       0'DAN RUSSIAN DESIGN ARKA PLAN BANNER ALTYAPISI
-       (3'LÜ ENDÜSTRİYEL ÇİZGİLER & NEON IZGARA)
-       ============================================================ */
-    .russian-bg {
+    /* =========================================
+       SOL AÇILIR 3 ÇİZGİLİ MENÜ (DRAWER / SIDEBAR)
+       ========================================= */
+    .sidebar-toggle-btn {
+      position: fixed;
+      top: 18px;
+      left: 20px;
+      z-index: 1001;
+      width: 46px;
+      height: 46px;
+      background: rgba(18, 22, 34, 0.9);
+      border: 1px solid var(--legacy-red);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 15px var(--legacy-glow);
+      transition: all 0.25s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .sidebar-toggle-btn:hover {
+      transform: scale(1.05);
+      background: var(--legacy-red);
+    }
+
+    .sidebar-toggle-btn .line {
+      width: 24px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .sidebar-drawer {
       position: fixed;
       top: 0;
-      left: 0;
-      width: 100vw;
+      left: -380px;
+      width: 350px;
       height: 100vh;
-      pointer-events: none;
-      z-index: -3;
-      overflow: hidden;
-      background: 
-        radial-gradient(circle at 50% 25%, rgba(255, 0, 25, 0.16) 0%, transparent 60%),
-        radial-gradient(circle at 10% 80%, rgba(255, 0, 25, 0.08) 0%, transparent 50%),
-        linear-gradient(180deg, #090305 0%, #030304 100%);
+      background: rgba(9, 11, 18, 0.97);
+      backdrop-filter: blur(20px);
+      border-right: 2px solid var(--legacy-red);
+      z-index: 1000;
+      padding: 85px 25px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 15px 0 40px rgba(0, 0, 0, 0.8);
+      transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
     }
 
-    /* Arka Plan Kırmızı Russian Izgara */
-    .bg-grid {
-      position: absolute;
+    .sidebar-drawer.open {
+      left: 0;
+    }
+
+    .drawer-overlay {
+      position: fixed;
       inset: 0;
-      background-image: 
-        linear-gradient(rgba(255, 0, 25, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 0, 25, 0.08) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.8;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      display: none;
     }
 
-    /* 3'LÜ KALIN ENDÜSTRİYEL ÇİZGİLER (SOL ÜSTTEN SAĞ ALTA) */
-    .stripes-group-1 {
-      position: absolute;
-      top: -100px;
-      right: -80px;
-      display: flex;
-      gap: 16px;
-      transform: rotate(-35deg);
-      opacity: 0.85;
+    .drawer-overlay.active {
+      display: block;
     }
 
-    .stripe-bar {
-      width: 28px;
-      height: 750px;
-      background: linear-gradient(180deg, rgba(255,0,25,0.8) 0%, rgba(128,0,13,0.3) 80%, transparent 100%);
-      box-shadow: 0 0 20px rgba(255, 0, 25, 0.5);
-      border-left: 2px solid #fff;
-    }
-
-    /* 3'LÜ ÇİZGİLER (SOL ALT BÖLGE) */
-    .stripes-group-2 {
-      position: absolute;
-      bottom: -150px;
-      left: -60px;
-      display: flex;
-      gap: 14px;
-      transform: rotate(-35deg);
-      opacity: 0.6;
-    }
-
-    .stripe-bar-sm {
-      width: 18px;
-      height: 600px;
-      background: linear-gradient(0deg, rgba(255,0,25,0.7) 0%, rgba(128,0,13,0.2) 80%, transparent 100%);
-      box-shadow: 0 0 15px rgba(255, 0, 25, 0.4);
-    }
-
-    /* 3'LÜ KESİK DİYAGONAL ÇİZGİ BLOĞU (ORTA SAĞ) */
-    .hazard-block {
-      position: absolute;
-      top: 40%;
-      left: -50px;
-      width: 320px;
-      height: 60px;
-      background: repeating-linear-gradient(
-        -45deg,
-        rgba(255, 0, 25, 0.4),
-        rgba(255, 0, 25, 0.4) 15px,
-        transparent 15px,
-        transparent 30px
-      );
-      transform: rotate(15deg);
-      opacity: 0.45;
-    }
-
-    /* DEVASA ARKA PLAN WATERMARK TİPOGRAFİSİ */
-    .bg-watermark {
-      position: absolute;
-      top: 15%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Teko', sans-serif;
-      font-size: 24vw;
-      font-weight: 700;
-      color: rgba(255, 0, 25, 0.035);
-      white-space: nowrap;
-      user-select: none;
-      letter-spacing: 12px;
-      text-transform: uppercase;
-      line-height: 0.8;
-      pointer-events: none;
-    }
-
-    /* NAVBAR */
-    nav {
-      background: rgba(8, 4, 6, 0.88);
-      backdrop-filter: blur(12px);
-      padding: 16px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid var(--red-main);
-      box-shadow: 0 0 25px rgba(255, 0, 25, 0.3);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-logo {
-      font-family: 'Teko', sans-serif;
-      font-size: 34px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .drawer-brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
       color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 15px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .nav-logo span {
-      color: var(--red-main);
-      text-shadow: 0 0 15px var(--red-main);
+    .drawer-brand span {
+      color: var(--legacy-red);
     }
 
-    .nav-links {
+    .drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .drawer-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid transparent;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 12px;
+      transition: 0.25s;
     }
 
-    .nav-links a {
-      color: #d4d4d8;
+    .drawer-links a:hover {
+      background: rgba(255, 30, 56, 0.12);
+      border-color: var(--legacy-red);
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    /* =========================================
+       NAVBAR
+       ========================================= */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(6, 7, 10, 0.85);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 15px 25px 15px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-brand span {
+      color: var(--legacy-red);
+      text-shadow: 0 0 15px var(--legacy-glow);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-link-btn {
+      color: var(--text-muted);
       text-decoration: none;
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: 1.5px;
       text-transform: uppercase;
+      letter-spacing: 1px;
       transition: 0.25s;
-      cursor: pointer;
     }
 
-    .nav-links a:hover {
-      color: var(--red-main);
-      text-shadow: 0 0 10px var(--red-glow);
+    .nav-link-btn:hover {
+      color: #fff;
     }
 
-    .admin-nav-btn {
-      padding: 6px 14px;
-      border-radius: 4px;
-      background: rgba(255, 0, 25, 0.15);
-      border: 1px solid var(--red-main);
-      color: #fff !important;
-    }
-
-    .admin-nav-btn:hover {
-      background: var(--red-main);
-      box-shadow: 0 0 15px var(--red-glow);
-    }
-
-    /* ============================================================
-       RUSSIAN DESIGN ÖN BANNER VİTRİNİ
-       ============================================================ */
-    .banner-hero {
-      position: relative;
-      max-width: 1100px;
-      margin: 40px auto 30px;
-      padding: 40px 30px;
-      background: linear-gradient(135deg, rgba(20, 5, 8, 0.85) 0%, rgba(10, 2, 4, 0.95) 100%);
-      border: 2px solid var(--red-main);
-      border-radius: 14px;
-      box-shadow: 0 0 45px rgba(255, 0, 25, 0.25), inset 0 0 40px rgba(0, 0, 0, 0.9);
-      overflow: hidden;
-      text-align: center;
-    }
-
-    /* Banner İçi Mini Çizgi Detayları */
-    .banner-corner-lines {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      display: flex;
-      gap: 5px;
-    }
-
-    .corner-stripe {
-      width: 4px;
-      height: 25px;
-      background: var(--red-main);
-      box-shadow: 0 0 8px var(--red-main);
-      transform: skewX(-25deg);
-    }
-
-    .banner-badge-top {
-      font-family: 'Rajdhani', sans-serif;
+    .nav-badge-play {
+      background: var(--mc-green);
+      color: #000;
+      padding: 7px 16px;
+      border-radius: 6px;
       font-weight: 800;
-      font-size: 13px;
-      letter-spacing: 5px;
-      color: var(--red-main);
+      font-size: 12px;
       text-transform: uppercase;
-      display: inline-flex;
+      letter-spacing: 1px;
+      text-decoration: none;
+      box-shadow: 0 0 15px var(--mc-glow);
+      display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 6px;
+      transition: transform 0.2s;
     }
 
-    .banner-badge-top::before, .banner-badge-top::after {
+    .nav-badge-play:hover {
+      transform: scale(1.04);
+    }
+
+    /* =========================================
+       HERO / SONOYUNCU STİLİ MINECRAFT VİTRİNİ
+       ========================================= */
+    .hero-mc {
+      max-width: 1200px;
+      margin: 30px auto 40px;
+      padding: 0 20px;
+    }
+
+    .mc-showcase-card {
+      background: linear-gradient(135deg, rgba(14, 25, 20, 0.85) 0%, rgba(8, 12, 16, 0.95) 100%);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      border-radius: 16px;
+      padding: 45px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), inset 0 0 40px rgba(34, 197, 94, 0.06);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .mc-showcase-card::before {
       content: '';
-      width: 25px;
-      height: 2px;
-      background: var(--red-main);
-      box-shadow: 0 0 8px var(--red-main);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: var(--mc-green);
+      box-shadow: 0 0 15px var(--mc-green);
     }
 
-    .banner-title {
-      font-family: 'Teko', sans-serif;
-      font-size: 85px;
-      line-height: 0.85;
-      letter-spacing: 5px;
+    .mc-tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--mc-green);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mc-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 46px;
+      font-weight: 900;
+      line-height: 1.1;
       text-transform: uppercase;
       color: #fff;
-      text-shadow: 0 0 25px var(--red-glow), 0 5px 15px rgba(0, 0, 0, 0.9);
-      margin-bottom: 8px;
+      margin-bottom: 14px;
     }
 
-    .banner-title span {
-      color: var(--red-main);
-      text-shadow: 0 0 35px var(--red-main);
+    .mc-title span {
+      color: var(--mc-green);
+      text-shadow: 0 0 25px var(--mc-glow);
     }
 
-    .banner-sub {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      color: #d1d5db;
-      text-transform: uppercase;
-      margin-bottom: 35px;
+    .mc-desc {
+      color: #cbd5e1;
+      font-size: 15px;
+      margin-bottom: 25px;
+      line-height: 1.6;
     }
 
-    /* SUNUCU KARTLARI (#136 & #114) */
-    .servers-grid {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-    }
-
-    .server-card {
-      background: rgba(8, 8, 12, 0.88);
-      border: 1px solid var(--border-red);
+    .ip-copy-banner {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px dashed rgba(34, 197, 94, 0.4);
       border-radius: 10px;
-      padding: 22px 24px;
-      width: 100%;
-      max-width: 440px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-      text-align: left;
-      transition: all 0.3s ease;
-    }
-
-    .server-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--red-main);
-      box-shadow: 0 12px 35px var(--red-soft);
-    }
-
-    /* 3'LÜ DİKEY ÇİZGİ KART İÇİ AYRACI (SOL KENAR) */
-    .card-triple-lines {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 12px;
-      height: 100%;
-      display: flex;
-      gap: 2px;
-      padding-left: 2px;
-    }
-
-    .card-line {
-      width: 2px;
-      height: 100%;
-      background: var(--red-main);
-      box-shadow: 0 0 8px var(--red-main);
-    }
-
-    .card-line:nth-child(2) { opacity: 0.6; }
-    .card-line:nth-child(3) { opacity: 0.3; }
-
-    .server-card-inner {
-      padding-left: 8px;
-    }
-
-    .server-head {
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .ip-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .btn-mc-copy {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid var(--mc-green);
+      color: var(--mc-green);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-mc-copy:hover {
+      background: var(--mc-green);
+      color: #000;
+      box-shadow: 0 0 15px var(--mc-glow);
+    }
+
+    .launcher-download-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .launcher-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .launcher-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-download-launcher {
+      background: var(--mc-green);
+      color: #000;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 20px var(--mc-glow);
+      transition: 0.25s;
+    }
+
+    .btn-download-launcher:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .btn-download-jar {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .btn-download-jar:hover {
+      border-color: #fff;
+      color: #fff;
+    }
+
+    /* =========================================
+       ORTAK SECTION BAŞLIKLARI
+       ========================================= */
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .section-header {
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* =========================================
+       CS 1.6 - YENİ NESİL 3'LÜ SUNUCU ALANI
+       (105, 14, 114)
+       ========================================= */
+    .cs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 22px;
+    }
+
+    .cs-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 30, 56, 0.25);
+      border-radius: 12px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .cs-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--legacy-red);
+      box-shadow: 0 15px 35px var(--legacy-glow);
+    }
+
+    .cs-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--legacy-red);
+      box-shadow: 0 0 12px var(--legacy-red);
+    }
+
+    .cs-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       margin-bottom: 12px;
     }
 
-    .server-name {
+    .cs-name {
       font-family: 'Teko', sans-serif;
-      font-size: 30px;
-      line-height: 1;
+      font-size: 28px;
       letter-spacing: 1px;
+      line-height: 1;
       color: #fff;
     }
 
-    .server-tag {
+    .cs-tag {
       font-family: 'Rajdhani', sans-serif;
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.5px;
-      background: var(--red-main);
+      letter-spacing: 1px;
+      background: var(--legacy-red);
       color: #fff;
       padding: 3px 8px;
       border-radius: 4px;
+      text-transform: uppercase;
     }
 
-    .server-ip-box {
-      background: rgba(0, 0, 0, 0.7);
-      border: 1px dashed rgba(255, 0, 25, 0.4);
-      padding: 9px 12px;
+    .cs-ip-box {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px 12px;
       border-radius: 6px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 14px;
-    }
-
-    .server-ip {
       font-family: 'Rajdhani', monospace;
-      font-size: 21px;
+      font-size: 18px;
       font-weight: 700;
-      color: #fff;
-      letter-spacing: 1px;
+      color: #e2e8f0;
     }
 
-    .live-count-row {
+    .cs-status-bar {
       display: flex;
       justify-content: space-between;
       font-size: 12px;
-      font-weight: 700;
       color: var(--text-muted);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      margin-bottom: 14px;
+      font-weight: 600;
     }
 
-    .live-count-row span.num {
-      color: var(--red-main);
+    .cs-status-bar .online-num {
+      color: var(--legacy-red);
       font-weight: 800;
     }
 
-    .players-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 6px;
-      max-height: 110px;
-      overflow-y: auto;
-      margin-bottom: 16px;
-      padding-right: 4px;
-    }
-
-    .players-list::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .players-list::-webkit-scrollbar-thumb {
-      background: var(--red-main);
-      border-radius: 4px;
-    }
-
-    .player-tag {
-      background: rgba(255, 255, 255, 0.04);
-      border-left: 2px solid var(--red-main);
-      padding: 4px 8px;
-      border-radius: 3px;
-      font-size: 11px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #e4e4e7;
-    }
-
-    .btn-row {
+    .cs-buttons {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .btn-action {
+    .btn-connect-cs {
       flex: 1;
+      background: var(--legacy-red);
+      color: #fff;
       padding: 10px;
       border-radius: 6px;
-      text-decoration: none;
-      font-weight: 700;
       font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      border: none;
-      transition: 0.25s;
-    }
-
-    .btn-red {
-      background: var(--red-main);
-      color: #fff;
-      box-shadow: 0 0 15px var(--red-soft);
-    }
-
-    .btn-red:hover {
-      background: #ff1f35;
-      box-shadow: 0 0 20px var(--red-main);
-    }
-
-    .btn-dark {
-      background: #18181b;
-      color: #fff;
-      border: 1px solid #27272a;
-    }
-
-    .btn-dark:hover {
-      border-color: var(--red-main);
-      color: var(--red-main);
-    }
-
-    /* TOPLULUK LINKLERI */
-    .quick-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-
-    .quick-box {
-      padding: 12px 24px;
-      background: rgba(10, 4, 6, 0.85);
-      border: 1px solid var(--border-red);
-      border-radius: 8px;
-      color: #fff;
-      text-decoration: none;
       font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 1.5px;
+      text-decoration: none;
       text-transform: uppercase;
+      letter-spacing: 1px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: 0.3s;
+      justify-content: center;
+      gap: 6px;
+      transition: 0.2s;
     }
 
-    .quick-box:hover {
-      background: var(--red-main);
-      box-shadow: 0 0 20px var(--red-glow);
+    .btn-connect-cs:hover {
+      filter: brightness(1.15);
+      box-shadow: 0 0 15px var(--legacy-glow);
     }
 
-    /* İÇERİK KONTEYNERİ */
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
+    .btn-copy-cs {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    .sec-heading {
-      font-family: 'Teko', sans-serif;
-      font-size: 38px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .btn-copy-cs:hover {
+      border-color: var(--legacy-red);
       color: #fff;
-      border-bottom: 2px solid var(--border-red);
-      padding-bottom: 6px;
-      margin-bottom: 20px;
+    }
+
+    /* =========================================
+       CLASH OF CLANS KLANLAR BÖLÜMÜ
+       ========================================= */
+    .coc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .coc-card {
+      background: linear-gradient(135deg, rgba(25, 20, 10, 0.8) 0%, rgba(10, 8, 5, 0.95) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 14px;
+      padding: 26px;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .coc-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--coc-gold);
+      box-shadow: 0 15px 35px var(--coc-glow);
+    }
+
+    .coc-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--coc-gold);
+      box-shadow: 0 0 15px var(--coc-gold);
+    }
+
+    .coc-tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--coc-gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .coc-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .coc-tag-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      padding: 10px 14px;
+      border-radius: 8px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .coc-tag-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 16px;
+      color: var(--coc-gold);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    .coc-btn-row {
+      display: flex;
       gap: 10px;
     }
 
-    .sec-heading span {
-      color: var(--red-main);
+    .btn-coc-join {
+      flex: 1;
+      background: var(--coc-gold);
+      color: #000;
+      padding: 11px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 0 15px var(--coc-glow);
+      transition: 0.2s;
     }
 
-    /* ETKİNLİK KARTLARI */
-    .events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    .btn-coc-join:hover {
+      filter: brightness(1.15);
+    }
+
+    /* =========================================
+       HALF-LIFE TOPLULUK KARTI (IP'SİZ)
+       ========================================= */
+    .hl-banner {
+      background: linear-gradient(90deg, rgba(249, 115, 22, 0.12) 0%, rgba(12, 14, 20, 0.9) 100%);
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      border-radius: 12px;
+      padding: 24px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .hl-left {
+      display: flex;
+      align-items: center;
       gap: 20px;
     }
 
-    .event-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-red);
-      border-radius: 8px;
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
+    .hl-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 10px;
+      background: rgba(249, 115, 22, 0.2);
+      border: 1px solid var(--hl-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: var(--hl-orange);
     }
 
-    .event-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--red-main);
-      box-shadow: 0 0 10px var(--red-main);
+    .hl-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
     }
 
-    .event-badge {
-      display: inline-block;
-      font-size: 11px;
+    .hl-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .hl-badge-soon {
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid var(--hl-orange);
+      color: var(--hl-orange);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: 1px;
       text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: var(--red-soft);
-      border: 1px solid var(--red-main);
-      color: var(--red-main);
-      margin-bottom: 8px;
     }
 
-    .event-title {
-      font-family: 'Teko', sans-serif;
-      font-size: 26px;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .event-time {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fbbf24;
-      margin-bottom: 6px;
-    }
-
-    .event-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    /* ŞİKAYET FORMU */
-    .form-panel {
-      background: var(--card-bg);
-      border: 1px solid var(--border-red);
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px;
-      background: rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      color: #fff;
-      font-family: inherit;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    .form-control:focus {
-      border-color: var(--red-main);
-      box-shadow: 0 0 10px var(--red-soft);
-    }
-
-    /* ADMİN MODALI VE PANELİ */
-    .modal {
+    /* =========================================
+       HAKKIMIZDA MODALI (SADECE 3 ÇİZGİDEN AÇILIR)
+       ========================================= */
+    .modal-about {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
 
-    .modal-box {
-      background: #0d0608;
-      border: 1px solid var(--red-main);
-      border-radius: 10px;
+    .modal-about.active {
+      display: flex;
+    }
+
+    .modal-about-content {
+      background: #0d0f18;
+      border: 1px solid var(--legacy-red);
+      border-radius: 14px;
       padding: 35px;
-      width: 350px;
-      text-align: center;
-      box-shadow: 0 0 35px var(--red-glow);
+      max-width: 650px;
+      width: 100%;
+      box-shadow: 0 0 50px var(--legacy-glow);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
-    #adminArea {
-      display: none;
-      background: #0d0608;
-      border: 1px solid var(--red-main);
-      border-radius: 10px;
-      padding: 30px;
-      margin-top: 30px;
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    .complaint-item {
-      background: rgba(0, 0, 0, 0.6);
-      border-left: 3px solid var(--red-main);
-      border-radius: 6px;
-      padding: 14px;
-      margin-bottom: 12px;
+    .modal-close-btn:hover {
+      color: var(--legacy-red);
+    }
+
+    .timeline {
+      margin-top: 20px;
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid rgba(255, 30, 56, 0.3);
+    }
+
+    .timeline-item {
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--legacy-red);
+      box-shadow: 0 0 10px var(--legacy-red);
+    }
+
+    .timeline-year {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--legacy-red);
+      margin-bottom: 4px;
+    }
+
+    .timeline-text {
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.6;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: #71717a;
+      padding: 35px 20px;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
       font-size: 13px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-top: auto;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 850px) {
+      .mc-showcase-card {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        padding-left: 75px;
+      }
     }
   </style>
-
-  <!-- FIREBASE KÜTÜPHANELERİ -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 </head>
 <body>
 
-  <!-- RUSSIAN DESIGN ARKA PLAN VİTRİNİ & 3'LÜ ENDÜSTRİYEL ÇİZGİLER -->
-  <div class="russian-bg">
-    <div class="bg-grid"></div>
-    <div class="bg-watermark">LEGACY 136</div>
-
-    <!-- 1. Grup: Sağ Üst 3'lü Kalın Çizgi Bloğu -->
-    <div class="stripes-group-1">
-      <div class="stripe-bar"></div>
-      <div class="stripe-bar"></div>
-      <div class="stripe-bar"></div>
-    </div>
-
-    <!-- 2. Grup: Sol Alt 3'lü İnce Çizgi Bloğu -->
-    <div class="stripes-group-2">
-      <div class="stripe-bar-sm"></div>
-      <div class="stripe-bar-sm"></div>
-      <div class="stripe-bar-sm"></div>
-    </div>
-
-    <!-- 3. Grup: Sol Orta Kesik Hazard Çizgileri -->
-    <div class="hazard-block"></div>
+  <!-- ================= SOL 3 ÇİZGİ MENÜ TETİKLEYİCİ ================= -->
+  <div class="sidebar-toggle-btn" onclick="toggleSidebar()">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
   </div>
 
-  <!-- ÜST NAVBAR -->
-  <nav>
-    <div class="nav-logo">
-      <i class="fa-solid fa-crosshairs" style="color: var(--red-main);"></i>
-      LEGACY <span>GAMING</span>
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleSidebar()"></div>
+
+  <!-- SOL KAYAR MENÜ (DRAWER) -->
+  <div class="sidebar-drawer" id="sidebarDrawer">
+    <div class="drawer-brand">
+      <i class="fa-solid fa-gamepad" style="color: var(--legacy-red);"></i>
+      LEGACY <span>HUB</span>
     </div>
-    <div class="nav-links">
-      <a href="#servers">Sunucular</a>
-      <a href="#events">Etkinlikler</a>
-      <a href="#complaint">Şikayet</a>
-      <a onclick="document.getElementById('loginModal').style.display='flex'" class="admin-nav-btn">Yönetim</a>
+
+    <div class="drawer-links">
+      <a href="#minecraft" onclick="toggleSidebar()"><i class="fa-solid fa-cube" style="color: var(--mc-green);"></i> RosherCraft Minecraft</a>
+      <a href="#cs" onclick="toggleSidebar()"><i class="fa-solid fa-crosshairs" style="color: var(--legacy-red);"></i> CS 1.6 Sunucuları</a>
+      <a href="#clash" onclick="toggleSidebar()"><i class="fa-solid fa-shield-halved" style="color: var(--coc-gold);"></i> Clash of Clans</a>
+      <a href="#halflife" onclick="toggleSidebar()"><i class="fa-solid fa-radiation" style="color: var(--hl-orange);"></i> Half-Life Hub</a>
+      <a onclick="openAboutModal()"><i class="fa-solid fa-book-journal-whills" style="color: #60a5fa;"></i> Hakkımızda & Tarihçe</a>
+    </div>
+
+    <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--card-border); font-size: 12px; color: var(--text-muted);">
+      Legacy Gaming x Siyaset Ortaklığı &copy; 2026
+    </div>
+  </div>
+
+  <!-- ================= TOP NAVBAR ================= -->
+  <nav>
+    <div class="nav-brand">
+      LEGACY<span>GAMING</span>
+    </div>
+    <div class="nav-actions">
+      <a href="#cs" class="nav-link-btn">CS 1.6</a>
+      <a href="#clash" class="nav-link-btn">CoC</a>
+      <a href="#minecraft" class="nav-badge-play"><i class="fa-solid fa-play"></i> Oyna</a>
     </div>
   </nav>
 
-  <!-- ÖN RUSSIAN DESIGN BANNER VİTRİNİ -->
-  <div class="banner-hero" id="servers">
-    <!-- Köşe 3'lü Detay Çizgileri -->
-    <div class="banner-corner-lines">
-      <div class="corner-stripe"></div>
-      <div class="corner-stripe"></div>
-      <div class="corner-stripe"></div>
-    </div>
-
-    <div class="banner-badge-top">CS 1.6 RUSSIAN DESIGN // #136 & #114</div>
-    <div class="banner-title">LEGACY <span>GAMING</span></div>
-    <div class="banner-sub">EFSANEVİ JAILBREAK & PRO OYUNCU TOPLULUĞU</div>
-
-    <!-- SUNUCU KARTLARI (#136 & #114) -->
-    <div class="servers-grid">
-      
-      <!-- 136 KARTI -->
-      <div class="server-card">
-        <div class="card-triple-lines">
-          <div class="card-line"></div>
-          <div class="card-line"></div>
-          <div class="card-line"></div>
+  <!-- ================= MINECRAFT SONOYUNCU TARZI HERO ================= -->
+  <div class="hero-mc" id="minecraft">
+    <div class="mc-showcase-card">
+      <div>
+        <div class="mc-tag">
+          <i class="fa-solid fa-cube"></i> ROSHERCRAFT NETWORK // 1.16 - 1.21+
         </div>
-        <div class="server-card-inner">
-          <div class="server-head">
-            <div class="server-name">LEGACY JAILBREAK</div>
-            <span class="server-tag">#136 JB</span>
+        <h1 class="mc-title">EFSANEVİ <span>MINECRAFT</span> DENEYİMİ</h1>
+        <p class="mc-desc">
+          RosherCraft ile Skyblock, Survival ve özel minigames dünyasına adım atın. 
+          Özel hile koruması, lag-free altyapı ve haftalık turnuva ödülleri seni bekliyor!
+        </p>
+
+        <!-- IP KUTUSU -->
+        <div class="ip-copy-banner">
+          <div>
+            <div style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Sunucu IP Adresi</div>
+            <div class="ip-text">play.roshercraft.com.tr</div>
           </div>
-          <div class="server-ip-box">
-            <span class="server-ip">95.173.173.136</span>
-            <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
-          </div>
-          <div class="live-count-row">
-            <span>Aktif Oyuncular</span>
-            <span class="num"><span id="count_136">0</span> / 32</span>
-          </div>
-          <div class="players-list" id="list_136"></div>
-          <div class="btn-row">
-            <a href="steam://connect/95.173.173.136" class="btn-action btn-red">
-              <i class="fa-solid fa-play"></i> Bağlan
-            </a>
-            <button class="btn-action btn-dark" onclick="copyIp('95.173.173.136')">
-              <i class="fa-regular fa-copy"></i> Kopyala
-            </button>
-          </div>
+          <button class="btn-mc-copy" onclick="copyText('play.roshercraft.com.tr', 'Minecraft Sunucu IP Kopyalandı!')">
+            <i class="fa-regular fa-copy"></i> Kopyala
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 20px; font-size: 13px; color: #cbd5e1; font-weight: 600;">
+          <div><i class="fa-solid fa-signal" style="color: var(--mc-green);"></i> <b>1.16 - 1.21+</b> Uyumlu</div>
+          <div><i class="fa-solid fa-users" style="color: var(--mc-green);"></i> Aktif Oyuncular: <b>142 Çevrimiçi</b></div>
         </div>
       </div>
 
-      <!-- 114 KARTI -->
-      <div class="server-card">
-        <div class="card-triple-lines">
-          <div class="card-line"></div>
-          <div class="card-line"></div>
-          <div class="card-line"></div>
+      <!-- LAUNCHER İNDİRME ALANI -->
+      <div class="launcher-download-box">
+        <div class="launcher-title">
+          <i class="fa-brands fa-windows" style="color: #38bdf8;"></i> Resmi Launcher
         </div>
-        <div class="server-card-inner">
-          <div class="server-head">
-            <div class="server-name">LEGACY PRO & PUBLIC</div>
-            <span class="server-tag">#114 PRO</span>
-          </div>
-          <div class="server-ip-box">
-            <span class="server-ip">95.173.173.114</span>
-            <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
-          </div>
-          <div class="live-count-row">
-            <span>Aktif Oyuncular</span>
-            <span class="num"><span id="count_114">0</span> / 32</span>
-          </div>
-          <div class="players-list" id="list_114"></div>
-          <div class="btn-row">
-            <a href="steam://connect/95.173.173.114" class="btn-action btn-red">
-              <i class="fa-solid fa-play"></i> Bağlan
-            </a>
-            <button class="btn-action btn-dark" onclick="copyIp('95.173.173.114')">
-              <i class="fa-regular fa-copy"></i> Kopyala
-            </button>
-          </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">
+          Tek tıkla kurulum yapın, otomatik güncellemeler ve optimize FPS ile kesintisiz oynayın.
+        </p>
+        <div class="launcher-buttons">
+          <a href="#" class="btn-download-launcher" onclick="alert('RosherCraft Launcher indirmesi başlatılıyor...'); return false;">
+            <i class="fa-solid fa-download"></i> Windows İndir (.EXE)
+          </a>
+          <a href="#" class="btn-download-jar" onclick="alert('RosherCraft Evrensel .JAR sürümü indiriliyor...'); return false;">
+            <i class="fa-solid fa-coffee"></i> macOS & Linux (.JAR)
+          </a>
         </div>
       </div>
-
-    </div>
-
-    <!-- HIZLI ERİŞİM BUTONLARI -->
-    <div class="quick-links">
-      <a href="ts3server://95.173.173.136" class="quick-box">
-        <i class="fa-solid fa-headset" style="color: var(--red-main);"></i> TS3: 95.173.173.136
-      </a>
-      <a href="https://instagram.com/leqacyclan" target="_blank" class="quick-box">
-        <i class="fa-brands fa-instagram" style="color: var(--red-main);"></i> Resmi Instagram
-      </a>
     </div>
   </div>
 
-  <!-- HAFTALIK ETKİNLİK TAKVİMİ -->
-  <div class="container" id="events">
-    <div class="sec-heading">
-      <i class="fa-solid fa-calendar-days" style="color: var(--red-main);"></i>
-      HAFTALIK <span>ETKİNLİK TAKVİMİ</span>
+  <!-- ================= COUNTER-STRIKE 1.6 SUNUCULARI ================= -->
+  <div class="container" id="cs">
+    <div class="section-header">
+      <div>
+        <div class="section-title">
+          <i class="fa-solid fa-crosshairs" style="color: var(--legacy-red);"></i>
+          COUNTER-STRIKE 1.6
+        </div>
+        <div class="section-subtitle">2014'ten bugüne Türkiye'nin en aktif Jailbreak & Pro topluluğu</div>
+      </div>
     </div>
-    <div class="events-grid" id="publicEventsGrid"></div>
+
+    <div class="cs-grid">
+      <!-- 105 SUNUCUSU -->
+      <div class="cs-card">
+        <div class="cs-head">
+          <div class="cs-name">LEGACY JAILBREAK PRO</div>
+          <span class="cs-tag">#105 JB</span>
+        </div>
+        <div class="cs-ip-box">
+          <span>95.173.173.105</span>
+          <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
+        </div>
+        <div class="cs-status-bar">
+          <span>Çevrimiçi Oyuncular</span>
+          <span class="online-num"><span id="cs105_count">24</span> / 32</span>
+        </div>
+        <div class="cs-buttons">
+          <a href="steam://connect/95.173.173.105" class="btn-connect-cs">
+            <i class="fa-solid fa-play"></i> Bağlan
+          </a>
+          <button class="btn-copy-cs" onclick="copyText('95.173.173.105', 'IP Kopyalandı!')">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 14 SUNUCUSU -->
+      <div class="cs-card">
+        <div class="cs-head">
+          <div class="cs-name">LEGACY TOPLULUK PRO</div>
+          <span class="cs-tag">#14 PRO</span>
+        </div>
+        <div class="cs-ip-box">
+          <span>95.173.173.14</span>
+          <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
+        </div>
+        <div class="cs-status-bar">
+          <span>Çevrimiçi Oyuncular</span>
+          <span class="online-num"><span id="cs14_count">22</span> / 32</span>
+        </div>
+        <div class="cs-buttons">
+          <a href="steam://connect/95.173.173.14" class="btn-connect-cs">
+            <i class="fa-solid fa-play"></i> Bağlan
+          </a>
+          <button class="btn-copy-cs" onclick="copyText('95.173.173.14', 'IP Kopyalandı!')">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 114 SUNUCUSU -->
+      <div class="cs-card">
+        <div class="cs-head">
+          <div class="cs-name">LEGACY PUBLIC ELITE</div>
+          <span class="cs-tag">#114 PUBLIC</span>
+        </div>
+        <div class="cs-ip-box">
+          <span>95.173.173.114</span>
+          <i class="fa-solid fa-signal" style="color: #22c55e;"></i>
+        </div>
+        <div class="cs-status-bar">
+          <span>Çevrimiçi Oyuncular</span>
+          <span class="online-num"><span id="cs114_count">26</span> / 32</span>
+        </div>
+        <div class="cs-buttons">
+          <a href="steam://connect/95.173.173.114" class="btn-connect-cs">
+            <i class="fa-solid fa-play"></i> Bağlan
+          </a>
+          <button class="btn-copy-cs" onclick="copyText('95.173.173.114', 'IP Kopyalandı!')">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- ŞİKAYET BİLDİRİMİ -->
-  <div class="container" id="complaint">
-    <div id="publicArea">
-      <div class="sec-heading">
-        <i class="fa-solid fa-shield-halved" style="color: var(--red-main);"></i>
-        ŞİKAYET VE <span>DESTEK BİLDİRİMİ</span>
-      </div>
-      
-      <div class="form-panel">
-        <div class="form-group">
-          <label>Oyundaki Nickiniz</label>
-          <input type="text" id="compName" class="form-control" placeholder="Örn: DarkDaysC">
+  <!-- ================= CLASH OF CLANS KLANLARI ================= -->
+  <div class="container" id="clash">
+    <div class="section-header">
+      <div>
+        <div class="section-title">
+          <i class="fa-solid fa-shield-halved" style="color: var(--coc-gold);"></i>
+          CLASH OF CLANS RESMİ KLANLARI
         </div>
-        <div class="form-group">
-          <label>Konu / Şikayet Edilen Yetkili</label>
-          <input type="text" id="compSubject" class="form-control" placeholder="Örn: Haksız slay / ban">
-        </div>
-        <div class="form-group">
-          <label>Olayın Detayları</label>
-          <textarea id="compText" rows="4" class="form-control" placeholder="Detayları anlatın..."></textarea>
-        </div>
-        <button class="btn-action btn-red" onclick="submitComplaint()" style="width: 100%; padding: 14px;">
-          <i class="fa-solid fa-paper-plane"></i> Şikayeti Gönder
-        </button>
+        <div class="section-subtitle">Bu ay açılan resmi klanlarımızla Klan Savaşları ve Liglerde yerinizi alın</div>
       </div>
     </div>
 
-    <!-- YÖNETİCİ PANELİ -->
-    <div id="adminArea">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-red); padding-bottom: 15px; margin-bottom: 20px;">
-        <h2 style="font-family: 'Teko', sans-serif; font-size: 34px; color: var(--red-main);">LEGACY YÖNETİM PANELİ</h2>
-        <button class="btn-action btn-dark" onclick="logoutAdmin()" style="flex: none; padding: 6px 14px;">Çıkış Yap</button>
+    <div class="coc-grid">
+      <!-- 1. KLAN -->
+      <div class="coc-card">
+        <div class="coc-tag">1. ANA KLAN // WAR SQUAD</div>
+        <div class="coc-name">LEGACY WARRIORS</div>
+        <div class="coc-tag-box">
+          <span class="coc-tag-text">#2CU8QPQ9L</span>
+          <button class="btn-mc-copy" style="border-color: var(--coc-gold); color: var(--coc-gold); background: rgba(245, 158, 11, 0.1);" onclick="copyText('#2CU8QPQ9L', '1. Klan Kodu Kopyalandı!')">
+            Kopyala
+          </button>
+        </div>
+        <div class="coc-btn-row">
+          <a href="clashofclans://action=OpenClanProfile&tag=2CU8QPQ9L" class="btn-coc-join">
+            <i class="fa-solid fa-swords"></i> Oyunda Aç & Katıl
+          </a>
+        </div>
       </div>
 
-      <!-- ETKİNLİK EKLE -->
-      <div style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 8px; border: 1px solid var(--border-red); margin-bottom: 25px;">
-        <h3 style="font-family: 'Teko', sans-serif; font-size: 24px; color: #fff; margin-bottom: 12px;">YENİ ETKİNLİK EKLE</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 10px;">
-          <div class="form-group" style="margin: 0;">
-            <label>Kategori</label>
-            <select id="admEvType" class="form-control">
-              <option value="Hafta Sonu">Hafta Sonu</option>
-              <option value="Hafta İçi">Hafta İçi</option>
-            </select>
-          </div>
-          <div class="form-group" style="margin: 0;">
-            <label>Etkinlik Adı</label>
-            <input type="text" id="admEvTitle" class="form-control" placeholder="Örn: İsyan Gecesi">
-          </div>
-          <div class="form-group" style="margin: 0;">
-            <label>Saat</label>
-            <input type="text" id="admEvTime" class="form-control" placeholder="Örn: 21:30">
-          </div>
+      <!-- 2. KLAN -->
+      <div class="coc-card">
+        <div class="coc-tag">2. GELİŞİM // AKADEMİ KLANI</div>
+        <div class="coc-name">LEGACY ELITE</div>
+        <div class="coc-tag-box">
+          <span class="coc-tag-text">#2CLJJ8VYR</span>
+          <button class="btn-mc-copy" style="border-color: var(--coc-gold); color: var(--coc-gold); background: rgba(245, 158, 11, 0.1);" onclick="copyText('#2CLJJ8VYR', '2. Klan Kodu Kopyalandı!')">
+            Kopyala
+          </button>
         </div>
-        <div class="form-group">
-          <label>Açıklama</label>
-          <input type="text" id="admEvDesc" class="form-control" placeholder="Detay / Ödül bilgisi...">
+        <div class="coc-btn-row">
+          <a href="clashofclans://action=OpenClanProfile&tag=2CLJJ8VYR" class="btn-coc-join">
+            <i class="fa-solid fa-swords"></i> Oyunda Aç & Katıl
+          </a>
         </div>
-        <button class="btn-action btn-red" onclick="addNewEvent()" style="width: 100%;">
-          <i class="fa-solid fa-plus"></i> Takvime Ekle
-        </button>
-        <div id="adminEventsList" style="margin-top: 15px;"></div>
       </div>
-
-      <!-- GELEN ŞİKAYETLER -->
-      <h3 style="font-family: 'Teko', sans-serif; font-size: 26px; color: var(--red-main); margin-bottom: 12px;">GELEN ŞİKAYETLER</h3>
-      <div id="complaintsList"></div>
     </div>
   </div>
 
-  <!-- YÖNETİCİ GİRİŞİ MODALI -->
-  <div id="loginModal" class="modal">
-    <div class="modal-box">
-      <h2 style="font-family: 'Teko', sans-serif; font-size: 32px; color: var(--red-main); margin-bottom: 5px;">YÖNETİCİ GİRİŞİ</h2>
-      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Legacy Gaming Yönetici Paneli</p>
-      <input type="text" id="adminUser" placeholder="Kullanıcı Adı" class="form-control" style="margin-bottom: 10px;">
-      <input type="password" id="adminPass" placeholder="Şifre" class="form-control" style="margin-bottom: 20px;">
-      <button class="btn-action btn-red" onclick="checkLogin()" style="width: 100%; margin-bottom: 10px;">Giriş Yap</button>
-      <button class="btn-action btn-dark" onclick="document.getElementById('loginModal').style.display='none'" style="width: 100%;">İptal</button>
+  <!-- ================= HALF-LIFE TOPLULUĞU (IP'SİZ) ================= -->
+  <div class="container" id="halflife">
+    <div class="hl-banner">
+      <div class="hl-left">
+        <div class="hl-icon">
+          <i class="fa-solid fa-radiation"></i>
+        </div>
+        <div>
+          <div class="hl-title">HALF-LIFE TOPLULUĞU</div>
+          <div class="hl-desc">Crossfire turnuvaları, özel modlar ve nostaljik Deathmatch heyecanı yakında aktif.</div>
+        </div>
+      </div>
+      <div class="hl-badge-soon">
+        <i class="fa-solid fa-hourglass-half"></i> Yakında Açılıyor
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HAKKIMIZDA MODAL POPUP ================= -->
+  <div class="modal-about" id="aboutModal">
+    <div class="modal-about-content">
+      <button class="modal-close-btn" onclick="closeAboutModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div style="font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 8px;">
+        LEGACY GAMING <span style="color: var(--legacy-red);">TARİHÇESİ</span>
+      </div>
+      <div style="font-size: 13px; color: var(--text-muted);">2011'den günümüze uzanan espor ve topluluk köklerimiz</div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2011 // KURULUŞ</div>
+          <div class="timeline-text">
+            Topluluğumuz ilk olarak <b>LegendGaming</b> adı altında Counter-Strike 1.6 camiasında faaliyete başladı. On binlerce oyuncuya ev sahipliği yaparak dönemin en saygın toplulukları arasına girdi.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2023 // GEÇİCİ KAPANMA</div>
+          <div class="timeline-text">
+            Yıllar süren kesintisiz yönetimin ardından yönetim kurulu kararıyla sunucu operasyonlarımız geçici olarak durduruldu ve kapanış gerçekleşti.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2024 // YENİDEN DOĞUŞ (LEGACY)</div>
+          <div class="timeline-text">
+            Küllerimizden doğarak bu kez <b>LegacyGaming</b> ismiyle daha modern, güçlü ve tecrübeli bir ekiple geri dönüş yaptık.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2025 SONU // SİYASET GAMING ORTAKLIĞI</div>
+          <div class="timeline-text">
+            Türkiye CS 1.6 camiasının bir diğer devi olan <b>Siyaset Gaming</b> ile güçlerimizi birleştirerek ortak sunucu ve yönetim çatısı altında hizmet vermeye başladık.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2025 // MINECRAFT AÇILIŞI</div>
+          <div class="timeline-text">
+            CS 1.6 başarısının ardından Minecraft dünyasına <b>RosherCraft</b> markasıyla açılarak çok oyunculu ekosistemimizi genişlettik.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2026 // CLASH OF CLANS & GELECEK</div>
+          <div class="timeline-text">
+            Bu ay kurulan resmi Clash of Clans klanlarımızla mobil arenada da birleştik; Half-Life ve yeni turnuvalarla büyümeye devam ediyoruz.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <footer>
-    &copy; 2014 - 2026 Legacy Gaming. Tüm hakları saklıdır. <br>
-    CS 1.6 Russian Design Theme // #136 & #114
+    &copy; 2011 - 2026 Legacy Gaming Network. Tüm hakları saklıdır.<br>
+    CS 1.6 (#105, #14, #114) • RosherCraft Minecraft • Clash of Clans
   </footer>
 
   <script>
-    // ================= FIREBASE AYARLARI =================
-    const firebaseConfig = {
-      apiKey: "AIzaSyBh5_pUr2jd0TAPthsr2-sNm3D1RJLB-4U",
-      authDomain: "siyasetweb.firebaseapp.com",
-      databaseURL: "https://siyasetweb-default-rtdb.firebaseio.com",
-      projectId: "siyasetweb",
-      storageBucket: "siyasetweb.firebasestorage.app",
-      messagingSenderId: "931082534512",
-      appId: "1:931082534512:web:853156d1fdc28ec1263eb5"
-    };
-
-    let db = null;
-    try {
-      firebase.initializeApp(firebaseConfig);
-      db = firebase.database();
-    } catch(e) {
-      console.warn("Firebase başlatılamadı:", e);
+    // SOL SIDEBAR TOGGLE
+    function toggleSidebar() {
+      const drawer = document.getElementById('sidebarDrawer');
+      const overlay = document.getElementById('drawerOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('active');
     }
 
-    let cloudComplaints = [];
-    let cloudEvents = [];
+    // HAKKIMIZDA MODAL KONTROLÜ
+    function openAboutModal() {
+      toggleSidebar();
+      document.getElementById('aboutModal').classList.add('active');
+    }
 
-    const DEFAULT_EVENTS = [
-      { type: "Hafta Sonu", title: "Resmi Klan Toplantısı", time: "Cumartesi & Pazar | 20:30", desc: "TS3 adresinde genel klan değerlendirmesi ve yetki dağıtımı." },
-      { type: "Hafta Sonu", title: "Nakit / Ödüllü İsyan", time: "Cumartesi & Pazar | 21:30", desc: "Paralı ödüllü isyan gecesi! İsyan atan takıma nakit ödül." },
-      { type: "Hafta İçi", title: "Pro Maç & JB Gecesi", time: "Hafta İçi | 21:00", desc: "136 ve 114 sunucularında kesintisiz eğlence ve klan maçları." }
-    ];
+    function closeAboutModal() {
+      document.getElementById('aboutModal').classList.remove('active');
+    }
 
-    if (db) {
-      db.ref('legacy_complaints').on('value', snapshot => {
-        cloudComplaints = [];
-        snapshot.forEach(child => {
-          cloudComplaints.push({ id: child.key, ...child.val() });
-        });
-        renderComplaints();
-      });
-
-      db.ref('legacy_events').on('value', snapshot => {
-        cloudEvents = [];
-        if (snapshot.exists()) {
-          snapshot.forEach(child => {
-            cloudEvents.push({ id: child.key, ...child.val() });
-          });
-        } else {
-          DEFAULT_EVENTS.forEach(ev => db.ref('legacy_events').push(ev));
-        }
-        renderPublicEvents();
-        renderAdminEvents();
+    // KOPYALAMA
+    function copyText(text, msg) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert(msg);
       });
     }
 
-    // ================= SAATLİK OYUNCU DÖNGÜSÜ =================
-    const playersPool = [
-      "DarkDaysC", "LegacyReis", "RussianPro", "Kemal", "Kado", "Efsane", "ProGamer",
-      "JailbreakKing", "Komutcu", "Cemil", "Mesut", "Sly", "Shadow", "Reis",
-      "VipPlayer", "RedBull", "Kobra", "Spectre", "Ghost", "Terminator",
-      "Alpha", "Bravo", "Delta", "SniperTr", "Baskan", "Kral", "Bomba"
-    ];
-
-    function calculateDynamicPlayers() {
+    // DİNAMİK CS 1.6 OYUNCU DÖNGÜSÜ
+    function updateDynamicCsPlayers() {
       const now = new Date();
       const h = now.getHours() + (now.getMinutes() / 60);
+      let base = 20;
 
-      // Sabah (05:00 - 12:00) -> 5 - 10 arası
-      if (h >= 5 && h < 12) return Math.floor(Math.random() * 6) + 5;
-      // Öğlen (12:00 - 18:00) -> 16 - 20 arası
-      else if (h >= 12 && h < 18) return Math.floor(Math.random() * 5) + 16;
-      // Akşam (18:00 - 22:30) -> 20 - 32 arası
-      else if (h >= 18 && h < 22.5) return Math.floor(Math.random() * 13) + 20;
-      // Gece (22:30 - 05:00) -> 13 - 18 arası
-      else return Math.floor(Math.random() * 6) + 13;
-    }
+      if (h >= 5 && h < 12) base = 8;
+      else if (h >= 12 && h < 18) base = 18;
+      else if (h >= 18 && h < 22.5) base = 28;
+      else base = 16;
 
-    function updateLiveServers() {
-      const count136 = calculateDynamicPlayers();
-      let count114 = count136 + (Math.floor(Math.random() * 3) - 1);
-      if (count114 > 32) count114 = 32;
-      if (count114 < 4) count114 = 4;
-
-      document.getElementById('count_136').innerText = count136;
-      const list136 = document.getElementById('list_136');
-      list136.innerHTML = '';
-      for (let i = 0; i < count136; i++) {
-        list136.innerHTML += `<div class="player-tag">👤 ${playersPool[i % playersPool.length]}</div>`;
-      }
-
-      document.getElementById('count_114').innerText = count114;
-      const list114 = document.getElementById('list_114');
-      list114.innerHTML = '';
-      for (let i = 0; i < count114; i++) {
-        const idx = (i + 5) % playersPool.length;
-        list114.innerHTML += `<div class="player-tag">👤 ${playersPool[idx]}</div>`;
-      }
+      document.getElementById('cs105_count').innerText = Math.min(32, Math.max(4, base + Math.floor(Math.random() * 5) - 2));
+      document.getElementById('cs14_count').innerText = Math.min(32, Math.max(4, base + Math.floor(Math.random() * 5) - 2));
+      document.getElementById('cs114_count').innerText = Math.min(32, Math.max(4, base + Math.floor(Math.random() * 5) - 2));
     }
 
     window.onload = function() {
-      updateLiveServers();
-      setInterval(updateLiveServers, 60000);
-      renderPublicEvents();
+      updateDynamicCsPlayers();
+      setInterval(updateDynamicCsPlayers, 45000);
     };
-
-    function copyIp(ip) {
-      navigator.clipboard.writeText(ip);
-      alert("IP Kopyalandı: " + ip + "\nKonsola 'connect " + ip + "' yazıp bağlanabilirsiniz.");
-    }
-
-    // --- ŞİKAYET SİSTEMİ ---
-    function submitComplaint() {
-      const name = document.getElementById('compName').value.trim();
-      const subject = document.getElementById('compSubject').value.trim();
-      const text = document.getElementById('compText').value.trim();
-
-      if (!name || !subject || !text) return alert("Lütfen tüm alanları doldurun!");
-
-      const payload = { name, subject, text, date: new Date().toLocaleString('tr-TR') };
-
-      if (db) {
-        db.ref('legacy_complaints').push(payload).then(() => {
-          document.getElementById('compName').value = '';
-          document.getElementById('compSubject').value = '';
-          document.getElementById('compText').value = '';
-          alert("Şikayetiniz ortak yönetici havuzuna iletildi!");
-        });
-      }
-    }
-
-    // --- ETKİNLİK SİSTEMİ ---
-    function addNewEvent() {
-      const type = document.getElementById('admEvType').value;
-      const title = document.getElementById('admEvTitle').value.trim();
-      const time = document.getElementById('admEvTime').value.trim();
-      const desc = document.getElementById('admEvDesc').value.trim();
-
-      if (!title || !time || !desc) return alert("Tüm alanları doldurun!");
-
-      if (db) {
-        db.ref('legacy_events').push({ type, title, time, desc }).then(() => {
-          document.getElementById('admEvTitle').value = '';
-          document.getElementById('admEvTime').value = '';
-          document.getElementById('admEvDesc').value = '';
-          alert("Etkinlik eklendi!");
-        });
-      }
-    }
-
-    function deleteEvent(id) {
-      if (confirm("Bu etkinliği silmek istiyor musunuz?")) {
-        if (db) db.ref('legacy_events').child(id).remove();
-      }
-    }
-
-    function deleteComplaint(id) {
-      if (confirm("Şikayeti silmek istiyor musunuz?")) {
-        if (db) db.ref('legacy_complaints').child(id).remove();
-      }
-    }
-
-    function renderPublicEvents() {
-      const container = document.getElementById('publicEventsGrid');
-      if (!container) return;
-      container.innerHTML = '';
-
-      cloudEvents.forEach(ev => {
-        container.innerHTML += `
-          <div class="event-card">
-            <span class="event-badge">${ev.type}</span>
-            <div class="event-title">${ev.title}</div>
-            <div class="event-time"><i class="fa-regular fa-clock"></i> ${ev.time}</div>
-            <div class="event-desc">${ev.desc}</div>
-          </div>
-        `;
-      });
-    }
-
-    function renderAdminEvents() {
-      const list = document.getElementById('adminEventsList');
-      if (!list) return;
-      list.innerHTML = '';
-
-      cloudEvents.forEach(ev => {
-        list.innerHTML += `
-          <div style="background: rgba(0,0,0,0.6); padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-red);">
-            <div>
-              <strong style="color: var(--red-main);">[${ev.type}] ${ev.title}</strong>
-              <div style="font-size: 12px; color: #fbbf24;">${ev.time}</div>
-            </div>
-            <button onclick="deleteEvent('${ev.id}')" style="background: var(--red-main); color: #fff; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">Sil</button>
-          </div>
-        `;
-      });
-    }
-
-    function renderComplaints() {
-      const list = document.getElementById('complaintsList');
-      if (!list) return;
-      list.innerHTML = '';
-
-      if (cloudComplaints.length === 0) {
-        list.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">Henüz şikayet bulunmuyor.</p>';
-        return;
-      }
-
-      [...cloudComplaints].reverse().forEach(c => {
-        list.innerHTML += `
-          <div class="complaint-item">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <h4 style="color: var(--red-main);">Oyuncu: ${c.name}</h4>
-              <button onclick="deleteComplaint('${c.id}')" style="background: #18181b; color: #fff; border: 1px solid var(--red-main); padding: 4px 8px; border-radius: 4px; cursor: pointer;">Sil</button>
-            </div>
-            <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Konu: <b>${c.subject}</b> | Tarih: ${c.date}</span>
-            <p style="background: rgba(0,0,0,0.5); padding: 8px; border-radius: 4px; font-size: 13px;">"${c.text}"</p>
-          </div>
-        `;
-      });
-    }
-
-    // --- YÖNETİCİ PANELİ KONTROLÜ ---
-    function checkLogin() {
-      const u = document.getElementById('adminUser').value.trim();
-      const p = document.getElementById('adminPass').value.trim();
-
-      if ((u === 'murat1233180' && p === '8514126c') || (u === 'kado' && p === 'kadohan')) {
-        document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('publicArea').style.display = 'none';
-        document.getElementById('adminArea').style.display = 'block';
-        document.getElementById('adminUser').value = '';
-        document.getElementById('adminPass').value = '';
-        renderComplaints();
-        renderAdminEvents();
-      } else {
-        alert("Hatalı Kullanıcı Adı veya Şifre!");
-      }
-    }
-
-    function logoutAdmin() {
-      document.getElementById('adminArea').style.display = 'none';
-      document.getElementById('publicArea').style.display = 'block';
-    }
   </script>
 </body>
 </html>
