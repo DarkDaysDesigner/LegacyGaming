@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Legacy Gaming Network | Obsidian Storm Portal</title>
+  <title>Legacy Gaming Network | Electric Cyan Portal</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,22 +12,21 @@
 
   <style>
     :root {
-      --bg-deep: #050508;
-      --bg-surface: #0a0b12;
-      --card-obsidian: rgba(14, 15, 25, 0.75);
-      --card-border: rgba(255, 0, 60, 0.25);
+      --bg-base: #030712;
+      --bg-surface: #080e1a;
+      --card-bg: rgba(10, 18, 32, 0.85);
+      --card-border: rgba(0, 240, 255, 0.18);
       
-      --plasma-red: #ff003c;
-      --plasma-glow: rgba(255, 0, 60, 0.55);
-      --cyber-violet: #8b5cf6;
-      --violet-glow: rgba(139, 92, 246, 0.4);
-      --lightning-gold: #facc15;
-      --mc-emerald: #10b981;
+      --cyan-neon: #00f0ff;
+      --cyan-glow: rgba(0, 240, 255, 0.45);
+      --electric-blue: #38bdf8;
+      --deep-indigo: #6366f1;
+      --mc-mint: #10b981;
       --coc-amber: #f59e0b;
-      --cs2-solar: #ff6b00;
+      --cs2-orange: #fb923c;
       
       --text-pure: #ffffff;
-      --text-dim: #94a3b8;
+      --text-muted: #94a3b8;
     }
 
     * {
@@ -38,52 +37,52 @@
     }
 
     body {
-      background-color: var(--bg-deep);
+      background-color: var(--bg-base);
       color: var(--text-pure);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* ŞİMŞEK PARLAMA VE ATMOSFERİK SİBER KATMAN */
-    .storm-flash-screen {
+    /* FIRTINA & ELEKTRİK ŞİMŞEK ÇAKMA EFEKTİ */
+    .storm-overlay {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 999;
       opacity: 0;
-      background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 0, 60, 0.25) 50%, transparent 80%);
+      background: radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.6) 0%, rgba(0, 240, 255, 0.35) 45%, transparent 75%);
       mix-blend-mode: screen;
-      transition: opacity 0.06s ease;
+      transition: opacity 0.05s ease;
     }
 
-    .storm-flash-screen.active {
+    .storm-overlay.flash {
       opacity: 1;
     }
 
-    .cyber-mesh {
+    .cyber-grid {
       position: fixed;
       inset: 0;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(255, 0, 60, 0.12) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+        radial-gradient(at 0% 0%, rgba(0, 240, 255, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 45px 45px, 45px 45px;
       z-index: -2;
       pointer-events: none;
     }
 
-    /* SOL MENÜ (3 ÇİZGİ) */
+    /* SOL 3 ÇİZGİ MENÜ BUTONU & DRAWER */
     .sidebar-trigger {
       position: fixed;
-      top: 20px;
-      left: 24px;
+      top: 18px;
+      left: 22px;
       z-index: 1002;
       width: 48px;
       height: 48px;
-      background: rgba(10, 11, 18, 0.85);
-      border: 1px solid var(--plasma-red);
+      background: rgba(8, 14, 26, 0.85);
+      border: 1px solid var(--cyan-neon);
       border-radius: 12px;
       display: flex;
       flex-direction: column;
@@ -91,23 +90,27 @@
       align-items: center;
       gap: 6px;
       cursor: pointer;
-      box-shadow: 0 0 20px var(--plasma-glow);
+      box-shadow: 0 0 20px var(--cyan-glow);
       backdrop-filter: blur(12px);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .sidebar-trigger:hover {
       transform: scale(1.08);
-      background: var(--plasma-red);
-      box-shadow: 0 0 30px var(--plasma-red);
+      background: var(--cyan-neon);
+      box-shadow: 0 0 30px var(--cyan-neon);
     }
 
-    .sidebar-trigger .line-bar {
+    .sidebar-trigger .bar {
       width: 22px;
       height: 2.5px;
       background: #fff;
       border-radius: 4px;
       transition: 0.3s;
+    }
+
+    .sidebar-trigger:hover .bar {
+      background: #000;
     }
 
     .drawer-panel {
@@ -116,9 +119,9 @@
       left: -380px;
       width: 350px;
       height: 100vh;
-      background: rgba(8, 9, 15, 0.97);
+      background: rgba(6, 11, 20, 0.98);
       backdrop-filter: blur(25px);
-      border-right: 1px solid rgba(255, 0, 60, 0.3);
+      border-right: 1px solid rgba(0, 240, 255, 0.3);
       z-index: 1001;
       padding: 95px 28px 30px;
       display: flex;
@@ -141,7 +144,7 @@
 
     .drawer-backdrop.show { display: block; }
 
-    .drawer-nav-item {
+    .drawer-item {
       color: #e2e8f0;
       text-decoration: none;
       font-weight: 700;
@@ -157,36 +160,36 @@
       cursor: pointer;
     }
 
-    .drawer-nav-item:hover {
-      background: linear-gradient(90deg, rgba(255, 0, 60, 0.2) 0%, transparent 100%);
-      border-color: var(--plasma-red);
+    .drawer-item:hover {
+      background: linear-gradient(90deg, rgba(0, 240, 255, 0.15) 0%, transparent 100%);
+      border-color: var(--cyan-neon);
       color: #fff;
       transform: translateX(6px);
-      box-shadow: inset 3px 0 0 var(--plasma-red);
+      box-shadow: inset 3px 0 0 var(--cyan-neon);
     }
 
-    /* NAVBAR & PARLAYAN ŞİMŞEK LOGO */
+    /* TOP NAVBAR */
     nav {
       position: sticky;
       top: 0;
       z-index: 900;
-      background: rgba(7, 7, 11, 0.85);
+      background: rgba(4, 8, 16, 0.88);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.12);
       padding: 16px 30px 16px 95px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .logo-container {
+    .brand-wrap {
       display: flex;
       align-items: center;
       gap: 14px;
       user-select: none;
     }
 
-    .logo-text {
+    .brand-title {
       font-family: 'Syncopate', sans-serif;
       font-size: 20px;
       font-weight: 800;
@@ -195,52 +198,51 @@
       color: #fff;
     }
 
-    .logo-text span {
-      color: var(--plasma-red);
-      text-shadow: 0 0 20px var(--plasma-glow);
+    .brand-title span {
+      color: var(--cyan-neon);
+      text-shadow: 0 0 20px var(--cyan-glow);
     }
 
-    /* INTERAKTIF ELEKTRIKLI ŞİMŞEK */
-    .electric-bolt-wrap {
-      position: relative;
+    /* ŞİMŞEK ELEKTRİK ANİMASYONU */
+    .bolt-holder {
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .electric-bolt {
+    .neon-bolt {
       font-size: 24px;
-      color: var(--lightning-gold);
-      filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.8)) drop-shadow(0 0 20px var(--plasma-red));
+      color: var(--cyan-neon);
+      filter: drop-shadow(0 0 8px var(--cyan-neon)) drop-shadow(0 0 18px var(--electric-blue));
       transition: transform 0.2s, filter 0.2s;
-      animation: boltPulse 2.5s infinite ease-in-out;
+      animation: cyanBoltPulse 2.5s infinite ease-in-out;
     }
 
-    @keyframes boltPulse {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7)) drop-shadow(0 0 15px var(--plasma-red)); }
-      50% { transform: scale(1.18); filter: drop-shadow(0 0 18px #fff) drop-shadow(0 0 30px var(--lightning-gold)); }
+    @keyframes cyanBoltPulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px var(--cyan-neon)) drop-shadow(0 0 16px rgba(0,240,255,0.6)); }
+      50% { transform: scale(1.18); filter: drop-shadow(0 0 18px #fff) drop-shadow(0 0 30px var(--cyan-neon)); }
     }
 
-    .electric-bolt.charged {
+    .neon-bolt.charged {
       transform: scale(1.45) rotate(-15deg) !important;
-      filter: drop-shadow(0 0 25px #fff) drop-shadow(0 0 45px var(--plasma-red)) !important;
+      filter: drop-shadow(0 0 25px #fff) drop-shadow(0 0 45px var(--cyan-neon)) !important;
     }
 
-    /* SAYFA SEKME MENÜSÜ */
+    /* SEKME BUTONLARI */
     .tab-pills {
       display: flex;
       gap: 10px;
-      background: rgba(15, 16, 26, 0.8);
+      background: rgba(10, 18, 30, 0.8);
       padding: 6px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.15);
     }
 
-    .pill-btn {
+    .tab-btn {
       background: none;
       border: none;
-      color: var(--text-dim);
+      color: var(--text-muted);
       padding: 9px 18px;
       font-size: 12px;
       font-weight: 700;
@@ -254,15 +256,16 @@
       gap: 8px;
     }
 
-    .pill-btn.active {
-      background: linear-gradient(135deg, var(--plasma-red) 0%, #b9002c 100%);
-      color: #fff;
-      box-shadow: 0 4px 20px var(--plasma-glow);
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--cyan-neon) 0%, #0284c7 100%);
+      color: #000;
+      font-weight: 800;
+      box-shadow: 0 4px 20px var(--cyan-glow);
     }
 
-    .pill-btn:hover:not(.active) {
+    .tab-btn:hover:not(.active) {
       color: #fff;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .tab-view {
@@ -277,7 +280,7 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .viewport {
+    .container {
       max-width: 1240px;
       margin: 35px auto 70px;
       padding: 0 24px;
@@ -291,7 +294,7 @@
       justify-content: space-between;
       align-items: flex-end;
       margin-bottom: 28px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
       padding-bottom: 14px;
     }
 
@@ -306,7 +309,7 @@
       gap: 12px;
     }
 
-    .headline-title span { color: var(--plasma-red); text-shadow: 0 0 15px var(--plasma-glow); }
+    .headline-title span { color: var(--cyan-neon); text-shadow: 0 0 15px var(--cyan-glow); }
 
     .news-cards-grid {
       display: grid;
@@ -314,9 +317,9 @@
       gap: 26px;
     }
 
-    .news-portal-card {
-      background: var(--card-obsidian);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+    .news-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 16px;
       overflow: hidden;
       position: relative;
@@ -327,10 +330,10 @@
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .news-portal-card:hover {
+    .news-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(255, 0, 60, 0.5);
-      box-shadow: 0 20px 45px rgba(255, 0, 60, 0.2), 0 0 30px rgba(0, 0, 0, 0.8);
+      border-color: var(--cyan-neon);
+      box-shadow: 0 20px 45px rgba(0, 240, 255, 0.2), 0 0 30px rgba(0, 0, 0, 0.8);
     }
 
     .card-banner-img {
@@ -349,10 +352,10 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(7, 7, 11, 0.1) 0%, rgba(14, 15, 25, 0.98) 100%);
+      background: linear-gradient(180deg, rgba(3, 7, 18, 0.1) 0%, rgba(10, 18, 32, 0.98) 100%);
     }
 
-    /* Özel Fotoğraf Arka Planları */
+    /* Fotoğraflar */
     .img-mc-v2 { background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=800&q=80'); }
     .img-cs-105 { background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'); }
     .img-cs-14 { background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80'); }
@@ -373,12 +376,12 @@
       gap: 6px;
     }
 
-    .tag-mc { background: var(--mc-emerald); color: #000; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
-    .tag-cs { background: var(--plasma-red); color: #fff; box-shadow: 0 0 15px var(--plasma-glow); }
+    .tag-mc { background: var(--mc-mint); color: #000; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+    .tag-cs { background: var(--cyan-neon); color: #000; box-shadow: 0 0 15px var(--cyan-glow); }
     .tag-warn { background: var(--coc-amber); color: #000; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
-    .tag-cs2 { background: var(--cs2-solar); color: #fff; box-shadow: 0 0 15px rgba(255, 107, 0, 0.4); }
+    .tag-cs2 { background: var(--cs2-orange); color: #000; box-shadow: 0 0 15px rgba(251, 146, 60, 0.4); }
 
-    .watermark-brand-stamp {
+    .watermark-stamp {
       position: relative;
       z-index: 2;
       font-family: 'Syncopate', sans-serif;
@@ -389,7 +392,7 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.9);
     }
 
-    .card-content-area {
+    .card-body-text {
       padding: 24px;
       display: flex;
       flex-direction: column;
@@ -398,7 +401,7 @@
 
     .card-meta-date {
       font-size: 12px;
-      color: var(--text-dim);
+      color: var(--text-muted);
       font-weight: 600;
       margin-bottom: 8px;
     }
@@ -413,21 +416,21 @@
       text-transform: uppercase;
     }
 
-    .card-paragraph {
+    .card-desc {
       font-size: 14px;
       color: #cbd5e1;
       line-height: 1.6;
       margin-bottom: 22px;
     }
 
-    .card-action-link {
+    .card-footer-action {
       margin-top: auto;
       align-self: flex-start;
       font-size: 13px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--plasma-red);
+      color: var(--cyan-neon);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -436,31 +439,31 @@
       transition: gap 0.25s, color 0.25s;
     }
 
-    .card-action-link:hover {
+    .card-footer-action:hover {
       gap: 12px;
       color: #fff;
-      text-shadow: 0 0 10px var(--plasma-glow);
+      text-shadow: 0 0 10px var(--cyan-glow);
     }
 
     /* ============================================================
        MINECRAFT SHOWCASE (SONOYUNCU FORM FACTOR)
        ============================================================ */
-    .mc-power-frame {
-      background: linear-gradient(135deg, rgba(16, 26, 22, 0.85) 0%, rgba(9, 10, 16, 0.95) 100%);
-      border: 1px solid rgba(16, 185, 129, 0.35);
+    .mc-showcase-box {
+      background: linear-gradient(135deg, rgba(10, 24, 32, 0.85) 0%, rgba(6, 12, 22, 0.95) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.3);
       border-radius: 20px;
       padding: 45px;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 45px;
       align-items: center;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(16, 185, 129, 0.05);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(0, 240, 255, 0.05);
       backdrop-filter: blur(15px);
     }
 
-    .mc-ip-capsule {
+    .mc-ip-bar {
       background: rgba(0, 0, 0, 0.65);
-      border: 1px dashed rgba(16, 185, 129, 0.4);
+      border: 1px dashed rgba(0, 240, 255, 0.4);
       padding: 14px 22px;
       border-radius: 12px;
       display: flex;
@@ -469,7 +472,7 @@
       margin: 24px 0;
     }
 
-    .mc-ip-code {
+    .mc-ip-text {
       font-family: 'Syncopate', monospace;
       font-size: 17px;
       font-weight: 700;
@@ -477,8 +480,8 @@
       letter-spacing: 1px;
     }
 
-    .btn-emerald-copy {
-      background: var(--mc-emerald);
+    .btn-cyan-copy {
+      background: var(--cyan-neon);
       color: #000;
       border: none;
       padding: 10px 20px;
@@ -486,17 +489,17 @@
       font-weight: 800;
       font-size: 13px;
       cursor: pointer;
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 0 15px var(--cyan-glow);
       transition: 0.2s;
     }
 
-    .btn-emerald-copy:hover {
+    .btn-cyan-copy:hover {
       transform: scale(1.04);
       filter: brightness(1.15);
     }
 
     .mc-launcher-panel {
-      background: rgba(6, 7, 12, 0.7);
+      background: rgba(8, 14, 26, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 30px;
@@ -504,7 +507,7 @@
     }
 
     .btn-launcher-win {
-      background: linear-gradient(135deg, var(--mc-emerald) 0%, #059669 100%);
+      background: linear-gradient(135deg, var(--cyan-neon) 0%, #0284c7 100%);
       color: #000;
       padding: 15px;
       border-radius: 10px;
@@ -518,7 +521,7 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 12px;
-      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+      box-shadow: 0 8px 25px var(--cyan-glow);
       transition: 0.25s;
     }
 
@@ -537,8 +540,8 @@
       margin-bottom: 35px;
     }
 
-    .cs-portal-card {
-      background: var(--card-obsidian);
+    .cs-card {
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
       padding: 24px;
@@ -548,31 +551,49 @@
       transition: 0.3s;
     }
 
-    .cs-portal-card:hover {
+    .cs-card:hover {
       transform: translateY(-5px);
-      border-color: var(--plasma-red);
-      box-shadow: 0 20px 45px var(--plasma-glow);
+      border-color: var(--cyan-neon);
+      box-shadow: 0 20px 45px var(--cyan-glow);
     }
 
-    .cs-portal-card::before {
+    .cs-card::before {
       content: '';
       position: absolute;
       left: 0;
       top: 0;
       width: 4px;
       height: 100%;
-      background: var(--plasma-red);
-      box-shadow: 0 0 15px var(--plasma-red);
+      background: var(--cyan-neon);
+      box-shadow: 0 0 15px var(--cyan-neon);
     }
 
-    .cs-portal-card.repair-mode::before {
+    .cs-card.repair-mode::before {
       background: var(--coc-amber);
       box-shadow: 0 0 15px var(--coc-amber);
     }
 
-    .cs2-futuristic-banner {
-      background: linear-gradient(135deg, rgba(38, 17, 10, 0.85) 0%, rgba(10, 11, 18, 0.95) 100%);
-      border: 1px solid rgba(255, 107, 0, 0.4);
+    .btn-connect-cs {
+      flex: 1;
+      background: linear-gradient(135deg, var(--cyan-neon) 0%, #0284c7 100%);
+      color: #000;
+      padding: 11px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 12px;
+      text-decoration: none;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+
+    .btn-connect-cs:hover {
+      filter: brightness(1.15);
+    }
+
+    .cs2-banner {
+      background: linear-gradient(135deg, rgba(12, 24, 38, 0.85) 0%, rgba(6, 12, 20, 0.95) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.35);
       border-radius: 18px;
       padding: 40px;
       display: flex;
@@ -584,27 +605,27 @@
     /* ============================================================
        CLASH OF CLANS
        ============================================================ */
-    .coc-fort-card {
-      background: linear-gradient(135deg, rgba(30, 22, 10, 0.8) 0%, rgba(10, 9, 6, 0.95) 100%);
-      border: 1px solid rgba(245, 158, 11, 0.4);
+    .coc-card {
+      background: linear-gradient(135deg, rgba(14, 22, 35, 0.8) 0%, rgba(8, 12, 20, 0.95) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.25);
       border-radius: 14px;
       padding: 26px;
       position: relative;
     }
 
-    .coc-fort-card::before {
+    .coc-card::before {
       content: '';
       position: absolute;
       left: 0;
       top: 0;
       width: 4px;
       height: 100%;
-      background: var(--coc-amber);
-      box-shadow: 0 0 15px var(--coc-amber);
+      background: var(--cyan-neon);
+      box-shadow: 0 0 15px var(--cyan-neon);
     }
 
     /* HAKKIMIZDA MODAL */
-    .modal-about-overlay {
+    .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
@@ -616,16 +637,16 @@
       padding: 20px;
     }
 
-    .modal-about-overlay.active { display: flex; }
+    .modal-overlay.active { display: flex; }
 
-    .modal-about-box {
-      background: #090a10;
-      border: 1px solid var(--plasma-red);
+    .modal-box {
+      background: #060b14;
+      border: 1px solid var(--cyan-neon);
       border-radius: 16px;
       padding: 40px;
       max-width: 680px;
       width: 100%;
-      box-shadow: 0 0 60px var(--plasma-glow);
+      box-shadow: 0 0 60px var(--cyan-glow);
       position: relative;
       max-height: 90vh;
       overflow-y: auto;
@@ -634,7 +655,7 @@
     .history-timeline {
       margin-top: 24px;
       padding-left: 22px;
-      border-left: 2px solid rgba(255, 0, 60, 0.35);
+      border-left: 2px solid rgba(0, 240, 255, 0.35);
     }
 
     .history-node {
@@ -650,77 +671,77 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--plasma-red);
-      box-shadow: 0 0 12px var(--plasma-red);
+      background: var(--cyan-neon);
+      box-shadow: 0 0 12px var(--cyan-neon);
     }
 
     footer {
       text-align: center;
       padding: 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-dim);
+      border-top: 1px solid rgba(0, 240, 255, 0.1);
+      color: var(--text-muted);
       font-size: 13px;
     }
 
     @media (max-width: 880px) {
       .tab-pills { display: none; }
-      .mc-power-frame { grid-template-columns: 1fr; }
-      .cs2-futuristic-banner { flex-direction: column; gap: 20px; text-align: center; }
+      .mc-showcase-box { grid-template-columns: 1fr; }
+      .cs2-banner { flex-direction: column; gap: 20px; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ŞİMŞEK ÇAKMA FIRTINA EFEKTI -->
-  <div class="storm-flash-screen" id="stormFlash"></div>
-  <div class="cyber-mesh"></div>
+  <!-- ŞİMŞEK ÇAKMA FIRTINA EFEKTİ -->
+  <div class="storm-overlay" id="stormFlash"></div>
+  <div class="cyber-grid"></div>
 
-  <!-- SOL 3 ÇİZGİ MENÜ TETİKLEYİCİ -->
+  <!-- SOL 3 ÇİZGİ MENÜ BUTONU -->
   <div class="sidebar-trigger" onclick="toggleSidebar()" title="Hızlı Menü">
-    <div class="line-bar"></div>
-    <div class="line-bar"></div>
-    <div class="line-bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
   </div>
 
   <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleSidebar()"></div>
 
   <!-- SOL ÇEKMECE PANELİ -->
   <div class="drawer-panel" id="sidebarDrawer">
-    <div style="font-family: 'Syncopate', sans-serif; font-size: 17px; font-weight: 800; color: #fff; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.08);">
-      LEGACY <span style="color: var(--plasma-red);">HUB</span>
+    <div style="font-family: 'Syncopate', sans-serif; font-size: 17px; font-weight: 800; color: #fff; padding-bottom: 18px; border-bottom: 1px solid rgba(0,240,255,0.15);">
+      LEGACY <span style="color: var(--cyan-neon);">HUB</span>
     </div>
 
-    <div class="drawer-nav-item" onclick="switchTab('news')"><i class="fa-solid fa-newspaper" style="color: #60a5fa;"></i> Haberler & Güncellemeler</div>
-    <div class="drawer-nav-item" onclick="switchTab('minecraft')"><i class="fa-solid fa-cube" style="color: var(--mc-emerald);"></i> RosherCraft (Minecraft)</div>
-    <div class="drawer-nav-item" onclick="switchTab('cs')"><i class="fa-solid fa-crosshairs" style="color: var(--plasma-red);"></i> CS 1.6 & CS2 Sunucuları</div>
-    <div class="drawer-nav-item" onclick="switchTab('clash')"><i class="fa-solid fa-shield-halved" style="color: var(--coc-amber);"></i> Clash of Clans Klanları</div>
-    <div class="drawer-nav-item" onclick="switchTab('halflife')"><i class="fa-solid fa-radiation" style="color: #f97316;"></i> Half-Life Topluluğu</div>
-    <div class="drawer-nav-item" onclick="openAboutModal()"><i class="fa-solid fa-book-journal-whills" style="color: var(--cyber-violet);"></i> Tarihçemiz (2011-2026)</div>
+    <div class="drawer-item" onclick="switchTab('news')"><i class="fa-solid fa-newspaper" style="color: var(--cyan-neon);"></i> Haberler & Güncellemeler</div>
+    <div class="drawer-item" onclick="switchTab('minecraft')"><i class="fa-solid fa-cube" style="color: var(--mc-mint);"></i> RosherCraft (Minecraft)</div>
+    <div class="drawer-item" onclick="switchTab('cs')"><i class="fa-solid fa-crosshairs" style="color: var(--electric-blue);"></i> CS 1.6 & CS2 Sunucuları</div>
+    <div class="drawer-item" onclick="switchTab('clash')"><i class="fa-solid fa-shield-halved" style="color: var(--coc-amber);"></i> Clash of Clans Klanları</div>
+    <div class="drawer-item" onclick="switchTab('halflife')"><i class="fa-solid fa-radiation" style="color: #f97316;"></i> Half-Life Topluluğu</div>
+    <div class="drawer-item" onclick="openAboutModal()"><i class="fa-solid fa-book-journal-whills" style="color: var(--deep-indigo);"></i> Tarihçemiz (2011-2026)</div>
 
-    <div style="margin-top: auto; font-size: 11px; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 15px;">
+    <div style="margin-top: auto; font-size: 11px; color: var(--text-muted); border-top: 1px solid rgba(0,240,255,0.1); padding-top: 15px;">
       Legacy Gaming x Siyaset Network &copy; 2026
     </div>
   </div>
 
   <!-- NAVBAR -->
   <nav>
-    <div class="logo-container">
-      <div class="logo-text">LEGACY<span>GAMING</span></div>
-      <!-- Tıklanabilen ve arkada fırtına koparan neon şimşek -->
-      <div class="electric-bolt-wrap" onclick="triggerLightning()" title="Şimşek Enerjisini Çaktır!">
-        <i class="fa-solid fa-bolt-lightning electric-bolt" id="lightningBolt"></i>
+    <div class="brand-wrap">
+      <div class="brand-title">LEGACY<span>GAMING</span></div>
+      <!-- Tıklanabilen ve buz mavisi fırtına çaktıran neon şimşek -->
+      <div class="bolt-holder" onclick="triggerLightning()" title="Şimşek Enerjisini Çaktır!">
+        <i class="fa-solid fa-bolt-lightning neon-bolt" id="lightningBolt"></i>
       </div>
     </div>
 
     <div class="tab-pills">
-      <button class="pill-btn active" onclick="switchTab('news')" id="tab_news"><i class="fa-solid fa-newspaper"></i> Güncellemeler</button>
-      <button class="pill-btn" onclick="switchTab('minecraft')" id="tab_minecraft"><i class="fa-solid fa-cube"></i> Minecraft</button>
-      <button class="pill-btn" onclick="switchTab('cs')" id="tab_cs"><i class="fa-solid fa-crosshairs"></i> CS 1.6 & CS2</button>
-      <button class="pill-btn" onclick="switchTab('clash')" id="tab_clash"><i class="fa-solid fa-shield-halved"></i> Clash of Clans</button>
+      <button class="tab-btn active" onclick="switchTab('news')" id="tab_news"><i class="fa-solid fa-newspaper"></i> Güncellemeler</button>
+      <button class="tab-btn" onclick="switchTab('minecraft')" id="tab_minecraft"><i class="fa-solid fa-cube"></i> Minecraft</button>
+      <button class="tab-btn" onclick="switchTab('cs')" id="tab_cs"><i class="fa-solid fa-crosshairs"></i> CS 1.6 & CS2</button>
+      <button class="tab-btn" onclick="switchTab('clash')" id="tab_clash"><i class="fa-solid fa-shield-halved"></i> Clash of Clans</button>
     </div>
   </nav>
 
-  <div class="viewport">
+  <div class="container">
 
     <!-- ============================================================
          1. SEKME: HABERLER VE GÜNCELLEMELER (SONOYUNCU VİTRİNİ)
@@ -728,97 +749,97 @@
     <div class="tab-view active" id="view_news">
       <div class="headline-bar">
         <div>
-          <div class="headline-title"><i class="fa-solid fa-bolt" style="color: var(--plasma-red);"></i> CANLI <span>GÜNCELLEMELER</span></div>
-          <div style="font-size: 13px; color: var(--text-dim); margin-top: 4px;">Tüm sunucularımızdan en son yama notları, bakım bildirimleri ve alımlar</div>
+          <div class="headline-title"><i class="fa-solid fa-bolt" style="color: var(--cyan-neon);"></i> CANLI <span>GÜNCELLEMELER</span></div>
+          <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Tüm sunucularımızdan en son yama notları, bakım bildirimleri ve alımlar</div>
         </div>
       </div>
 
       <div class="news-cards-grid">
-        <!-- HABER 1: ROSHERCRAFT v2.10 (ALTINDA ROSHERCRAFT YAZILI SS) -->
-        <div class="news-portal-card">
+        <!-- HABER 1: ROSHERCRAFT v2.10 -->
+        <div class="news-card">
           <div class="card-banner-img img-mc-v2">
             <span class="tag-ribbon tag-mc"><i class="fa-solid fa-cube"></i> Yama v2.10</span>
-            <span class="watermark-brand-stamp" style="color: var(--mc-emerald);">ROSHERCRAFT</span>
+            <span class="watermark-stamp" style="color: var(--mc-mint);">ROSHERCRAFT</span>
           </div>
-          <div class="card-content-area">
+          <div class="card-body-text">
             <div class="card-meta-date">10 Eylül 2026 // Minecraft</div>
             <div class="card-main-title">RosherCraft v2.10 Büyük Güncellemesi Yayınlandı!</div>
-            <div class="card-paragraph">
+            <div class="card-desc">
               Skyblock ve Survival arenalarında beklenen ekonomi dengelemesi yapıldı. Yeni zindanlar, optimize edilen hile koruma motoru ve sezonluk özel ödüller aktif edildi.
             </div>
-            <div class="card-action-link" onclick="switchTab('minecraft')">
+            <div class="card-footer-action" onclick="switchTab('minecraft')">
               Launcher İndir & Oyna <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
         </div>
 
-        <!-- HABER 2: CS 1.6 #105 JAILBREAK v1 UPDATE SS -->
-        <div class="news-portal-card">
+        <!-- HABER 2: CS 1.6 #105 JAILBREAK v1 UPDATE -->
+        <div class="news-card">
           <div class="card-banner-img img-cs-105">
             <span class="tag-ribbon tag-cs"><i class="fa-solid fa-fire"></i> CS 1.6 #105 JB v1 Update</span>
-            <span class="watermark-brand-stamp" style="color: var(--plasma-red);">LEGACY JAILBREAK #105</span>
+            <span class="watermark-stamp" style="color: var(--cyan-neon);">LEGACY JAILBREAK #105</span>
           </div>
-          <div class="card-content-area">
+          <div class="card-body-text">
             <div class="card-meta-date">8 Eylül 2026 // CS 1.6 Jailbreak</div>
             <div class="card-main-title">95.173.173.105 Sıfırdan Açıldı: Yeni Pluginler & v1 Update!</div>
-            <div class="card-paragraph">
+            <div class="card-desc">
               Legacy Jailbreak #105 sunucumuz baştan aşağı yenilendi! Tamamen sıfırdan yazılmış isyan ve komutçu menüleri, yeni koruma eklentileri ve ödüllü oyun modlarıyla tekrar yayında.
             </div>
-            <div class="card-action-link" onclick="switchTab('cs')">
+            <div class="card-footer-action" onclick="switchTab('cs')">
               CS 1.6 Sunucusuna Bağlan <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
         </div>
 
-        <!-- HABER 3: CS 1.6 #14 BAKIM BİLDİRİSİ SS -->
-        <div class="news-portal-card">
+        <!-- HABER 3: CS 1.6 #14 BAKIM BİLDİRİSİ -->
+        <div class="news-card">
           <div class="card-banner-img img-cs-14">
             <span class="tag-ribbon tag-warn"><i class="fa-solid fa-wrench"></i> Bakım Bildirisi</span>
-            <span class="watermark-brand-stamp" style="color: var(--coc-amber);">#14 SUNUCU BAKIMDA</span>
+            <span class="watermark-stamp" style="color: var(--coc-amber);">#14 SUNUCU BAKIMDA</span>
           </div>
-          <div class="card-content-area">
+          <div class="card-body-text">
             <div class="card-meta-date">Planlı Bakım // CS 1.6 #14</div>
             <div class="card-main-title">95.173.173.14 IP Adresimiz Geçici Bakımda!</div>
-            <div class="card-paragraph">
+            <div class="card-desc">
               14 IP'li Topluluk Pro sunucumuz donanım iyileştirmesi, ping optimizasyonları ve veritabanı taşınması nedeniyle geçici bakıma alınmıştır. En kısa sürede kesintisiz açılacaktır.
             </div>
-            <div class="card-action-link" onclick="switchTab('cs')">
+            <div class="card-footer-action" onclick="switchTab('cs')">
               Bakım Detaylarını Gör <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
         </div>
 
-        <!-- HABER 4: CLASH OF CLANS ALIMLARI SS -->
-        <div class="news-portal-card">
+        <!-- HABER 4: CLASH OF CLANS ALIMLARI -->
+        <div class="news-card">
           <div class="card-banner-img img-coc-war">
             <span class="tag-ribbon tag-warn"><i class="fa-solid fa-shield"></i> Klan Alımları</span>
-            <span class="watermark-brand-stamp" style="color: var(--coc-amber);">CLASH OF CLANS</span>
+            <span class="watermark-stamp" style="color: var(--coc-amber);">CLASH OF CLANS</span>
           </div>
-          <div class="card-content-area">
+          <div class="card-body-text">
             <div class="card-meta-date">Mobil Arenası // Clash of Clans</div>
             <div class="card-main-title">Clash of Clans Klanlarımızda Boş Kontenjanlar Açıldı!</div>
-            <div class="card-paragraph">
+            <div class="card-desc">
               Bu ay açılan resmi klanlarımızda Lig ve Klan Savaşları için aktif oyuncu alımları devam ediyor. Ana klanımız ve akademi klanımız için katılım kodlarına hemen göz atın.
             </div>
-            <div class="card-action-link" onclick="switchTab('clash')">
+            <div class="card-footer-action" onclick="switchTab('clash')">
               Klan Kodlarını İncele <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
         </div>
 
-        <!-- HABER 5: CS2 YAKINDA SS -->
-        <div class="news-portal-card">
+        <!-- HABER 5: CS2 YAKINDA -->
+        <div class="news-card">
           <div class="card-banner-img img-cs2-esport">
             <span class="tag-ribbon tag-cs2"><i class="fa-solid fa-hourglass-half"></i> Çok Yakında</span>
-            <span class="watermark-brand-stamp" style="color: var(--cs2-solar);">COUNTER-STRIKE 2</span>
+            <span class="watermark-stamp" style="color: var(--cs2-orange);">COUNTER-STRIKE 2</span>
           </div>
-          <div class="card-content-area">
+          <div class="card-body-text">
             <div class="card-meta-date">Espor // Counter-Strike 2</div>
             <div class="card-main-title">Counter-Strike 2 LegacyGaming Sunucuları Çok Yakında!</div>
-            <div class="card-paragraph">
+            <div class="card-desc">
               Sub-tick optimizasyonlu, 128-tick hissedilen özel 5v5 rekabetçi ve ölüm maçı sunucularımız kapalı beta testinde. Legacy efsanesi yakında CS2'de de sahneye çıkıyor.
             </div>
-            <div class="card-action-link" onclick="switchTab('cs')">
+            <div class="card-footer-action" onclick="switchTab('cs')">
               CS2 Hazırlıklarını Gör <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
@@ -830,31 +851,31 @@
          2. SEKME: MINECRAFT (ROSHERCRAFT & LAUNCHER)
          ============================================================ -->
     <div class="tab-view" id="view_minecraft">
-      <div class="mc-power-frame">
+      <div class="mc-showcase-box">
         <div>
-          <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; color: var(--mc-emerald); letter-spacing: 2px; text-transform: uppercase;">
+          <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; color: var(--cyan-neon); letter-spacing: 2px; text-transform: uppercase;">
             <i class="fa-solid fa-cube"></i> ROSHERCRAFT NETWORK // 1.16 - 1.21+
           </span>
           <h1 style="font-family: 'Syncopate', sans-serif; font-size: 34px; font-weight: 800; line-height: 1.2; margin: 12px 0; text-transform: uppercase;">
-            ROSHERCRAFT <span style="color: var(--mc-emerald);">MINECRAFT</span>
+            ROSHERCRAFT <span style="color: var(--cyan-neon);">MINECRAFT</span>
           </h1>
           <p style="color: #cbd5e1; font-size: 15px; margin-bottom: 20px; line-height: 1.6;">
             Skyblock, Survival ve minigames arenalarıyla donatılmış RosherCraft dünyasına adım atın. 
             Optimize edilmiş SonOyuncu kalitesinde launcher altyapısıyla en yüksek FPS performansını yaşayın.
           </p>
 
-          <div class="mc-ip-capsule">
+          <div class="mc-ip-bar">
             <div>
-              <div style="font-size: 11px; color: var(--text-dim); font-weight: 700; text-transform: uppercase;">Sunucu IP Adresi</div>
-              <div class="mc-ip-code">play.roshercraft.com.tr</div>
+              <div style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Sunucu IP Adresi</div>
+              <div class="mc-ip-text">play.roshercraft.com.tr</div>
             </div>
-            <button class="btn-emerald-copy" onclick="copySnippet('play.roshercraft.com.tr', 'Minecraft IP Adresi Kopyalandı!')">
+            <button class="btn-cyan-copy" onclick="copySnippet('play.roshercraft.com.tr', 'Minecraft IP Adresi Kopyalandı!')">
               <i class="fa-regular fa-copy"></i> Kopyala
             </button>
           </div>
 
           <div style="font-size: 13px; color: #cbd5e1;">
-            <i class="fa-solid fa-users" style="color: var(--mc-emerald);"></i> Anlık Çevrimiçi: <b>142 Oyuncu</b> (v2.10 Güncellemesi Aktif)
+            <i class="fa-solid fa-users" style="color: var(--cyan-neon);"></i> Anlık Çevrimiçi: <b>142 Oyuncu</b> (v2.10 Güncellemesi Aktif)
           </div>
         </div>
 
@@ -862,7 +883,7 @@
           <div style="font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px; text-transform: uppercase;">
             <i class="fa-brands fa-windows" style="color: #38bdf8;"></i> Resmi Launcher
           </div>
-          <p style="font-size: 13px; color: var(--text-dim); margin-bottom: 22px;">
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 22px;">
             Otomatik Java optimizasyonu ve entegre hile korumasıyla tek tıkla oyuna bağlanın.
           </p>
           <a href="#" class="btn-launcher-win" onclick="alert('RosherCraft Launcher v2.10 indirmesi başlatılıyor...'); return false;">
@@ -880,25 +901,25 @@
          ============================================================ -->
     <div class="tab-view" id="view_cs">
       <div class="headline-bar">
-        <div class="headline-title"><i class="fa-solid fa-crosshairs" style="color: var(--plasma-red);"></i> CS 1.6 & <span>CS2 NETWORK</span></div>
+        <div class="headline-title"><i class="fa-solid fa-crosshairs" style="color: var(--cyan-neon);"></i> CS 1.6 & <span>CS2 NETWORK</span></div>
       </div>
 
       <div class="cs-cluster-grid">
         <!-- 105 SUNUCUSU -->
-        <div class="cs-portal-card">
+        <div class="cs-card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
             <div style="font-family: 'Teko', sans-serif; font-size: 28px; color: #fff; line-height: 1;">LEGACY JAILBREAK PRO</div>
-            <span style="background: var(--plasma-red); color: #fff; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px;">#105 v1 UPDATE</span>
+            <span style="background: var(--cyan-neon); color: #000; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px;">#105 v1 UPDATE</span>
           </div>
           <div style="background: rgba(0,0,0,0.6); padding: 10px 14px; border-radius: 8px; font-family: 'Rajdhani', monospace; font-size: 19px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
             <span>95.173.173.105</span>
             <span style="color: #22c55e; font-size: 12px;"><i class="fa-solid fa-circle"></i> Çevrimiçi</span>
           </div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 15px; font-weight: 600;">
-            Aktif Oyuncu: <b style="color: var(--plasma-red);" id="stat_105">24</b> / 32
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600;">
+            Aktif Oyuncu: <b style="color: var(--cyan-neon);" id="stat_105">24</b> / 32
           </div>
           <div style="display: flex; gap: 8px;">
-            <a href="steam://connect/95.173.173.105" style="flex: 1; background: var(--plasma-red); color: #fff; padding: 11px; border-radius: 8px; font-weight: 800; font-size: 12px; text-decoration: none; text-align: center; text-transform: uppercase;">
+            <a href="steam://connect/95.173.173.105" class="btn-connect-cs">
               <i class="fa-solid fa-play"></i> Hemen Bağlan
             </a>
             <button style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 11px 16px; border-radius: 8px; cursor: pointer;" onclick="copySnippet('95.173.173.105', 'IP Kopyalandı!')">
@@ -908,7 +929,7 @@
         </div>
 
         <!-- 14 SUNUCUSU (BAKIMDA) -->
-        <div class="cs-portal-card repair-mode">
+        <div class="cs-card repair-mode">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
             <div style="font-family: 'Teko', sans-serif; font-size: 28px; color: #fff; line-height: 1;">LEGACY TOPLULUK PRO</div>
             <span style="background: var(--coc-amber); color: #000; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px;">#14 BAKIMDA</span>
@@ -917,7 +938,7 @@
             <span>95.173.173.14</span>
             <span style="color: var(--coc-amber); font-size: 12px;"><i class="fa-solid fa-wrench"></i> Bakım Çalışması</span>
           </div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 15px; font-weight: 600;">
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600;">
             Durum: <b style="color: var(--coc-amber);">Donanım & Ping İyileştirmesi</b>
           </div>
           <div style="display: flex; gap: 8px;">
@@ -931,20 +952,20 @@
         </div>
 
         <!-- 114 SUNUCUSU -->
-        <div class="cs-portal-card">
+        <div class="cs-card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
             <div style="font-family: 'Teko', sans-serif; font-size: 28px; color: #fff; line-height: 1;">LEGACY PUBLIC ELITE</div>
-            <span style="background: var(--plasma-red); color: #fff; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px;">#114 PRO</span>
+            <span style="background: var(--cyan-neon); color: #000; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px;">#114 PRO</span>
           </div>
           <div style="background: rgba(0,0,0,0.6); padding: 10px 14px; border-radius: 8px; font-family: 'Rajdhani', monospace; font-size: 19px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
             <span>95.173.173.114</span>
             <span style="color: #22c55e; font-size: 12px;"><i class="fa-solid fa-circle"></i> Çevrimiçi</span>
           </div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 15px; font-weight: 600;">
-            Aktif Oyuncu: <b style="color: var(--plasma-red);" id="stat_114">26</b> / 32
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600;">
+            Aktif Oyuncu: <b style="color: var(--cyan-neon);" id="stat_114">26</b> / 32
           </div>
           <div style="display: flex; gap: 8px;">
-            <a href="steam://connect/95.173.173.114" style="flex: 1; background: var(--plasma-red); color: #fff; padding: 11px; border-radius: 8px; font-weight: 800; font-size: 12px; text-decoration: none; text-align: center; text-transform: uppercase;">
+            <a href="steam://connect/95.173.173.114" class="btn-connect-cs">
               <i class="fa-solid fa-play"></i> Hemen Bağlan
             </a>
             <button style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 11px 16px; border-radius: 8px; cursor: pointer;" onclick="copySnippet('95.173.173.114', 'IP Kopyalandı!')">
@@ -955,19 +976,19 @@
       </div>
 
       <!-- CS2 YAKINDA BANNERI -->
-      <div class="cs2-futuristic-banner">
+      <div class="cs2-banner">
         <div>
-          <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; color: var(--cs2-solar); letter-spacing: 2px; text-transform: uppercase;">
+          <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; color: var(--cyan-neon); letter-spacing: 2px; text-transform: uppercase;">
             ESPOR // COUNTER-STRIKE 2
           </span>
           <div style="font-family: 'Syncopate', sans-serif; font-size: 24px; font-weight: 800; color: #fff; margin: 8px 0;">
             LEGACY CS2 TOPLULUK SUNUCULARI <span>(ÇOK YAKINDA)</span>
           </div>
-          <div style="font-size: 13px; color: var(--text-dim); max-width: 620px;">
+          <div style="font-size: 13px; color: var(--text-muted); max-width: 620px;">
             Yeni nesil Source 2 motorunda 5v5 Rekabetçi, Retake ve Deathmatch arenalarımız hazırlanıyor. Takipte kalın!
           </div>
         </div>
-        <div style="padding: 12px 28px; border: 2px solid var(--cs2-solar); color: var(--cs2-solar); border-radius: 50px; font-weight: 800; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap;">
+        <div style="padding: 12px 28px; border: 2px solid var(--cyan-neon); color: var(--cyan-neon); border-radius: 50px; font-weight: 800; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap; box-shadow: 0 0 15px var(--cyan-glow);">
           <i class="fa-solid fa-clock"></i> Çok Yakında Aktif
         </div>
       </div>
@@ -978,32 +999,32 @@
          ============================================================ -->
     <div class="tab-view" id="view_clash">
       <div class="headline-bar">
-        <div class="headline-title"><i class="fa-solid fa-shield-halved" style="color: var(--coc-amber);"></i> CLASH OF CLANS <span>KLANLARIMIZ</span></div>
+        <div class="headline-title"><i class="fa-solid fa-shield-halved" style="color: var(--cyan-neon);"></i> CLASH OF CLANS <span>KLANLARIMIZ</span></div>
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 26px;">
         <!-- 1. KLAN -->
-        <div class="coc-fort-card">
-          <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 2px; color: var(--coc-amber); text-transform: uppercase;">1. ANA KLAN // WAR SQUAD</span>
+        <div class="coc-card">
+          <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 2px; color: var(--cyan-neon); text-transform: uppercase;">1. ANA KLAN // WAR SQUAD</span>
           <div style="font-family: 'Syncopate', sans-serif; font-size: 20px; font-weight: 800; color: #fff; margin: 6px 0 14px;">LEGACY WARRIORS</div>
-          <div style="background: rgba(0,0,0,0.6); border: 1px dashed rgba(245, 158, 11, 0.4); padding: 12px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
-            <span style="font-family: 'Syncopate', monospace; font-size: 16px; color: var(--coc-amber); font-weight: 700;">#2CU8QPQ9L</span>
-            <button style="background: rgba(245,158,11,0.2); border: 1px solid var(--coc-amber); color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;" onclick="copySnippet('#2CU8QPQ9L', '1. Klan Kodu Kopyalandı!')">Kopyala</button>
+          <div style="background: rgba(0,0,0,0.6); border: 1px dashed rgba(0, 240, 255, 0.4); padding: 12px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+            <span style="font-family: 'Syncopate', monospace; font-size: 16px; color: var(--cyan-neon); font-weight: 700;">#2CU8QPQ9L</span>
+            <button style="background: rgba(0, 240, 255, 0.2); border: 1px solid var(--cyan-neon); color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;" onclick="copySnippet('#2CU8QPQ9L', '1. Klan Kodu Kopyalandı!')">Kopyala</button>
           </div>
-          <a href="clashofclans://action=OpenClanProfile&tag=2CU8QPQ9L" style="background: var(--coc-amber); color: #000; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 13px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <a href="clashofclans://action=OpenClanProfile&tag=2CU8QPQ9L" style="background: var(--cyan-neon); color: #000; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 13px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 15px var(--cyan-glow);">
             <i class="fa-solid fa-swords"></i> Oyunda Aç & Başvur
           </a>
         </div>
 
         <!-- 2. KLAN -->
-        <div class="coc-fort-card">
-          <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 2px; color: var(--coc-amber); text-transform: uppercase;">2. GELİŞİM // AKADEMİ KLANI</span>
+        <div class="coc-card">
+          <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 2px; color: var(--cyan-neon); text-transform: uppercase;">2. GELİŞİM // AKADEMİ KLANI</span>
           <div style="font-family: 'Syncopate', sans-serif; font-size: 20px; font-weight: 800; color: #fff; margin: 6px 0 14px;">LEGACY ELITE</div>
-          <div style="background: rgba(0,0,0,0.6); border: 1px dashed rgba(245, 158, 11, 0.4); padding: 12px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
-            <span style="font-family: 'Syncopate', monospace; font-size: 16px; color: var(--coc-amber); font-weight: 700;">#2CLJJ8VYR</span>
-            <button style="background: rgba(245,158,11,0.2); border: 1px solid var(--coc-amber); color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;" onclick="copySnippet('#2CLJJ8VYR', '2. Klan Kodu Kopyalandı!')">Kopyala</button>
+          <div style="background: rgba(0,0,0,0.6); border: 1px dashed rgba(0, 240, 255, 0.4); padding: 12px 16px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+            <span style="font-family: 'Syncopate', monospace; font-size: 16px; color: var(--cyan-neon); font-weight: 700;">#2CLJJ8VYR</span>
+            <button style="background: rgba(0, 240, 255, 0.2); border: 1px solid var(--cyan-neon); color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;" onclick="copySnippet('#2CLJJ8VYR', '2. Klan Kodu Kopyalandı!')">Kopyala</button>
           </div>
-          <a href="clashofclans://action=OpenClanProfile&tag=2CLJJ8VYR" style="background: var(--coc-amber); color: #000; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 13px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <a href="clashofclans://action=OpenClanProfile&tag=2CLJJ8VYR" style="background: var(--cyan-neon); color: #000; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 13px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 15px var(--cyan-glow);">
             <i class="fa-solid fa-swords"></i> Oyunda Aç & Başvur
           </a>
         </div>
@@ -1014,17 +1035,17 @@
          5. SEKME: HALF-LIFE TOPLULUĞU
          ============================================================ -->
     <div class="tab-view" id="view_halflife">
-      <div style="background: linear-gradient(90deg, rgba(249, 115, 22, 0.15) 0%, rgba(10, 11, 18, 0.95) 100%); border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 16px; padding: 40px; display: flex; justify-content: space-between; align-items: center;">
+      <div style="background: linear-gradient(90deg, rgba(0, 240, 255, 0.1) 0%, rgba(8, 14, 26, 0.95) 100%); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 16px; padding: 40px; display: flex; justify-content: space-between; align-items: center;">
         <div style="display: flex; align-items: center; gap: 25px;">
-          <div style="width: 70px; height: 70px; border-radius: 14px; background: rgba(249, 115, 22, 0.2); border: 1px solid #f97316; display: flex; align-items: center; justify-content: center; font-size: 32px; color: #f97316;">
+          <div style="width: 70px; height: 70px; border-radius: 14px; background: rgba(0, 240, 255, 0.15); border: 1px solid var(--cyan-neon); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--cyan-neon);">
             <i class="fa-solid fa-radiation"></i>
           </div>
           <div>
             <div style="font-family: 'Syncopate', sans-serif; font-size: 20px; font-weight: 800; color: #fff;">HALF-LIFE DEATHMATCH TOPLULUĞU</div>
-            <div style="font-size: 14px; color: var(--text-dim); margin-top: 6px;">Nostaljik Crossfire savaşları ve özel turnuvalar için altyapı hazırlanıyor. IP çok yakında burada paylaşılacaktır.</div>
+            <div style="font-size: 14px; color: var(--text-muted); margin-top: 6px;">Nostaljik Crossfire savaşları ve özel turnuvalar için altyapı hazırlanıyor. IP çok yakında burada paylaşılacaktır.</div>
           </div>
         </div>
-        <div style="background: rgba(249, 115, 22, 0.15); border: 1px solid #f97316; color: #f97316; padding: 10px 22px; border-radius: 50px; font-size: 12px; font-weight: 800; text-transform: uppercase;">
+        <div style="background: rgba(0, 240, 255, 0.15); border: 1px solid var(--cyan-neon); color: var(--cyan-neon); padding: 10px 22px; border-radius: 50px; font-size: 12px; font-weight: 800; text-transform: uppercase;">
           <i class="fa-solid fa-hourglass-half"></i> Hazırlık Sürüyor
         </div>
       </div>
@@ -1033,37 +1054,37 @@
   </div>
 
   <!-- ================= HAKKIMIZDA (TARİHÇE MODALI) ================= -->
-  <div class="modal-about-overlay" id="aboutModal">
-    <div class="modal-about-box">
+  <div class="modal-overlay" id="aboutModal">
+    <div class="modal-box">
       <button style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer;" onclick="closeAboutModal()"><i class="fa-solid fa-xmark"></i></button>
       <div style="font-family: 'Syncopate', sans-serif; font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px;">
-        LEGACY GAMING <span style="color: var(--plasma-red);">TARİHÇESİ</span>
+        LEGACY GAMING <span style="color: var(--cyan-neon);">TARİHÇESİ</span>
       </div>
-      <div style="font-size: 13px; color: var(--text-dim);">2011'den 2026'ya uzanan serüvenimiz</div>
+      <div style="font-size: 13px; color: var(--text-muted);">2011'den 2026'ya uzanan serüvenimiz</div>
 
       <div class="history-timeline">
         <div class="history-node">
-          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--plasma-red);">2011 // KURULUŞ</div>
+          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--cyan-neon);">2011 // KURULUŞ</div>
           <div style="font-size: 13px; color: #cbd5e1; margin-top: 4px;">Topluluğumuz ilk olarak <b>LegendGaming</b> adı altında Counter-Strike 1.6 camiasında faaliyete başladı.</div>
         </div>
         <div class="history-node">
-          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--plasma-red);">2023 // KAPANMA</div>
+          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--cyan-neon);">2023 // KAPANMA</div>
           <div style="font-size: 13px; color: #cbd5e1; margin-top: 4px;">Yönetim kurulu kararıyla faaliyetlerimize geçici bir süre ara verildi ve sunucular kapatıldı.</div>
         </div>
         <div class="history-node">
-          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--plasma-red);">2024 // GERİ DÖNÜŞ (LEGACY)</div>
+          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--cyan-neon);">2024 // GERİ DÖNÜŞ (LEGACY)</div>
           <div style="font-size: 13px; color: #cbd5e1; margin-top: 4px;">Yenilenen kadro ve modern altyapıyla <b>LegacyGaming</b> ismi altında geri dönüş sağlandı.</div>
         </div>
         <div class="history-node">
-          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--plasma-red);">2025 SONU // SİYASET GAMING ORTAKLIĞI</div>
+          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--cyan-neon);">2025 SONU // SİYASET GAMING ORTAKLIĞI</div>
           <div style="font-size: 13px; color: #cbd5e1; margin-top: 4px;">CS 1.6 devi <b>Siyaset Gaming</b> ile güçler birleştirilerek ortak yönetim ve sunucu ağı kuruldu.</div>
         </div>
         <div class="history-node">
-          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--plasma-red);">2025 // MINECRAFT (ROSHERCRAFT)</div>
+          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--cyan-neon);">2025 // MINECRAFT (ROSHERCRAFT)</div>
           <div style="font-size: 13px; color: #cbd5e1; margin-top: 4px;">Topluluğumuz Minecraft ekosistemine <b>RosherCraft</b> ile adım attı.</div>
         </div>
         <div class="history-node">
-          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--plasma-red);">2026 // CLASH OF CLANS & CS2</div>
+          <div style="font-family: 'Syncopate', sans-serif; font-size: 12px; font-weight: 800; color: var(--cyan-neon);">2026 // CLASH OF CLANS & CS2</div>
           <div style="font-size: 13px; color: #cbd5e1; margin-top: 4px;">Bu ay resmi Clash of Clans klanlarımız açıldı; CS2 ve Half-Life ile büyümeye devam ediyoruz.</div>
         </div>
       </div>
@@ -1076,29 +1097,29 @@
   </footer>
 
   <script>
-    // ================= ŞİMŞEK VE FIRTINA EFEKTİ =================
+    // ================= BUZ MAVİSİ ŞİMŞEK ÇAKMA SİSTEMİ =================
     function triggerLightning() {
       const bolt = document.getElementById('lightningBolt');
       const flash = document.getElementById('stormFlash');
 
       bolt.classList.add('charged');
-      flash.classList.add('active');
+      flash.classList.add('flash');
 
-      setTimeout(() => flash.classList.remove('active'), 60);
-      setTimeout(() => flash.classList.add('active'), 120);
+      setTimeout(() => flash.classList.remove('flash'), 50);
+      setTimeout(() => flash.classList.add('flash'), 100);
       setTimeout(() => {
-        flash.classList.remove('active');
+        flash.classList.remove('flash');
         bolt.classList.remove('charged');
-      }, 240);
+      }, 220);
     }
 
-    // Her 12 saniyede bir portal arka planında şimşek çakar
+    // Her 12 saniyede bir arkada gerçekçi gök gürültüsü şimşek çakar
     setInterval(triggerLightning, 12000);
 
     // ================= SEKME GEÇİŞLERİ =================
     function switchTab(tabKey) {
       document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
-      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
 
       const targetView = document.getElementById('view_' + tabKey);
       const targetBtn = document.getElementById('tab_' + tabKey);
@@ -1106,7 +1127,6 @@
       if (targetView) targetView.classList.add('active');
       if (targetBtn) targetBtn.classList.add('active');
 
-      // Drawer açıksa kapat
       const drawer = document.getElementById('sidebarDrawer');
       const backdrop = document.getElementById('drawerBackdrop');
       if (drawer.classList.contains('open')) {
