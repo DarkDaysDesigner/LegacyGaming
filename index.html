@@ -3,433 +3,330 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Legacy Gaming Area | Cs 1.6 Minecraft Sunucularımıza Bekleriz</title>
+  <title>Legacy Gaming - Oyunun Legacysi</title>
   
-  <!-- GOOGLE ARAMA MOTORU AYARLARI (SEO) -->
-  <meta name="description" content="Legacy Gaming Resmi Topluluk Portalı. CS 1.6 Jailbreak ve Pro sunucuları, RosherCraft Minecraft sunucusu, Clash of Clans klanları ve turnuva duyuruları.">
-  <meta name="keywords" content="Legacy Gaming, JustSiyaset, RosherCraft, CS 1.6 Jailbreak, 95.173.173.105, Minecraft Skyblock, Clash of Clans klanı">
-  <meta name="author" content="Legacy Gaming">
-  <meta name="robots" content="index, follow">
-
+  <meta name="description" content="Legacy Gaming Resmi Topluluk Portalı. CS 1.6, CS2, Minecraft, Half-Life ve Clash of Clans sunucuları tek çatı altında.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700;800&family=Space+Grotesk:wght@500;700&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Rajdhani:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --bg-base: #030712;
-      --card-bg: #0a1220;
-      --card-border: rgba(0, 240, 255, 0.25);
-      --cyan-neon: #00f0ff;
-      --cyan-glow: rgba(0, 240, 255, 0.45);
-      --mc-mint: #10b981;
-      --coc-amber: #f59e0b;
-      --cs2-orange: #fb923c;
-      --text-pure: #ffffff;
-      --text-muted: #94a3b8;
+      --bg-dark: #07090e;
+      --card-bg: #0d111a;
+      --card-border: rgba(245, 158, 11, 0.15);
+      --amber-main: #f59e0b;
+      --amber-light: #fbbf24;
+      --amber-glow: rgba(245, 158, 11, 0.35);
+      --text-main: #ffffff;
+      --text-dim: #94a3b8;
+      --green-online: #22c55e;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
-    body { background-color: var(--bg-base); color: var(--text-pure); min-height: 100vh; overflow-x: hidden; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
 
-    /* ŞİMŞEK EFEKTİ */
-    .storm-overlay {
-      position: fixed; inset: 0; pointer-events: none; z-index: 999; opacity: 0;
-      background: rgba(0, 240, 255, 0.35); mix-blend-mode: screen; transition: opacity 0.05s ease;
+    /* HEADER / NAVBAR */
+    header {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 18px 48px; display: flex; justify-content: space-between; align-items: center;
     }
-    .storm-overlay.flash { opacity: 1; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+    .brand-logo { color: var(--amber-main); font-size: 26px; filter: drop-shadow(0 0 10px var(--amber-glow)); }
+    .brand-text { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: 1px; }
+    
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--amber-light); }
 
-    /* SOL 3 ÇİZGİ MENÜ */
-    .sidebar-trigger {
-      position: fixed; top: 16px; left: 20px; z-index: 1002; width: 44px; height: 44px;
-      background: #080e1a; border: 1px solid var(--cyan-neon); border-radius: 10px;
-      display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
-      cursor: pointer; box-shadow: 0 0 15px var(--cyan-glow);
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .btn-discord {
+      background: var(--amber-main); color: #000; padding: 10px 20px; border-radius: 8px;
+      font-weight: 700; font-size: 13px; text-decoration: none; display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 15px var(--amber-glow); transition: 0.2s;
     }
-    .sidebar-trigger .bar { width: 20px; height: 2px; background: #fff; border-radius: 2px; }
+    .btn-discord:hover { background: var(--amber-light); transform: translateY(-2px); }
 
-    .drawer-panel {
-      position: fixed; top: 0; left: -360px; width: 320px; height: 100vh;
-      background: #060b14; border-right: 1px solid var(--cyan-neon); z-index: 1001;
-      padding: 85px 24px 20px; display: flex; flex-direction: column; gap: 12px;
-      transition: left 0.3s ease; box-shadow: 15px 0 40px rgba(0,0,0,0.9);
+    /* HERO SECTION */
+    .hero {
+      position: relative; min-height: 560px; display: flex; align-items: center;
+      padding: 60px 48px; overflow: hidden;
+      background: radial-gradient(circle at 75% 40%, rgba(245, 158, 11, 0.18) 0%, transparent 60%),
+                  linear-gradient(180deg, rgba(7, 9, 14, 0.2) 0%, var(--bg-dark) 100%),
+                  url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80') center/cover;
     }
-    .drawer-panel.open { left: 0; }
-    .drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: none; }
-    .drawer-backdrop.show { display: block; }
-
-    .drawer-item {
-      color: #e2e8f0; text-decoration: none; font-weight: 700; font-size: 14px;
-      padding: 12px 16px; border-radius: 8px; background: rgba(255,255,255,0.03);
-      display: flex; align-items: center; gap: 12px; cursor: pointer; transition: 0.2s;
+    .hero-content { max-width: 620px; z-index: 2; }
+    .hero-badge {
+      display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 2px;
+      color: var(--amber-light); margin-bottom: 12px; text-transform: uppercase;
     }
-    .drawer-item:hover { background: rgba(0,240,255,0.15); color: var(--cyan-neon); }
-
-    /* NAVBAR */
-    nav {
-      position: sticky; top: 0; z-index: 900; background: rgba(4, 8, 16, 0.95);
-      border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding: 14px 24px 14px 80px;
-      display: flex; justify-content: space-between; align-items: center;
+    .hero-title {
+      font-family: 'Rajdhani', sans-serif; font-size: 64px; font-weight: 800; line-height: 1;
+      text-transform: uppercase; margin-bottom: 16px;
     }
-    .brand-wrap { display: flex; align-items: center; gap: 12px; }
-    .brand-title { font-size: 20px; font-weight: 800; letter-spacing: 2px; }
-    .brand-title span { color: var(--cyan-neon); text-shadow: 0 0 15px var(--cyan-glow); }
-    .neon-bolt { font-size: 22px; color: var(--cyan-neon); cursor: pointer; transition: 0.2s; }
-    .neon-bolt.charged { transform: scale(1.3) rotate(-15deg); filter: drop-shadow(0 0 25px #fff); }
-
-    .tab-pills { display: flex; gap: 8px; }
-    .tab-btn {
-      background: none; border: 1px solid transparent; color: var(--text-muted);
-      padding: 8px 16px; font-size: 12px; font-weight: 700; text-transform: uppercase;
-      border-radius: 6px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px;
+    .hero-title span { color: var(--amber-main); text-shadow: 0 0 25px var(--amber-glow); }
+    .hero-desc { color: #cbd5e1; font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
+    .hero-buttons { display: flex; gap: 14px; }
+    .btn-primary {
+      background: var(--amber-main); color: #000; padding: 12px 24px; border-radius: 8px;
+      font-weight: 800; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px;
     }
-    .tab-btn.active { background: var(--cyan-neon); color: #000; font-weight: 800; }
-    .tab-btn:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.05); }
-
-    /* İÇERİK */
-    .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-    .tab-view { display: none; }
-    .tab-view.active { display: block !important; }
-
-    .headline-bar {
-      border-bottom: 1px solid rgba(0,240,255,0.15); padding-bottom: 12px; margin-bottom: 24px;
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
     }
-    .headline-title { font-size: 22px; font-weight: 800; text-transform: uppercase; }
-    .headline-title span { color: var(--cyan-neon); }
 
-    .news-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-    .news-card {
+    /* SECTIONS */
+    .container { max-width: 1280px; margin: 0 auto; padding: 60px 24px; }
+    .section-header { margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .section-tag { font-size: 12px; font-weight: 800; color: var(--amber-main); letter-spacing: 1.5px; text-transform: uppercase; }
+    .section-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 800; text-transform: uppercase; }
+    .section-title span { color: var(--amber-main); }
+    .see-all { color: var(--text-dim); text-decoration: none; font-size: 13px; font-weight: 600; }
+    .see-all:hover { color: var(--amber-light); }
+
+    /* GAME CARDS GRID */
+    .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 70px; }
+    .game-card {
       background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px;
-      overflow: hidden; display: flex; flex-direction: column; transition: 0.25s;
+      overflow: hidden; text-decoration: none; color: #fff; display: flex; flex-direction: column;
+      transition: 0.25s ease; position: relative;
     }
-    .news-card:hover { border-color: var(--cyan-neon); transform: translateY(-4px); }
-
-    .card-banner-img {
-      height: 180px; width: 100%; position: relative; background-size: cover; background-position: center;
-      display: flex; align-items: flex-end; justify-content: space-between; padding: 14px;
+    .game-card:hover { transform: translateY(-6px); border-color: var(--amber-main); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .game-card-img { height: 210px; width: 100%; background-size: cover; background-position: center; position: relative; }
+    .game-card-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, var(--card-bg) 100%);
     }
-    .card-banner-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, #0a1220 100%); }
+    .game-card-body { padding: 14px; margin-top: -10px; z-index: 2; }
+    .game-card-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .online-indicator { font-size: 12px; color: var(--text-dim); display: flex; align-items: center; gap: 6px; }
+    .online-dot { width: 7px; height: 7px; background: var(--green-online); border-radius: 50%; box-shadow: 0 0 8px var(--green-online); }
 
-    .img-mc-v2 { background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=800&q=80'); }
-    .img-cs-105 { background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'); }
-    .img-cs-14 { background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80'); }
-    .img-coc-war { background-image: url('https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80'); }
-    .img-cs2-esport { background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80'); }
-
-    .tag-ribbon { position: relative; z-index: 2; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 4px; }
-    .tag-mc { background: var(--mc-mint); color: #000; }
-    .tag-cs { background: var(--cyan-neon); color: #000; }
-    .tag-warn { background: var(--coc-amber); color: #000; }
-    .tag-cs2 { background: var(--cs2-orange); color: #000; }
-    .watermark-stamp { position: relative; z-index: 2; font-size: 12px; font-weight: 800; letter-spacing: 1px; }
-
-    .card-body-text { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-    .card-main-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; line-height: 1.2; text-transform: uppercase; }
-    .card-desc { font-size: 13px; color: #cbd5e1; line-height: 1.5; margin-bottom: 16px; }
-    .card-footer-action { margin-top: auto; color: var(--cyan-neon); font-size: 13px; font-weight: 700; cursor: pointer; }
-
-    /* MINECRAFT SHOWCASE */
-    .mc-showcase-box {
-      background: #08121f; border: 1px solid rgba(0,240,255,0.3); border-radius: 14px;
-      padding: 35px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center;
+    /* SERVER CARDS GRID */
+    .server-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-bottom: 70px; }
+    .server-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px;
+      padding: 16px; display: flex; flex-direction: column; gap: 12px;
     }
-    .mc-ip-bar {
-      background: #040912; border: 1px dashed var(--cyan-neon); padding: 12px 16px; border-radius: 8px;
-      display: flex; justify-content: space-between; align-items: center; margin: 18px 0;
+    .server-badge {
+      height: 60px; border-radius: 8px; background: #131b2a; display: flex;
+      align-items: center; justify-content: center; font-family: 'Rajdhani', sans-serif;
+      font-size: 24px; font-weight: 800; color: var(--amber-light);
     }
-    .btn-cyan-copy { background: var(--cyan-neon); color: #000; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 800; cursor: pointer; }
-    .btn-launcher-win {
-      background: var(--cyan-neon); color: #000; padding: 12px; border-radius: 8px; font-weight: 800;
-      text-decoration: none; display: block; text-align: center; margin-top: 15px;
+    .server-name { font-size: 15px; font-weight: 700; }
+    .server-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); }
+    .btn-connect {
+      background: var(--amber-main); color: #000; text-decoration: none; padding: 10px;
+      border-radius: 6px; font-weight: 800; font-size: 12px; text-align: center; text-transform: uppercase;
     }
 
-    /* CS KARTLARI */
-    .cs-cluster-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .cs-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 20px; }
-    .btn-connect-cs {
-      flex: 1; background: var(--cyan-neon); color: #000; padding: 10px; border-radius: 6px;
-      font-weight: 800; text-decoration: none; text-align: center; text-transform: uppercase; font-size: 12px;
+    /* STATS & COMMUNITY BANNER */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr) 2fr; gap: 16px;
+      background: #090e17; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px;
+    }
+    .stat-item { text-align: center; border-right: 1px solid rgba(255,255,255,0.06); padding-right: 12px; }
+    .stat-value { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 800; color: #fff; }
+    .stat-label { font-size: 12px; color: var(--text-dim); }
+    .discord-callout {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-left: 20px; background: radial-gradient(circle at right, rgba(245,158,11,0.15), transparent);
     }
 
-    /* COC */
-    .coc-card { background: #0c1422; border: 1px solid rgba(0,240,255,0.25); border-radius: 12px; padding: 20px; }
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06); padding: 40px 48px;
+      display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-dim);
+    }
 
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
-    .modal-overlay.active { display: flex; }
-    .modal-box { background: #060b14; border: 1px solid var(--cyan-neon); border-radius: 12px; padding: 30px; max-width: 600px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
-
-    footer { text-align: center; padding: 30px; border-top: 1px solid rgba(0,240,255,0.1); color: var(--text-muted); font-size: 12px; }
-    @media (max-width: 800px) { .tab-pills { display: none; } .mc-showcase-box { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+      header { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 40px 20px; }
+      .hero-title { font-size: 42px; }
+      .stats-row { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .stat-item { border: none; }
+      .discord-callout { grid-column: span 2; padding-left: 0; flex-direction: column; gap: 12px; text-align: center; }
+      footer { flex-direction: column; gap: 14px; text-align: center; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="storm-overlay" id="stormFlash"></div>
-
-  <!-- SOL MENÜ -->
-  <div class="sidebar-trigger" onclick="toggleSidebar()" title="Menü">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
-
-  <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleSidebar()"></div>
-
-  <div class="drawer-panel" id="sidebarDrawer">
-    <div style="font-size: 18px; font-weight: 800; color: #fff; padding-bottom: 12px; border-bottom: 1px solid rgba(0,240,255,0.2);">
-      LEGACY <span style="color: var(--cyan-neon);">HUB</span>
-    </div>
-    <div class="drawer-item" onclick="switchTab('news')"><i class="fa-solid fa-newspaper" style="color: var(--cyan-neon);"></i> Güncellemeler</div>
-    <div class="drawer-item" onclick="switchTab('minecraft')"><i class="fa-solid fa-cube" style="color: var(--mc-mint);"></i> RosherCraft (Minecraft)</div>
-    <div class="drawer-item" onclick="switchTab('cs')"><i class="fa-solid fa-crosshairs" style="color: var(--cyan-neon);"></i> CS 1.6 & CS2</div>
-    <div class="drawer-item" onclick="switchTab('clash')"><i class="fa-solid fa-shield-halved" style="color: var(--coc-amber);"></i> Clash of Clans</div>
-    <div class="drawer-item" onclick="openAboutModal()"><i class="fa-solid fa-book-journal-whills"></i> Tarihçemiz</div>
-  </div>
-
   <!-- NAVBAR -->
-  <nav>
-    <div class="brand-wrap">
-      <div class="brand-title">LEGACY<span>GAMING</span></div>
-      <i class="fa-solid fa-bolt-lightning neon-bolt" id="lightningBolt" onclick="triggerLightning()" title="Şimşek Çaktır!"></i>
+  <header>
+    <a href="#" class="brand">
+      <i class="fa-solid fa-bolt-lightning brand-logo"></i>
+      <span class="brand-text">LEGACY GAMING</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Ana Sayfa</a></li>
+      <li><a href="#sunucular">Sunucular</a></li>
+      <li><a href="#oyunlar">Oyunlar</a></li>
+      <li><a href="#topluluk">Topluluk</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://discord.gg" target="_blank" class="btn-discord">
+        <i class="fa-brands fa-discord"></i> Discord'a Katıl
+      </a>
     </div>
+  </header>
 
-    <div class="tab-pills">
-      <button class="tab-btn active" onclick="switchTab('news')" id="tab_news"><i class="fa-solid fa-newspaper"></i> Güncellemeler</button>
-      <button class="tab-btn" onclick="switchTab('minecraft')" id="tab_minecraft"><i class="fa-solid fa-cube"></i> Minecraft</button>
-      <button class="tab-btn" onclick="switchTab('cs')" id="tab_cs"><i class="fa-solid fa-crosshairs"></i> CS 1.6 & CS2</button>
-      <button class="tab-btn" onclick="switchTab('clash')" id="tab_clash"><i class="fa-solid fa-shield-halved"></i> Clash of Clans</button>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">Tüm Oyunlar Tek Platformda</span>
+      <h1 class="hero-title">Oyunun <span>Legacysi.</span></h1>
+      <p class="hero-desc">Half-Life'tan CS2'ye, Minecraft'tan CS 1.6 Jailbreak'e kadar sevdiğin oyunların sunucuları tek çatı altında.</p>
+      <div class="hero-buttons">
+        <a href="#sunucular" class="btn-primary"><i class="fa-solid fa-bolt"></i> Sunucuları Keşfet</a>
+        <a href="https://discord.gg" target="_blank" class="btn-secondary"><i class="fa-brands fa-discord"></i> Topluluğa Katıl</a>
+      </div>
     </div>
-  </nav>
+  </section>
 
   <div class="container">
 
-    <!-- 1. HABERLER -->
-    <div class="tab-view active" id="view_news">
-      <div class="headline-bar">
-        <div class="headline-title">CANLI <span>GÜNCELLEMELER</span></div>
+    <!-- NE OYNARSIN? BÖLÜMÜ -->
+    <div class="section-header" id="oyunlar">
+      <div>
+        <div class="section-tag">Bizim Dünyamız</div>
+        <div class="section-title">Legacy'de <span>Ne Oynarsın?</span></div>
       </div>
+      <a href="#" class="see-all">Tüm Oyunları Gör →</a>
+    </div>
 
-      <div class="news-cards-grid">
-        <div class="news-card">
-          <div class="card-banner-img img-mc-v2">
-            <span class="tag-ribbon tag-mc">Yama v2.10</span>
-            <span class="watermark-stamp" style="color: var(--mc-mint);">ROSHERCRAFT</span>
-          </div>
-          <div class="card-body-text">
-            <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">10 Eylül 2026 // Minecraft</div>
-            <div class="card-main-title">RosherCraft v2.10 Güncellemesi Yayınlandı!</div>
-            <div class="card-desc">Skyblock ve Survival ekonomisi dengelendi. Yeni zindanlar ve hile koruması devrede.</div>
-            <div class="card-footer-action" onclick="switchTab('minecraft')">Launcher İndir & Oyna →</div>
-          </div>
+    <div class="game-grid">
+      <div class="game-card">
+        <div class="game-card-img" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Counter-Strike 2</div>
+          <div class="online-indicator"><span class="online-dot"></span> Online 2.847</div>
         </div>
-
-        <div class="news-card">
-          <div class="card-banner-img img-cs-105">
-            <span class="tag-ribbon tag-cs">#105 JB v1 Update</span>
-            <span class="watermark-stamp" style="color: var(--cyan-neon);">LEGACY #105</span>
-          </div>
-          <div class="card-body-text">
-            <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">8 Eylül 2026 // CS 1.6</div>
-            <div class="card-main-title">95.173.173.105 Açıldı: v1 Update!</div>
-            <div class="card-desc">Sıfırdan yazılmış isyan menüsü ve ödüllü oyun modlarıyla 105 Jailbreak tekrar yayında.</div>
-            <div class="card-footer-action" onclick="switchTab('cs')">Sunucuya Bağlan →</div>
-          </div>
+      </div>
+      <div class="game-card">
+        <div class="game-card-img" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Counter-Strike 1.6</div>
+          <div class="online-indicator"><span class="online-dot"></span> Online 1.203</div>
         </div>
-
-        <div class="news-card">
-          <div class="card-banner-img img-cs-14">
-            <span class="tag-ribbon tag-warn">Bakım Bildirisi</span>
-            <span class="watermark-stamp" style="color: var(--coc-amber);">#14 BAKIMDA</span>
-          </div>
-          <div class="card-body-text">
-            <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Planlı Bakım // CS 1.6 #14</div>
-            <div class="card-main-title">95.173.173.14 Geçici Bakımda!</div>
-            <div class="card-desc">Donanım iyileştirmesi ve ping optimizasyonu nedeniyle geçici olarak bakımdadır.</div>
-            <div class="card-footer-action" onclick="switchTab('cs')">Detayları Gör →</div>
-          </div>
+      </div>
+      <div class="game-card">
+        <div class="game-card-img" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Half-Life</div>
+          <div class="online-indicator"><span class="online-dot"></span> Online 542</div>
         </div>
-
-        <div class="news-card">
-          <div class="card-banner-img img-coc-war">
-            <span class="tag-ribbon tag-warn">Klan Alımları</span>
-            <span class="watermark-stamp" style="color: var(--coc-amber);">CLASH OF CLANS</span>
-          </div>
-          <div class="card-body-text">
-            <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Mobil Arenası</div>
-            <div class="card-main-title">Clash of Clans Klanlarımızda Yer Var!</div>
-            <div class="card-desc">Lig ve klan savaşları için kontenjanlar açık. Katılım kodlarına hemen göz atın.</div>
-            <div class="card-footer-action" onclick="switchTab('clash')">Klan Kodlarını İncele →</div>
-          </div>
+      </div>
+      <div class="game-card">
+        <div class="game-card-img" style="background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Minecraft</div>
+          <div class="online-indicator"><span class="online-dot"></span> Online 3.176</div>
         </div>
-
-        <div class="news-card">
-          <div class="card-banner-img img-cs2-esport">
-            <span class="tag-ribbon tag-cs2">Çok Yakında</span>
-            <span class="watermark-stamp" style="color: var(--cs2-orange);">CS2 TOPLULUK</span>
-          </div>
-          <div class="card-body-text">
-            <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Counter-Strike 2</div>
-            <div class="card-main-title">LegacyGaming CS2 Sunucuları Hazırlanıyor!</div>
-            <div class="card-desc">5v5 Rekabetçi ve Retake sunucularımız kapalı beta testinde, çok yakında yayında.</div>
-            <div class="card-footer-action" onclick="switchTab('cs')">Hazırlıkları Gör →</div>
-          </div>
+      </div>
+      <div class="game-card">
+        <div class="game-card-img" style="background-image: url('https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Clash of Clans</div>
+          <div class="online-indicator"><span class="online-dot" style="background:var(--amber-main); box-shadow:none;"></span> Topluluk 12.4K</div>
         </div>
       </div>
     </div>
 
-    <!-- 2. MINECRAFT -->
-    <div class="tab-view" id="view_minecraft">
-      <div class="mc-showcase-box">
+    <!-- POPÜLER SUNUCULAR BÖLÜMÜ -->
+    <div class="section-header" id="sunucular">
+      <div>
+        <div class="section-tag">Sunucularımız</div>
+        <div class="section-title">Popüler <span>Sunucular</span></div>
+      </div>
+      <a href="#" class="see-all">Tüm Sunucuları Gör →</a>
+    </div>
+
+    <div class="server-grid">
+      <div class="server-card">
+        <div class="server-badge">⚡ 1.6</div>
+        <div class="server-name">Legacy CS 1.6 #105</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>24/32 Oyuncu</span>
+        </div>
+        <a href="steam://connect/95.173.173.105" class="btn-connect">Sunucuya Bağlan</a>
+      </div>
+
+      <div class="server-card">
+        <div class="server-badge">CS2</div>
+        <div class="server-name">Legacy CS2 Retake</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>18/20 Oyuncu</span>
+        </div>
+        <a href="#" class="btn-connect">Sunucuya Bağlan</a>
+      </div>
+
+      <div class="server-card">
+        <div class="server-badge">MC</div>
+        <div class="server-name">RosherCraft Skyblock</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>142 Oyuncu</span>
+        </div>
+        <button class="btn-connect" style="border:none; cursor:pointer;" onclick="navigator.clipboard.writeText('play.roshercraft.com.tr'); alert('IP Kopyalandı!');">IP Kopyala</button>
+      </div>
+
+      <div class="server-card">
+        <div class="server-badge">λ</div>
+        <div class="server-name">Legacy Half-Life Crossfire</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>12/24 Oyuncu</span>
+        </div>
+        <a href="#" class="btn-connect">Sunucuya Bağlan</a>
+      </div>
+    </div>
+
+    <!-- İSTATİSTİK & DİSCORD ÇAĞRISI -->
+    <div class="stats-row" id="topluluk">
+      <div class="stat-item">
+        <div class="stat-value">6.284</div>
+        <div class="stat-label">Toplam Oyuncu</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">12</div>
+        <div class="stat-label">Aktif Sunucu</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">5</div>
+        <div class="stat-label">Desteklenen Oyun</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">%99.9</div>
+        <div class="stat-label">Uptime</div>
+      </div>
+      <div class="discord-callout">
         <div>
-          <div style="color: var(--cyan-neon); font-size: 12px; font-weight: 800; margin-bottom: 5px;">ROSHERCRAFT // 1.16 - 1.21+</div>
-          <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 10px;">ROSHERCRAFT <span style="color:var(--cyan-neon);">MINECRAFT</span></h1>
-          <p style="color: #cbd5e1; font-size: 14px; line-height: 1.6;">Skyblock, Survival ve özel arenalar. En yüksek FPS için optimize altyapı.</p>
-          <div class="mc-ip-bar">
-            <div style="font-size: 16px; font-weight: 700;">play.roshercraft.com.tr</div>
-            <button class="btn-cyan-copy" onclick="copySnippet('play.roshercraft.com.tr')">Kopyala</button>
-          </div>
-          <div style="font-size: 13px;"><i class="fa-solid fa-users" style="color:var(--cyan-neon);"></i> Çevrimiçi: <b>142 Oyuncu</b></div>
+          <div style="font-size: 15px; font-weight: 800;">Daha fazlası için Discord'a katıl!</div>
+          <div style="font-size: 12px; color: var(--text-dim);">Güncellemeler ve klan savaşları burada.</div>
         </div>
-        <div style="background: rgba(0,0,0,0.5); padding: 25px; border-radius: 12px; text-align: center;">
-          <h3 style="margin-bottom: 8px;">Resmi Launcher</h3>
-          <p style="font-size: 12px; color: var(--text-muted);">Otomatik optimizasyon ve hile korumasıyla tek tıkla bağlanın.</p>
-          <a href="#" class="btn-launcher-win" onclick="alert('Launcher indirmesi başlıyor...'); return false;">Windows İndir (.EXE)</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. CS 1.6 & CS2 -->
-    <div class="tab-view" id="view_cs">
-      <div class="headline-bar"><div class="headline-title">CS 1.6 & <span>CS2 NETWORK</span></div></div>
-      <div class="cs-cluster-grid">
-        <div class="cs-card">
-          <div style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">LEGACY JAILBREAK (#105)</div>
-          <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 6px; font-family: monospace; font-size: 16px; margin-bottom: 10px;">95.173.173.105</div>
-          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Aktif: <b style="color:var(--cyan-neon);" id="stat_105">24</b>/32</div>
-          <div style="display:flex; gap:8px;">
-            <a href="steam://connect/95.173.173.105" class="btn-connect-cs">Bağlan</a>
-            <button class="btn-cyan-copy" onclick="copySnippet('95.173.173.105')">Kopyala</button>
-          </div>
-        </div>
-
-        <div class="cs-card">
-          <div style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">LEGACY TOPLULUK (#14)</div>
-          <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 6px; font-family: monospace; font-size: 16px; margin-bottom: 10px;">95.173.173.14</div>
-          <div style="font-size: 12px; color: var(--coc-amber); margin-bottom: 12px;">Durum: <b>Geçici Bakımda</b></div>
-          <button class="btn-cyan-copy" style="width: 100%;" onclick="copySnippet('95.173.173.14')">IP Kopyala</button>
-        </div>
-
-        <div class="cs-card">
-          <div style="font-size: 20px; font-weight: 800; margin-bottom: 5px;">LEGACY PUBLIC (#114)</div>
-          <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 6px; font-family: monospace; font-size: 16px; margin-bottom: 10px;">95.173.173.114</div>
-          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Aktif: <b style="color:var(--cyan-neon);" id="stat_114">26</b>/32</div>
-          <div style="display:flex; gap:8px;">
-            <a href="steam://connect/95.173.173.114" class="btn-connect-cs">Bağlan</a>
-            <button class="btn-cyan-copy" onclick="copySnippet('95.173.173.114')">Kopyala</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. COC -->
-    <div class="tab-view" id="view_clash">
-      <div class="headline-bar"><div class="headline-title">CLASH OF CLANS <span>KLANLARIMIZ</span></div></div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-        <div class="coc-card">
-          <div style="color: var(--cyan-neon); font-size: 11px; font-weight: 800;">1. ANA KLAN</div>
-          <h3 style="margin: 5px 0 10px;">LEGACY WARRIORS</h3>
-          <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 6px; margin-bottom: 12px; font-family: monospace; font-size: 16px;">#2CU8QPQ9L</div>
-          <button class="btn-cyan-copy" style="width: 100%;" onclick="copySnippet('#2CU8QPQ9L')">Klan Kodunu Kopyala</button>
-        </div>
-        <div class="coc-card">
-          <div style="color: var(--cyan-neon); font-size: 11px; font-weight: 800;">2. AKADEMİ KLANI</div>
-          <h3 style="margin: 5px 0 10px;">LEGACY ELITE</h3>
-          <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 6px; margin-bottom: 12px; font-family: monospace; font-size: 16px;">#2CLJJ8VYR</div>
-          <button class="btn-cyan-copy" style="width: 100%;" onclick="copySnippet('#2CLJJ8VYR')">Klan Kodunu Kopyala</button>
-        </div>
+        <a href="https://discord.gg" target="_blank" class="btn-discord" style="padding: 8px 16px;">Katıl</a>
       </div>
     </div>
 
   </div>
 
-  <!-- TARİHÇE MODAL -->
-  <div class="modal-overlay" id="aboutModal">
-    <div class="modal-box">
-      <button style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;" onclick="closeAboutModal()">✕</button>
-      <h2 style="margin-bottom: 15px;">LEGACY GAMING <span style="color:var(--cyan-neon);">TARİHÇESİ</span></h2>
-      <p style="margin-bottom: 10px;"><b>2011:</b> LegendGaming adıyla CS 1.6'da kuruldu.</p>
-      <p style="margin-bottom: 10px;"><b>2023:</b> Faaliyetlere geçici olarak ara verildi.</p>
-      <p style="margin-bottom: 10px;"><b>2024:</b> LegacyGaming adıyla geri dönüş yapıldı.</p>
-      <p style="margin-bottom: 10px;"><b>2025 Sonu:</b> Siyaset Gaming ile ortaklık kuruldu.</p>
-      <p style="margin-bottom: 10px;"><b>2025:</b> RosherCraft Minecraft açıldı.</p>
-      <p style="margin-bottom: 10px;"><b>2026:</b> Clash of Clans klanları açıldı ve CS2 hazırlıkları başladı.</p>
-    </div>
-  </div>
-
+  <!-- FOOTER -->
   <footer>
-    &copy; 2011 - 2026 Legacy Gaming Network. Tüm hakları saklıdır.
+    <div>&copy; 2011 - 2026 Legacy Gaming. Tüm hakları saklıdır.</div>
+    <div style="display:flex; gap: 16px;">
+      <i class="fa-brands fa-discord"></i>
+      <i class="fa-brands fa-youtube"></i>
+      <i class="fa-brands fa-instagram"></i>
+    </div>
   </footer>
 
-  <script>
-    function triggerLightning() {
-      const bolt = document.getElementById('lightningBolt');
-      const flash = document.getElementById('stormFlash');
-      bolt.classList.add('charged');
-      flash.classList.add('flash');
-      setTimeout(() => flash.classList.remove('flash'), 60);
-      setTimeout(() => flash.classList.add('flash'), 120);
-      setTimeout(() => {
-        flash.classList.remove('flash');
-        bolt.classList.remove('charged');
-      }, 240);
-    }
-    setInterval(triggerLightning, 14000);
-
-    function switchTab(tabKey) {
-      document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      const targetView = document.getElementById('view_' + tabKey);
-      const targetBtn = document.getElementById('tab_' + tabKey);
-      if (targetView) targetView.classList.add('active');
-      if (targetBtn) targetBtn.classList.add('active');
-
-      const drawer = document.getElementById('sidebarDrawer');
-      const backdrop = document.getElementById('drawerBackdrop');
-      if (drawer.classList.contains('open')) {
-        drawer.classList.remove('open');
-        backdrop.classList.remove('show');
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function toggleSidebar() {
-      document.getElementById('sidebarDrawer').classList.toggle('open');
-      document.getElementById('drawerBackdrop').classList.toggle('show');
-    }
-
-    function openAboutModal() {
-      toggleSidebar();
-      document.getElementById('aboutModal').classList.add('active');
-    }
-
-    function closeAboutModal() {
-      document.getElementById('aboutModal').classList.remove('active');
-    }
-
-    function copySnippet(val) {
-      navigator.clipboard.writeText(val).then(() => alert("Kopyalandı: " + val));
-    }
-
-    function refreshStats() {
-      const now = new Date();
-      const h = now.getHours();
-      let base = (h >= 18 && h <= 23) ? 26 : (h >= 12 ? 18 : 8);
-      document.getElementById('stat_105').innerText = Math.min(32, base + Math.floor(Math.random()*4));
-      document.getElementById('stat_114').innerText = Math.min(32, base + Math.floor(Math.random()*4));
-    }
-    window.onload = refreshStats;
-  </script>
 </body>
 </html>
