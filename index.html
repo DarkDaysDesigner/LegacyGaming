@@ -15,7 +15,6 @@
     :root {
       --bg-main: #05070b;
       --bg-card: #0a0e17;
-      --bg-card-hover: #0f1523;
       --border-card: rgba(255, 170, 0, 0.16);
       --gold-primary: #ffaa00;
       --gold-bright: #ffc837;
@@ -28,7 +27,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
     body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; }
 
-    /* ŞİMŞEK EKRAN PATLAMASI */
+    /* EKRAN ŞİMŞEK ÇAKMASI */
     .screen-lightning {
       position: fixed; inset: 0; pointer-events: none; z-index: 9999;
       background: radial-gradient(circle, rgba(255, 200, 55, 0.45) 0%, rgba(255, 170, 0, 0.2) 60%, transparent 100%);
@@ -45,17 +44,17 @@
     }
     .brand-wrap { display: flex; align-items: center; gap: 14px; text-decoration: none; cursor: pointer; }
 
-    /* ULTRA PARLAK NEON ŞİMŞEK */
+    /* PARLAK NEON ŞİMŞEK LOGOSU */
     .sexy-bolt-box {
-      width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
       position: relative; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .sexy-bolt-box svg {
-      width: 32px; height: 32px; fill: url(#gold-grad);
-      filter: drop-shadow(0 0 10px #ffaa00) drop-shadow(0 0 25px rgba(255, 200, 55, 0.8));
+      width: 34px; height: 34px; fill: url(#gold-grad);
+      filter: drop-shadow(0 0 8px #ffaa00) drop-shadow(0 0 20px rgba(255, 200, 55, 0.8));
       transition: 0.3s;
     }
-    .sexy-bolt-box:hover { transform: scale(1.25) rotate(-8deg); }
+    .sexy-bolt-box:hover { transform: scale(1.3) rotate(-10deg); }
     .sexy-bolt-box:hover svg { filter: drop-shadow(0 0 16px #fff) drop-shadow(0 0 35px var(--gold-bright)); }
 
     .brand-names { display: flex; flex-direction: column; }
@@ -77,21 +76,23 @@
     }
     .btn-dc-nav:hover { background: #ffd56b; transform: translateY(-2px); }
 
-    /* HERO BANNER BÖLÜMÜ */
+    /* HERO BANNER - DİREKT HIZLIRESİM LİNKİ BAĞLANDI */
     .hero-container {
-      position: relative; width: 100%; min-height: 640px; display: flex; align-items: center;
+      position: relative; width: 100%; min-height: 680px; display: flex; align-items: center;
       padding: 80px 60px; overflow: hidden;
       background:
-        linear-gradient(90deg, rgba(5,7,11,0.94) 0%, rgba(5,7,11,0.7) 48%, rgba(5,7,11,0.2) 100%),
+        linear-gradient(90deg, rgba(5,7,11,0.92) 0%, rgba(5,7,11,0.65) 45%, rgba(5,7,11,0.15) 100%),
         linear-gradient(180deg, transparent 70%, var(--bg-main) 100%),
+        url('https://i.hizliresim.com/wrsuhhdi.png'),
+        url('https://i.hizliresim.com/wrsuhhdi.jpg'),
         url('hero-banner.png') center right / cover no-repeat;
     }
-    .hero-content { max-width: 600px; z-index: 2; }
+    .hero-content { max-width: 620px; z-index: 2; }
     .hero-tag { font-size: 11px; font-weight: 800; letter-spacing: 3px; color: #cbd5e1; text-transform: uppercase; margin-bottom: 12px; }
     .hero-tag span { color: var(--gold-bright); }
-    .hero-headline { font-family: 'Rajdhani', sans-serif; font-size: 70px; font-weight: 800; line-height: 0.95; text-transform: uppercase; }
+    .hero-headline { font-family: 'Rajdhani', sans-serif; font-size: 72px; font-weight: 800; line-height: 0.95; text-transform: uppercase; }
     .hero-legacy-script {
-      font-family: 'Permanent Marker', cursive; font-size: 78px; color: var(--gold-bright);
+      font-family: 'Permanent Marker', cursive; font-size: 80px; color: var(--gold-bright);
       text-shadow: 0 0 35px var(--gold-glow); display: block; transform: rotate(-2deg); margin-top: 4px;
     }
     .hero-p { color: #cbd5e1; font-size: 14px; line-height: 1.6; margin: 20px 0 30px; }
@@ -109,7 +110,7 @@
     }
     .btn-hero-sec:hover { background: rgba(255, 255, 255, 0.1); }
 
-    /* SAYFA İÇERİĞİ */
+    /* İÇERİK */
     .page-box { max-width: 1400px; margin: 0 auto; padding: 40px 60px 80px; }
 
     .sec-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; }
@@ -119,7 +120,7 @@
     .link-all { color: #8492a6; text-decoration: none; font-size: 13px; font-weight: 700; transition: 0.2s; }
     .link-all:hover { color: var(--gold-bright); }
 
-    /* 1. OYUN KARTLARI (GAMES-SHEET.PNG SPRITE) */
+    /* 1. OYUN KARTLARI (GAMES-SHEET) */
     .game-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 70px; }
     .g-card {
       background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px;
@@ -140,7 +141,6 @@
       background: linear-gradient(180deg, transparent 55%, rgba(10, 14, 23, 0.9) 85%, var(--bg-card) 100%);
     }
 
-    /* 6 Oyunun Milimetrik Koordinatları */
     .pos-cs2        { background-position: 0% 0%; }
     .pos-cs16       { background-position: 50% 0%; }
     .pos-halflife   { background-position: 100% 0%; }
@@ -175,7 +175,7 @@
     }
     .btn-srv:hover { background: #ffd56b; box-shadow: 0 4px 14px var(--gold-glow); }
 
-    /* 3. MAĞAZA BÖLÜMÜ */
+    /* 3. MAĞAZA */
     .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 70px; }
     .store-card {
       background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px;
@@ -200,7 +200,7 @@
     }
     .btn-buy:hover { background: #ffd56b; }
 
-    /* 4. İSTATİSTİKLER & DISCORD */
+    /* 4. DASHBOARD & TOPLULUK */
     .dashboard-grid { display: grid; grid-template-columns: 1.4fr 1.2fr; gap: 18px; margin-bottom: 40px; }
     .counters-box {
       background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px;
@@ -221,6 +221,7 @@
     .comm-banner {
       background:
         linear-gradient(90deg, #070a10 0%, rgba(7, 10, 16, 0.85) 55%, rgba(7, 10, 16, 0.95) 100%),
+        url('https://i.hizliresim.com/wrsuhhdi.png'),
         url('hero-banner.png') center/cover;
       border: 1px solid var(--border-card); border-radius: 14px; padding: 34px 44px;
       display: flex; justify-content: space-between; align-items: center;
@@ -249,10 +250,10 @@
 </head>
 <body>
 
-  <!-- EKRAN PATLAMA ŞİMŞEĞİ -->
+  <!-- EKRAN PARLAMA ŞİMŞEĞİ -->
   <div class="screen-lightning" id="lightningFlash"></div>
 
-  <!-- SVG GRADYAN TANIMI -->
+  <!-- SVG GRADYAN -->
   <svg width="0" height="0" style="position: absolute;">
     <defs>
       <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -292,7 +293,7 @@
     </a>
   </header>
 
-  <!-- HERO SECTION (HERO-BANNER.PNG ARKA PLANDA) -->
+  <!-- HERO SECTION (BANNER DİREKT ARKADA) -->
   <section class="hero-container">
     <div class="hero-content">
       <div class="hero-tag">TÜM OYUNL<span>AR</span> TEK PLATFORMDA</div>
@@ -311,7 +312,7 @@
   <!-- ANA İÇERİK -->
   <main class="page-box">
 
-    <!-- 1. BÖLÜM: NE OYNARSIN? (GAMES-SHEET.PNG'DEN 6 AYRI KART) -->
+    <!-- 1. BÖLÜM: NE OYNARSIN? -->
     <section id="oyunlar" style="margin-bottom: 20px;">
       <div class="sec-head">
         <div>
@@ -442,7 +443,7 @@
       </div>
     </section>
 
-    <!-- 3. BÖLÜM: MAĞAZA (ADMİNLİK & FIVEM & VIP PAKETLERİ) -->
+    <!-- 3. BÖLÜM: MAĞAZA -->
     <section id="magaza" style="margin-bottom: 20px;">
       <div class="sec-head">
         <div>
@@ -456,7 +457,6 @@
       </div>
 
       <div class="store-grid">
-        <!-- FiveM 1 -->
         <div class="store-card">
           <span class="store-badge">FIVEM</span>
           <div>
@@ -470,7 +470,6 @@
           </div>
         </div>
 
-        <!-- FiveM 2 -->
         <div class="store-card">
           <span class="store-badge">FIVEM</span>
           <div>
@@ -484,7 +483,6 @@
           </div>
         </div>
 
-        <!-- CS 1.6 Adminlik -->
         <div class="store-card">
           <span class="store-badge" style="color:#10b981; border-color:rgba(16,185,129,0.3);">CS 1.6</span>
           <div>
@@ -498,13 +496,12 @@
           </div>
         </div>
 
-        <!-- CS2 VIP -->
         <div class="store-card">
           <span class="store-badge" style="color:#fb923c; border-color:rgba(251,146,60,0.3);">CS2</span>
           <div>
             <div class="store-game-tag">CS2 NETWORK</div>
             <div class="store-item-name">Legacy VIP Premium</div>
-            <div class="store-item-desc">Sunucuda tüm bıçak ve eldiven skinlerine anında erişim (!ws !knife), rezerv slot ve özel sohbet tagı.</div>
+            <div class="store-item-desc">Sunucuda tüm bıçak ve eldiven skinlerine anında erişim (!ws !knife), rezerv slot ve özel tag.</div>
           </div>
           <div class="store-price-row">
             <div class="store-price">₺150<span>/aylık</span></div>
@@ -512,7 +509,6 @@
           </div>
         </div>
 
-        <!-- Minecraft VIP -->
         <div class="store-card">
           <span class="store-badge" style="color:#38bdf8; border-color:rgba(56,189,248,0.3);">MINECRAFT</span>
           <div>
@@ -526,7 +522,6 @@
           </div>
         </div>
 
-        <!-- Half-Life Dokunulmazlık -->
         <div class="store-card">
           <span class="store-badge">HALF-LIFE</span>
           <div>
@@ -542,7 +537,7 @@
       </div>
     </section>
 
-    <!-- 4. BÖLÜM: SAYAÇLAR & DISCORD KUTUSU -->
+    <!-- 4. BÖLÜM: SAYAÇLAR & DISCORD -->
     <div class="dashboard-grid" id="topluluk">
       <div class="counters-box">
         <div class="cnt-col">
@@ -576,7 +571,7 @@
       </div>
     </div>
 
-    <!-- 5. BÖLÜM: ALINTI BANNER -->
+    <!-- 5. BÖLÜM: TOPLULUK BANNERI -->
     <div class="comm-banner">
       <div>
         <div style="font-size: 11px; font-weight: 800; color: var(--gold-bright); letter-spacing: 2px;">LEGACY GAMING</div>
@@ -604,7 +599,6 @@
   </footer>
 
   <script>
-    // Şimşek logosuna tıklandığında ekranda elektrik patlaması
     function shockScreen() {
       const flash = document.getElementById('lightningFlash');
       flash.classList.add('flash');
@@ -613,14 +607,12 @@
       setTimeout(() => flash.classList.remove('flash'), 240);
     }
 
-    // IP Kopyalama
     function copySnippet(val) {
       navigator.clipboard.writeText(val).then(() => {
         alert("Minecraft IP adresi panoya kopyalandı: " + val);
       });
     }
 
-    // Mağaza Satın Alma Bildirimi
     function buyAlert(item) {
       alert(item + " satın alma talebi için Discord sunucumuzdaki #market-destek kanalına yönlendiriliyorsunuz!");
       window.open("https://discord.gg", "_blank");
