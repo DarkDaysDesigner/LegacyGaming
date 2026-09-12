@@ -48,7 +48,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(7, 7, 9, 0.85);
+      background: rgba(7, 7, 9, 0.88);
       backdrop-filter: blur(15px);
       border-bottom: 1px solid var(--bg-card-border);
       padding: 18px 60px;
@@ -140,21 +140,23 @@
       box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
     }
 
-    /* CONTAINER */
     .section-wrapper {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* HERO SECTION (SENİN GÖNDERDİĞİN ALTIN ŞİMŞEKLİ BANNER) */
+    /* HERO VİTRİNİ */
     .hero-container {
       position: relative;
       min-height: 580px;
       display: flex;
       align-items: center;
       background: linear-gradient(180deg, rgba(7, 7, 9, 0.2) 0%, rgba(7, 7, 9, 0.95) 100%),
-                  url('https://i.ibb.co/32853/banner.png') center right / cover no-repeat;
+                  url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80');
+      background-position: center right;
+      background-size: cover;
+      background-repeat: no-repeat;
       border-bottom: 1px solid var(--bg-card-border);
       padding: 60px 60px;
     }
@@ -215,9 +217,7 @@
       transition: transform 0.2s;
     }
 
-    .btn-hero-solid:hover {
-      transform: scale(1.03);
-    }
+    .btn-hero-solid:hover { transform: scale(1.03); }
 
     .btn-hero-outline {
       background: rgba(13, 14, 18, 0.7);
@@ -238,7 +238,6 @@
       border-color: var(--gold-primary);
     }
 
-    /* SECTION HEADERS */
     .block-header {
       display: flex;
       justify-content: space-between;
@@ -311,6 +310,7 @@
       background-size: cover;
       background-position: center;
       position: relative;
+      background-color: #1a1612;
     }
 
     .game-thumb-art::after {
@@ -378,6 +378,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: #1a1612;
     }
 
     .srv-top-art::after {
@@ -452,7 +453,7 @@
 
     .btn-connect-srv:hover { filter: brightness(1.1); }
 
-    /* İSTATİSTİKLER VE DİSCORD ALANI */
+    /* İSTATİSTİKLER VE DİSCORD KARTI */
     .metrics-promo-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -471,32 +472,14 @@
       align-items: center;
     }
 
-    .stat-cell {
-      text-align: left;
-    }
-
-    .stat-icon {
-      font-size: 20px;
-      color: var(--gold-primary);
-      margin-bottom: 8px;
-    }
-
-    .stat-digit {
-      font-size: 26px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--text-gray);
-    }
+    .stat-cell { text-align: left; }
+    .stat-icon { font-size: 20px; color: var(--gold-primary); margin-bottom: 8px; }
+    .stat-digit { font-size: 26px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 12px; color: var(--text-gray); }
 
     .discord-promo-card {
       background: linear-gradient(135deg, rgba(22, 18, 12, 0.95) 0%, rgba(13, 14, 18, 0.95) 100%),
-                  url('https://i.ibb.co/32853/banner.png') center right / cover;
+                  url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80') center right / cover;
       border: 1px solid var(--card-hover-border);
       border-radius: 16px;
       padding: 26px 30px;
@@ -561,28 +544,12 @@
       color: var(--text-gray);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      font-weight: 600;
-    }
-
+    .footer-links { display: flex; gap: 24px; font-weight: 600; }
     .footer-links a:hover { color: #fff; }
-
-    .footer-socials {
-      display: flex;
-      gap: 16px;
-      font-size: 16px;
-    }
-
-    .footer-socials i {
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
+    .footer-socials { display: flex; gap: 16px; font-size: 16px; }
+    .footer-socials i { cursor: pointer; transition: color 0.2s; }
     .footer-socials i:hover { color: var(--gold-primary); }
 
-    /* RESPONSIVE */
     @media (max-width: 1100px) {
       .games-carousel-grid { grid-template-columns: repeat(3, 1fr); }
       .servers-showcase-grid { grid-template-columns: repeat(2, 1fr); }
@@ -648,7 +615,7 @@
 
   <div class="section-wrapper">
 
-    <!-- 1. BÖLÜM: BİZİM DÜNYAMIZ (LEGACY'DE NE OYNARSIN?) -->
+    <!-- 1. BÖLÜM: BİZİM DÜNYAMIZ -->
     <div class="block-header" id="games">
       <div>
         <div class="block-tag">BİZİM <span>DÜNYAMIZ</span></div>
@@ -659,18 +626,18 @@
     </div>
 
     <div class="games-carousel-grid">
-      <!-- 1: CS2 -->
+      <!-- 1: CS2 (1. Link) -->
       <div class="game-play-box" onclick="location.href='#servers'">
-        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80');"></div>
+        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80');"></div>
         <div class="game-info-meta">
           <div class="game-name-h4">Counter-Strike 2</div>
           <div class="live-status-pill"><span class="dot-online"></span> Online <b>2.847</b></div>
         </div>
       </div>
 
-      <!-- 2: CS 1.6 -->
+      <!-- 2: CS 1.6 (2. Link) -->
       <div class="game-play-box" onclick="location.href='#servers'">
-        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80');"></div>
+        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=500&q=80');"></div>
         <div class="game-info-meta">
           <div class="game-name-h4">Counter-Strike 1.6</div>
           <div class="live-status-pill"><span class="dot-online"></span> Online <b>1.203</b></div>
@@ -679,34 +646,34 @@
 
       <!-- 3: HALF-LIFE -->
       <div class="game-play-box" onclick="location.href='#servers'">
-        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80');"></div>
+        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=80');"></div>
         <div class="game-info-meta">
           <div class="game-name-h4">Half-Life</div>
           <div class="live-status-pill"><span class="dot-online"></span> Online <b>542</b></div>
         </div>
       </div>
 
-      <!-- 4: MINECRAFT (GÖNDERDİĞİN ATLI STEVE RESMİ BURADA) -->
+      <!-- 4: MINECRAFT (Atlı Steve) -->
       <div class="game-play-box" onclick="location.href='#servers'">
-        <div class="game-thumb-art" style="background-image: url('https://i.ibb.co/LdQ063g/image.jpg'); background-position: center 20%;"></div>
+        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=500&q=80'); background-position: center;"></div>
         <div class="game-info-meta">
           <div class="game-name-h4">Minecraft</div>
           <div class="live-status-pill"><span class="dot-online"></span> Online <b>3.176</b></div>
         </div>
       </div>
 
-      <!-- 5: CLASH OF CLANS -->
+      <!-- 5: CLASH OF CLANS (CoC 1) -->
       <div class="game-play-box" onclick="location.href='#servers'">
-        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=400&q=80');"></div>
+        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=500&q=80');"></div>
         <div class="game-info-meta">
           <div class="game-name-h4">Clash of Clans</div>
           <div class="live-status-pill"><span class="dot-online" style="background: var(--gold-primary); box-shadow: 0 0 8px var(--gold-primary);"></span> Topluluk <b>12.4K</b></div>
         </div>
       </div>
 
-      <!-- 6: FIVEM (GÖNDERDİĞİN FIVEM RAYLI MANZARA RESMİ BURADA) -->
+      <!-- 6: FIVEM (FiveM Manzara) -->
       <div class="game-play-box" onclick="location.href='#servers'">
-        <div class="game-thumb-art" style="background-image: url('https://i.ibb.co/VMyh02S/fivem-banner.jpg'); background-position: center center;"></div>
+        <div class="game-thumb-art" style="background-image: url('https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=500&q=80');"></div>
         <div class="game-info-meta">
           <div class="game-name-h4">FiveM</div>
           <div class="live-status-pill"><span class="dot-online"></span> Online <b>892</b></div>
@@ -714,7 +681,7 @@
       </div>
     </div>
 
-    <!-- 2. BÖLÜM: SUNUCULARIMIZ (POPÜLER SUNUCULAR) -->
+    <!-- 2. BÖLÜM: POPÜLER SUNUCULAR -->
     <div class="block-header" id="servers">
       <div>
         <div class="block-tag"><i class="fa-solid fa-server" style="color: var(--gold-primary);"></i> SUNUCU<span>LARIMIZ</span></div>
@@ -725,9 +692,9 @@
     </div>
 
     <div class="servers-showcase-grid">
-      <!-- 1: CS 1.6 #01 -->
+      <!-- 1: CS 1.6 #01 (3. Link CS 1.6) -->
       <div class="popular-srv-box">
-        <div class="srv-top-art" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80');">
+        <div class="srv-top-art" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=500&q=80');">
           <div class="srv-logo-on-banner"><i class="fa-solid fa-bolt" style="color: var(--gold-primary);"></i> 1.6</div>
         </div>
         <div class="srv-body-data">
@@ -741,9 +708,9 @@
         </div>
       </div>
 
-      <!-- 2: CS2 #01 -->
+      <!-- 2: CS2 #01 (2. Link CS2) -->
       <div class="popular-srv-box">
-        <div class="srv-top-art" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80');">
+        <div class="srv-top-art" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80');">
           <div class="srv-logo-on-banner" style="font-style: italic;">CS<span style="color: var(--gold-primary);">2</span></div>
         </div>
         <div class="srv-body-data">
@@ -753,13 +720,13 @@
             <div><i class="fa-regular fa-user"></i> <b>28</b> / 32 Oyuncu</div>
             <div><i class="fa-solid fa-map-pin"></i> de_inferno</div>
           </div>
-          <button class="btn-connect-srv" onclick="alert('CS2 sunucusuna yönlendiriliyorsunuz...')">Sunucuya Bağlan</button>
+          <button class="btn-connect-srv" onclick="alert('CS2 sunucusuna bağlanılıyor...')">Sunucuya Bağlan</button>
         </div>
       </div>
 
-      <!-- 3: MINECRAFT (GÖNDERDİĞİN ELMAS KILIÇLI SAVAŞÇI RESMİ BURADA) -->
+      <!-- 3: MINECRAFT (Kılıçlı Savaşçı) -->
       <div class="popular-srv-box">
-        <div class="srv-top-art" style="background-image: url('https://i.ibb.co/3sS7KZy/mc-fighter.jpg'); background-position: center top;">
+        <div class="srv-top-art" style="background-image: url('https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?auto=format&fit=crop&w=500&q=80');">
           <div class="srv-logo-on-banner"><i class="fa-solid fa-cube" style="color: var(--gold-primary);"></i></div>
         </div>
         <div class="srv-body-data">
@@ -773,9 +740,9 @@
         </div>
       </div>
 
-      <!-- 4: FIVEM (GÖNDERDİĞİN FIVEM RESMİ BURADA) -->
+      <!-- 4: FIVEM -->
       <div class="popular-srv-box">
-        <div class="srv-top-art" style="background-image: url('https://i.ibb.co/VMyh02S/fivem-banner.jpg'); background-position: center center;">
+        <div class="srv-top-art" style="background-image: url('https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=500&q=80');">
           <div class="srv-logo-on-banner"><i class="fa-solid fa-car" style="color: var(--gold-primary);"></i></div>
         </div>
         <div class="srv-body-data">
@@ -785,28 +752,28 @@
             <div><i class="fa-regular fa-user"></i> <b>45</b> / 128 Oyuncu</div>
             <div><i class="fa-solid fa-city"></i> Los Santos RP</div>
           </div>
-          <button class="btn-connect-srv" onclick="alert('FiveM sunucusu CFX linkine yönlendiriliyorsunuz...')">Sunucuya Bağlan</button>
+          <button class="btn-connect-srv" onclick="alert('FiveM sunucusuna bağlanılıyor...')">Sunucuya Bağlan</button>
         </div>
       </div>
 
-      <!-- 5: HALF-LIFE -->
+      <!-- 5: CLASH OF CLANS (CoC 2) -->
       <div class="popular-srv-box">
-        <div class="srv-top-art" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80');">
-          <div class="srv-logo-on-banner" style="color: var(--gold-primary); font-family: serif;">λ</div>
+        <div class="srv-top-art" style="background-image: url('https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=500&q=80');">
+          <div class="srv-logo-on-banner"><i class="fa-solid fa-shield-halved" style="color: var(--gold-primary);"></i></div>
         </div>
         <div class="srv-body-data">
-          <div class="srv-card-title">Legacy Half-Life</div>
-          <div class="srv-status-tag"><span class="dot-online"></span> ONLINE</div>
+          <div class="srv-card-title">Legacy Clash Klanı</div>
+          <div class="srv-status-tag"><span class="dot-online"></span> AKTİF</div>
           <div class="srv-details-list">
-            <div><i class="fa-regular fa-user"></i> <b>12</b> / 24 Oyuncu</div>
-            <div><i class="fa-solid fa-crosshairs"></i> crossfire</div>
+            <div><i class="fa-regular fa-user"></i> <b>48</b> / 50 Üye</div>
+            <div><i class="fa-solid fa-trophy"></i> Lig 1. Klanı</div>
           </div>
-          <button class="btn-connect-srv" onclick="alert('Half-Life sunucusuna bağlanılıyor...')">Sunucuya Bağlan</button>
+          <button class="btn-connect-srv" onclick="copyIp('#2CU8QPQ9L')">Klana Başvur</button>
         </div>
       </div>
     </div>
 
-    <!-- 3. BÖLÜM: METRİKLER & DİSCORD KUTUSU -->
+    <!-- 3. BÖLÜM: METRİKLER & DİSCORD KARTI -->
     <div class="metrics-promo-grid" id="community">
       <div class="stats-four-box">
         <div class="stat-cell">
@@ -843,7 +810,7 @@
       </div>
     </div>
 
-    <!-- 4. BÖLÜM: TOPLULUK BANNERI -->
+    <!-- 4. BÖLÜM: SADECE OYUN DEĞİL, BİR TOPLULUK -->
     <div class="community-wide-banner">
       <div>
         <div style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--gold-primary); margin-bottom: 6px;">
@@ -900,7 +867,7 @@
   <script>
     function copyIp(ip) {
       navigator.clipboard.writeText(ip).then(() => {
-        alert("Sunucu IP Adresi Kopyalandı: " + ip);
+        alert("Kopyalandı: " + ip);
       });
     }
   </script>
