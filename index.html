@@ -5,571 +5,409 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Legacy Gaming - Oyunun Legacysi</title>
   
-  <meta name="description" content="Legacy Gaming Resmi Topluluk Portalı. Half-Life'dan CS2'ye, Minecraft'tan FiveM'e kadar sevdiğin oyunların sunucuları tek çatı altında.">
+  <meta name="description" content="Legacy Gaming Resmi Topluluk Portalı. CS 1.6, CS2, Half-Life, Minecraft, Clash of Clans ve FiveM sunucuları.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rajdhani:wght@600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Rajdhani:wght@700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
-      --bg-main: #06080d;
-      --bg-card: #0b0f17;
-      --bg-card-sub: #080c13;
-      --border-card: rgba(255, 255, 255, 0.07);
+      --bg-dark: #06080d;
+      --card-bg: #0b0f17;
+      --card-border: rgba(255, 170, 0, 0.15);
       --gold-primary: #ffaa00;
       --gold-bright: #ffc837;
-      --gold-dark: #e69500;
-      --gold-glow: rgba(255, 170, 0, 0.4);
-      --online-green: #10b981;
+      --gold-glow: rgba(255, 170, 0, 0.35);
+      --green-online: #10b981;
       --text-muted: #8492a6;
       --text-white: #f8fafc;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; }
+    body { background-color: var(--bg-dark); color: var(--text-white); overflow-x: hidden; }
 
-    /* ====== HEADER / NAVBAR ====== */
+    /* NAVBAR */
     header {
       position: sticky; top: 0; z-index: 1000;
       background: rgba(6, 8, 13, 0.88); backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 14px 60px; display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 48px; display: flex; justify-content: space-between; align-items: center;
     }
-    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand-logo-bolt {
-      width: 32px; height: 32px; fill: var(--gold-bright);
-      filter: drop-shadow(0 0 10px var(--gold-glow));
-    }
-    .brand-names { display: flex; flex-direction: column; }
-    .brand-names .name-main { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 800; color: #fff; letter-spacing: 2px; line-height: 1; }
-    .brand-names .name-sub { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; color: var(--gold-bright); letter-spacing: 4px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+    .brand-logo { color: var(--gold-bright); font-size: 26px; filter: drop-shadow(0 0 10px var(--gold-glow)); }
+    .brand-text { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: 2px; }
 
-    .nav-menu { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-menu a {
-      color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 600;
-      transition: color 0.2s ease; position: relative; padding: 4px 0;
-    }
-    .nav-menu a:hover { color: #fff; }
-    .nav-menu a.active { color: var(--gold-bright); }
-    .nav-menu a.active::after {
-      content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px;
-      background: var(--gold-bright); border-radius: 2px; box-shadow: 0 0 8px var(--gold-bright);
-    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-bright); }
 
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .btn-search { background: none; border: none; color: #94a3b8; font-size: 15px; cursor: pointer; transition: 0.2s; }
-    .btn-search:hover { color: #fff; }
-    .btn-discord-nav {
-      background: var(--gold-bright); color: #000; font-weight: 800; font-size: 13px;
-      padding: 10px 20px; border-radius: 8px; text-decoration: none; display: flex;
-      align-items: center; gap: 8px; box-shadow: 0 4px 18px rgba(255, 170, 0, 0.35);
-      transition: transform 0.2s, background 0.2s;
+    .btn-discord {
+      background: var(--gold-bright); color: #000; padding: 10px 20px; border-radius: 8px;
+      font-weight: 700; font-size: 13px; text-decoration: none; display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 15px var(--gold-glow); transition: 0.2s;
     }
-    .btn-discord-nav:hover { background: #ffd56b; transform: translateY(-2px); }
+    .btn-discord:hover { background: #ffd56b; transform: translateY(-2px); }
 
-    /* ====== HERO BANNER ====== */
-    .hero-wrap {
-      position: relative; width: 100%; min-height: 600px;
-      display: flex; align-items: center; padding: 70px 60px; overflow: hidden;
+    /* HERO */
+    .hero {
+      position: relative; min-height: 520px; display: flex; align-items: center;
+      padding: 60px 48px; overflow: hidden;
       background:
-        linear-gradient(90deg, rgba(6, 8, 13, 0.96) 0%, rgba(6, 8, 13, 0.75) 45%, rgba(6, 8, 13, 0.2) 100%),
-        linear-gradient(180deg, transparent 65%, var(--bg-main) 100%),
-        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center right / cover no-repeat;
+        linear-gradient(90deg, rgba(6,8,13,0.95) 0%, rgba(6,8,13,0.7) 45%, rgba(6,8,13,0.2) 100%),
+        linear-gradient(180deg, transparent 70%, var(--bg-dark) 100%),
+        url('games-sheet.png') center top / cover;
     }
-    .hero-lightning-glow {
-      position: absolute; right: 28%; top: 20%; width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(255, 170, 0, 0.25) 0%, transparent 70%);
-      filter: blur(40px); pointer-events: none;
-    }
-    .hero-left-box { max-width: 580px; z-index: 2; }
-    .hero-top-tag { font-size: 11px; font-weight: 800; letter-spacing: 3px; color: #94a3b8; text-transform: uppercase; margin-bottom: 12px; }
-    .hero-top-tag span { color: var(--gold-bright); }
-    
-    .hero-headline { font-family: 'Rajdhani', sans-serif; font-size: 72px; font-weight: 800; line-height: 0.95; text-transform: uppercase; margin-bottom: 10px; }
-    .hero-legacy-script {
-      font-family: 'Permanent Marker', cursive; font-size: 78px; color: var(--gold-bright);
-      text-shadow: 0 0 30px var(--gold-glow); display: block; transform: rotate(-2deg); margin-top: 4px;
-    }
-    .hero-desc { color: #cbd5e1; font-size: 14px; line-height: 1.6; margin: 20px 0 30px; font-weight: 500; }
-    .hero-btns { display: flex; gap: 14px; }
-    .btn-hero-explore {
-      background: var(--gold-bright); color: #000; font-weight: 800; font-size: 14px;
-      padding: 12px 24px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 8px;
-      box-shadow: 0 4px 18px var(--gold-glow); transition: 0.2s;
-    }
-    .btn-hero-explore:hover { background: #ffd56b; transform: translateY(-2px); }
-    .btn-hero-dc {
-      background: rgba(15, 23, 42, 0.85); color: #fff; border: 1px solid rgba(255, 255, 255, 0.15);
-      font-weight: 700; font-size: 14px; padding: 12px 24px; border-radius: 8px; text-decoration: none;
-      display: flex; align-items: center; gap: 8px; backdrop-filter: blur(10px); transition: 0.2s;
-    }
-    .btn-hero-dc:hover { background: rgba(255, 255, 255, 0.1); }
+    .hero-content { max-width: 600px; z-index: 2; }
+    .hero-badge { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--gold-bright); margin-bottom: 12px; text-transform: uppercase; }
+    .hero-title { font-family: 'Rajdhani', sans-serif; font-size: 64px; font-weight: 800; line-height: 0.95; text-transform: uppercase; }
+    .hero-script { font-family: 'Permanent Marker', cursive; font-size: 70px; color: var(--gold-bright); display: block; text-shadow: 0 0 25px var(--gold-glow); }
+    .hero-desc { color: #cbd5e1; font-size: 14px; line-height: 1.6; margin: 18px 0 26px; }
+    .hero-buttons { display: flex; gap: 14px; }
+    .btn-primary { background: var(--gold-bright); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: 800; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.12); padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
-    /* ====== MAIN CONTAINER ====== */
-    .page-container { max-width: 1400px; margin: 0 auto; padding: 40px 60px 80px; }
+    /* CONTAINER & BAŞLIKLAR */
+    .container { max-width: 1360px; margin: 0 auto; padding: 50px 24px 80px; }
+    .section-header { margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .section-tag { font-size: 11px; font-weight: 800; color: var(--gold-bright); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+    .section-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 800; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+    .section-title span { color: var(--gold-bright); }
+    .see-all { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 600; }
+    .see-all:hover { color: var(--gold-bright); }
 
-    .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; }
-    .sec-sub { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--gold-bright); text-transform: uppercase; margin-bottom: 4px; }
-    .sec-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 800; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
-    .sec-title span { color: var(--gold-bright); }
-    .sec-link-all { color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 700; transition: 0.2s; }
-    .sec-link-all:hover { color: var(--gold-bright); }
-
-    /* ====== 1. NE OYNARSIN (OYUN KARTLARI) ====== */
-    .game-cards-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 70px; }
-    .g-card {
-      background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px;
+    /* 6'LI GÖRSEL SPRITE DÜZENİ */
+    .game-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 60px; }
+    .game-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px;
       overflow: hidden; text-decoration: none; color: #fff; display: flex; flex-direction: column;
-      position: relative; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .g-card:hover { transform: translateY(-8px); border-color: rgba(255, 170, 0, 0.4); box-shadow: 0 12px 28px rgba(0,0,0,0.6); }
-    .g-card-cover { height: 230px; width: 100%; position: relative; background-size: cover; background-position: center; }
-    .g-card-cover::after {
+    .game-card:hover { transform: translateY(-8px); border-color: var(--gold-bright); box-shadow: 0 12px 28px rgba(0,0,0,0.7); }
+
+    /* Tek Fotoğrafı 6 Parçaya Ayıran Pozisyonlar */
+    .game-sprite-box {
+      width: 100%; height: 280px;
+      background-image: url('games-sheet.png');
+      background-repeat: no-repeat;
+      background-size: 300% 200%; /* 3 Sütun, 2 Satır */
+      position: relative;
+    }
+    .game-sprite-box::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 35%, rgba(11, 15, 23, 0.85) 75%, var(--bg-card) 100%);
+      background: linear-gradient(180deg, transparent 60%, rgba(11,15,23,0.85) 90%, var(--card-bg) 100%);
     }
-    .g-card-info { padding: 14px 16px 16px; margin-top: -16px; z-index: 2; }
-    .g-card-name { font-size: 15px; font-weight: 800; margin-bottom: 6px; letter-spacing: 0.3px; }
-    .g-card-stat { font-size: 12px; color: #94a3b8; display: flex; align-items: center; gap: 7px; font-weight: 600; }
-    .dot-online { width: 7px; height: 7px; background: var(--online-green); border-radius: 50%; box-shadow: 0 0 8px var(--online-green); }
-    .dot-amber { width: 7px; height: 7px; background: var(--gold-bright); border-radius: 50%; box-shadow: 0 0 8px var(--gold-bright); }
 
-    /* ====== 2. POPÜLER SUNUCULAR ====== */
-    .server-cards-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 60px; }
-    .s-card {
-      background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px;
-      padding: 16px; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.2s;
-    }
-    .s-card:hover { border-color: rgba(255, 170, 0, 0.3); }
-    .s-card-logo-area {
-      height: 100px; border-radius: 8px; background: #06090e; display: flex;
-      align-items: center; justify-content: center; position: relative; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-    .s-card-bg-subtle { position: absolute; inset: 0; opacity: 0.12; background-size: cover; background-position: center; }
-    .s-badge-text { font-family: 'Rajdhani', sans-serif; font-size: 34px; font-weight: 800; color: var(--gold-bright); z-index: 2; }
-    .s-badge-fivem { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 800; color: #fff; z-index: 2; letter-spacing: 2px; }
-    .s-badge-hl { font-family: 'Rajdhani', sans-serif; font-size: 42px; font-weight: 800; color: var(--gold-bright); z-index: 2; }
+    /* Üst Satır */
+    .sprite-cs2        { background-position: 0% 0%; }
+    .sprite-cs16       { background-position: 50% 0%; }
+    .sprite-halflife   { background-position: 100% 0%; }
+    /* Alt Satır */
+    .sprite-minecraft  { background-position: 0% 100%; }
+    .sprite-clash      { background-position: 50% 100%; }
+    .sprite-fivem      { background-position: 100% 100%; }
 
-    .s-card-title { font-size: 15px; font-weight: 800; color: #fff; }
-    .s-status-tag { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: var(--online-green); letter-spacing: 1px; }
-    .s-info-row { display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8; font-weight: 600; }
-    .s-info-row i { margin-right: 5px; }
+    .game-card-body { padding: 12px 14px 16px; margin-top: -12px; z-index: 2; }
+    .game-card-title { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+    .online-stat { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; font-weight: 600; }
+    .dot-green { width: 6px; height: 6px; background: var(--green-online); border-radius: 50%; box-shadow: 0 0 6px var(--green-online); }
+    .dot-amber { width: 6px; height: 6px; background: var(--gold-bright); border-radius: 50%; box-shadow: 0 0 6px var(--gold-bright); }
 
-    .btn-s-connect {
-      background: var(--gold-bright); color: #000; font-weight: 800; font-size: 12px;
-      text-transform: uppercase; text-decoration: none; padding: 10px; border-radius: 6px;
-      text-align: center; border: none; cursor: pointer; transition: 0.2s; display: block;
+    /* SUNUCU KARTLARI */
+    .server-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 60px; }
+    .server-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px;
+      padding: 16px; display: flex; flex-direction: column; gap: 12px;
     }
-    .btn-s-connect:hover { background: #ffd56b; box-shadow: 0 4px 14px var(--gold-glow); }
+    .server-icon-area {
+      height: 90px; border-radius: 8px; background: #06090e; display: flex;
+      align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.04);
+      font-family: 'Rajdhani', sans-serif; font-size: 30px; font-weight: 800; color: var(--gold-bright);
+    }
+    .server-name { font-size: 14px; font-weight: 800; }
+    .server-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); font-weight: 600; }
+    .btn-connect {
+      background: var(--gold-bright); color: #000; font-weight: 800; font-size: 11px;
+      text-transform: uppercase; text-decoration: none; padding: 9px; border-radius: 6px;
+      text-align: center; border: none; cursor: pointer; transition: 0.2s;
+    }
+    .btn-connect:hover { background: #ffd56b; }
 
-    /* ====== 3. İSTATİSTİKLER & DISCORD KUTUSU ====== */
-    .stats-dashboard-grid {
-      display: grid; grid-template-columns: 1.4fr 1.2fr; gap: 18px; margin-bottom: 40px;
+    /* İSTATİSTİKLER & DISCORD */
+    .stats-dashboard { display: grid; grid-template-columns: 1.4fr 1.2fr; gap: 16px; margin-bottom: 40px; }
+    .stats-card-box {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px;
+      padding: 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; text-align: center;
     }
-    .stats-counter-box {
-      background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px;
-      padding: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    }
-    .counter-col { text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.05); padding-right: 12px; }
-    .counter-col:last-child { border-right: none; }
-    .counter-icon { color: var(--gold-bright); font-size: 18px; margin-bottom: 8px; }
-    .counter-val { font-family: 'Rajdhani', sans-serif; font-size: 34px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
-    .counter-lbl { font-size: 12px; color: #8492a6; font-weight: 600; }
+    .stat-col { border-right: 1px solid rgba(255, 255, 255, 0.05); }
+    .stat-col:last-child { border-right: none; }
+    .stat-val { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 800; }
+    .stat-lbl { font-size: 11px; color: var(--text-muted); }
 
-    .discord-callout-box {
-      background: radial-gradient(circle at right, rgba(255, 170, 0, 0.15), transparent 70%), var(--bg-card);
-      border: 1px solid var(--border-card); border-radius: 14px; padding: 24px;
+    .dc-banner {
+      background: radial-gradient(circle at right, rgba(255,170,0,0.15), transparent 70%), var(--card-bg);
+      border: 1px solid var(--card-border); border-radius: 14px; padding: 22px;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .dc-text-wrap h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
-    .dc-text-wrap p { font-size: 12px; color: #8492a6; }
 
-    /* ====== 4. ALINTI & TOPLULUK BANNER ====== */
-    .community-quote-banner {
-      background:
-        linear-gradient(90deg, #070a10 0%, rgba(7, 10, 16, 0.8) 50%, rgba(7, 10, 16, 0.95) 100%),
-        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80') center/cover;
-      border: 1px solid var(--border-card); border-radius: 14px;
-      padding: 34px 44px; display: flex; justify-content: space-between; align-items: center;
+    /* TOPLULUK SÖZÜ BANNERI */
+    .community-banner {
+      background: linear-gradient(90deg, #070a10 0%, rgba(7,10,16,0.85) 60%, rgba(7,10,16,0.95) 100%);
+      border: 1px solid var(--card-border); border-radius: 14px; padding: 32px 40px;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .comm-left { max-width: 500px; }
-    .comm-tag { font-size: 11px; font-weight: 800; color: var(--gold-bright); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-    .comm-title { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
-    .comm-p { font-size: 13px; color: #94a3b8; line-height: 1.5; margin-bottom: 18px; }
-    .btn-join-comm {
-      background: var(--gold-bright); color: #000; font-weight: 800; font-size: 13px;
-      padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-    }
-    .comm-quote { text-align: right; max-width: 380px; }
-    .quote-txt { font-style: italic; font-size: 15px; color: #e2e8f0; margin-bottom: 6px; line-height: 1.5; }
-    .quote-author { font-size: 12px; color: var(--text-muted); font-weight: 600; }
 
-    /* ====== FOOTER ====== */
     footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 32px 60px;
-      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 30px 48px;
+      display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted);
     }
-    .footer-left { display: flex; align-items: center; gap: 10px; }
-    .footer-nav { display: flex; gap: 24px; list-style: none; }
-    .footer-nav a { color: #8492a6; text-decoration: none; font-size: 12px; font-weight: 600; }
-    .footer-nav a:hover { color: #fff; }
-    .footer-socials { display: flex; gap: 14px; font-size: 15px; color: #8492a6; }
-    .footer-socials a { color: inherit; text-decoration: none; transition: 0.2s; }
-    .footer-socials a:hover { color: var(--gold-bright); }
-    .copyright { font-size: 11px; color: #64748b; margin-top: 6px; }
 
-    /* RESPONSIVE */
-    @media (max-width: 1200px) {
-      .game-cards-row { grid-template-columns: repeat(3, 1fr); }
-      .server-cards-row { grid-template-columns: repeat(2, 1fr); }
-      .stats-dashboard-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1100px) {
+      .game-grid { grid-template-columns: repeat(3, 1fr); }
+      .server-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-dashboard { grid-template-columns: 1fr; }
     }
-    @media (max-width: 768px) {
-      header, .page-container, footer { padding-left: 20px; padding-right: 20px; }
-      .nav-menu { display: none; }
-      .hero-headline { font-size: 46px; }
-      .hero-legacy-script { font-size: 52px; }
-      .game-cards-row { grid-template-columns: 1fr 1fr; }
-      .server-cards-row { grid-template-columns: 1fr; }
-      .stats-counter-box { grid-template-columns: 1fr 1fr; }
-      .community-quote-banner { flex-direction: column; text-align: center; gap: 20px; }
-      .comm-quote { text-align: center; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
+    @media (max-width: 700px) {
+      header, .container, footer { padding-left: 18px; padding-right: 18px; }
+      .nav-links { display: none; }
+      .hero-title { font-size: 42px; }
+      .hero-script { font-size: 50px; }
+      .game-grid { grid-template-columns: 1fr 1fr; }
+      .server-grid { grid-template-columns: 1fr; }
+      .community-banner { flex-direction: column; text-align: center; gap: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- HEADER -->
   <header>
-    <a href="#" class="nav-brand">
-      <svg class="brand-logo-bolt" viewBox="0 0 24 24">
-        <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
-      </svg>
-      <div class="brand-names">
-        <span class="name-main">LEGACY</span>
-        <span class="name-sub">GAMING</span>
-      </div>
+    <a href="#" class="brand">
+      <i class="fa-solid fa-bolt-lightning brand-logo"></i>
+      <span class="brand-text">LEGACY GAMING</span>
     </a>
-
-    <ul class="nav-menu">
+    <ul class="nav-links">
       <li><a href="#" class="active">Ana Sayfa</a></li>
       <li><a href="#sunucular">Sunucular</a></li>
       <li><a href="#oyunlar">Oyunlar</a></li>
       <li><a href="#topluluk">Topluluk</a></li>
-      <li><a href="#magaza">Mağaza</a></li>
-      <li><a href="https://discord.gg" target="_blank">Discord</a></li>
     </ul>
-
-    <div class="nav-right">
-      <button class="btn-search" title="Ara"><i class="fa-solid fa-magnifying-glass"></i></button>
-      <a href="https://discord.gg" target="_blank" class="btn-discord-nav">
-        <i class="fa-brands fa-discord"></i> Discord'a Katıl
-      </a>
-    </div>
+    <a href="https://discord.gg" target="_blank" class="btn-discord">
+      <i class="fa-brands fa-discord"></i> Discord'a Katıl
+    </a>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero-wrap">
-    <div class="hero-lightning-glow"></div>
-    <div class="hero-left-box">
-      <div class="hero-top-tag">TÜM OYUNL<span>AR</span> TEK PLATFORMDA</div>
-      <h1 class="hero-headline">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">TÜM OYUNLAR TEK PLATFORMDA</div>
+      <h1 class="hero-title">
         OYUNUN
-        <span class="hero-legacy-script">LEGACYSI.</span>
+        <span class="hero-script">LEGACYSI.</span>
       </h1>
-      <p class="hero-desc">Half-Life'dan CS2'ye, Minecraft'tan FiveM Savage'a kadar sevdiğin oyunların sunucuları tek çatı altında.</p>
-      <div class="hero-btns">
-        <a href="#sunucular" class="btn-hero-explore">
-          <i class="fa-solid fa-bolt"></i> Sunucuları Keşfet
-        </a>
-        <a href="https://discord.gg" target="_blank" class="btn-hero-dc">
-          <i class="fa-brands fa-discord"></i> Discord'a Katıl
-        </a>
+      <p class="hero-desc">Half-Life'dan CS2'ye, Minecraft'tan FiveM'e kadar sevdiğin oyunların sunucuları tek çatı altında.</p>
+      <div class="hero-buttons">
+        <a href="#sunucular" class="btn-primary"><i class="fa-solid fa-bolt"></i> Sunucuları Keşfet</a>
+        <a href="https://discord.gg" target="_blank" class="btn-secondary"><i class="fa-brands fa-discord"></i> Discord'a Katıl</a>
       </div>
     </div>
   </section>
 
-  <!-- MAIN WRAPPER -->
-  <main class="page-container">
+  <div class="container">
 
-    <!-- BÖLÜM 1: LEGACY'DE NE OYNARSIN? -->
-    <section id="oyunlar" style="margin-bottom: 20px;">
-      <div class="section-head">
+    <!-- 1. OYUN KARTLARI (FOTOĞRAFTAN AYRILAN PARÇALAR) -->
+    <div class="section-header" id="oyunlar">
+      <div>
+        <div class="section-tag">BİZİM DÜNYAMIZ</div>
+        <div class="section-title"><i class="fa-solid fa-bolt" style="color:var(--gold-bright); font-size:20px;"></i> LEGACY'DE <span>NE OYNARSIN?</span></div>
+      </div>
+      <a href="#" class="see-all">Tüm Oyunları Gör →</a>
+    </div>
+
+    <div class="game-grid">
+      <!-- 1. CS2 -->
+      <a href="#cs" class="game-card">
+        <div class="game-sprite-box sprite-cs2"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Counter-Strike 2</div>
+          <div class="online-stat"><span class="dot-green"></span> Online 2.847</div>
+        </div>
+      </a>
+
+      <!-- 2. CS 1.6 -->
+      <a href="#cs" class="game-card">
+        <div class="game-sprite-box sprite-cs16"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Counter-Strike 1.6</div>
+          <div class="online-stat"><span class="dot-green"></span> Online 1.203</div>
+        </div>
+      </a>
+
+      <!-- 3. HALF-LIFE -->
+      <a href="#halflife" class="game-card">
+        <div class="game-sprite-box sprite-halflife"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Half-Life</div>
+          <div class="online-stat"><span class="dot-green"></span> Online 542</div>
+        </div>
+      </a>
+
+      <!-- 4. MINECRAFT -->
+      <a href="#minecraft" class="game-card">
+        <div class="game-sprite-box sprite-minecraft"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Minecraft</div>
+          <div class="online-stat"><span class="dot-green"></span> Online 3.176</div>
+        </div>
+      </a>
+
+      <!-- 5. CLASH OF CLANS -->
+      <a href="#clash" class="game-card">
+        <div class="game-sprite-box sprite-clash"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">Clash of Clans</div>
+          <div class="online-stat"><span class="dot-amber"></span> Topluluk 12.4K</div>
+        </div>
+      </a>
+
+      <!-- 6. FIVEM -->
+      <a href="#fivem" class="game-card">
+        <div class="game-sprite-box sprite-fivem"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">FiveM</div>
+          <div class="online-stat"><span class="dot-green"></span> Online 892</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 2. POPÜLER SUNUCULAR -->
+    <div class="section-header" id="sunucular">
+      <div>
+        <div class="section-tag">SUNUCULARIMIZ</div>
+        <div class="section-title"><i class="fa-solid fa-server" style="color:var(--gold-bright); font-size:20px;"></i> POPÜLER <span>SUNUCULAR</span></div>
+      </div>
+      <a href="#" class="see-all">Tüm Sunucuları Gör →</a>
+    </div>
+
+    <div class="server-grid">
+      <!-- CS 1.6 -->
+      <div class="server-card">
+        <div class="server-icon-area">⚡ 1.6</div>
+        <div class="server-name">Legacy CS 1.6 #01</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>32 / 32 Oyuncu</span>
+        </div>
+        <div class="server-meta"><span>de_dust2</span></div>
+        <a href="steam://connect/95.173.173.105" class="btn-connect">Sunucuya Bağlan</a>
+      </div>
+
+      <!-- CS2 -->
+      <div class="server-card">
+        <div class="server-icon-area" style="color:#fff;">CS<span style="color:var(--gold-bright);">2</span></div>
+        <div class="server-name">Legacy CS2 #01</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>28 / 32 Oyuncu</span>
+        </div>
+        <div class="server-meta"><span>de_inferno</span></div>
+        <a href="steam://connect/127.0.0.1:27015" class="btn-connect">Sunucuya Bağlan</a>
+      </div>
+
+      <!-- MINECRAFT -->
+      <div class="server-card">
+        <div class="server-icon-area"><i class="fa-solid fa-cube" style="color:#10b981;"></i></div>
+        <div class="server-name">Legacy Minecraft</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>18 / 100 Oyuncu</span>
+        </div>
+        <div class="server-meta"><span>Survival</span></div>
+        <button class="btn-connect" onclick="navigator.clipboard.writeText('play.roshercraft.com.tr'); alert('Minecraft IP Kopyalandı!');">Sunucuya Bağlan</button>
+      </div>
+
+      <!-- FIVEM SAVAGE -->
+      <div class="server-card">
+        <div class="server-icon-area" style="color:#fff; font-size:24px;">/// SAVAGE</div>
+        <div class="server-name">Legacy FiveM</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>45 / 128 Oyuncu</span>
+        </div>
+        <div class="server-meta"><span>Los Santos</span></div>
+        <a href="fivem://connect/cfx.re/join/savage" class="btn-connect">Sunucuya Bağlan</a>
+      </div>
+
+      <!-- HALF-LIFE -->
+      <div class="server-card">
+        <div class="server-icon-area" style="font-size:38px;">λ</div>
+        <div class="server-name">Legacy Half-Life</div>
+        <div class="server-meta">
+          <span style="color:var(--green-online);">● ONLINE</span>
+          <span>12 / 24 Oyuncu</span>
+        </div>
+        <div class="server-meta"><span>cs_office</span></div>
+        <a href="steam://connect/127.0.0.1:27016" class="btn-connect">Sunucuya Bağlan</a>
+      </div>
+    </div>
+
+    <!-- 3. DASHBOARD VE DISCORD -->
+    <div class="stats-dashboard" id="topluluk">
+      <div class="stats-card-box">
+        <div class="stat-col">
+          <div class="stat-val">6.284</div>
+          <div class="stat-lbl">Toplam Oyuncu</div>
+        </div>
+        <div class="stat-col">
+          <div class="stat-val">28</div>
+          <div class="stat-lbl">Aktif Sunucu</div>
+        </div>
+        <div class="stat-col">
+          <div class="stat-val">6</div>
+          <div class="stat-lbl">Oyun</div>
+        </div>
+        <div class="stat-col">
+          <div class="stat-val">%99.9</div>
+          <div class="stat-lbl">Uptime</div>
+        </div>
+      </div>
+
+      <div class="dc-banner">
         <div>
-          <div class="sec-sub">BİZİM DÜNYAMIZ</div>
-          <div class="sec-title">
-            <i class="fa-solid fa-bolt" style="color: var(--gold-bright); font-size: 20px;"></i>
-            LEGACY'DE <span>NE OYNARSIN?</span>
-          </div>
+          <div style="font-size: 16px; font-weight: 800; margin-bottom: 4px;"><i class="fa-solid fa-bolt" style="color:var(--gold-bright);"></i> Daha fazlası için Discord'a katıl!</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Güncellemeler, etkinlikler ve topluluk seni bekliyor.</div>
         </div>
-        <a href="#" class="sec-link-all">Tüm Oyunları Gör →</a>
-      </div>
-
-      <div class="game-cards-row">
-        
-        <!-- 1. CS2 -->
-        <a href="#cs2" class="g-card">
-          <div class="g-card-cover" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80');"></div>
-          <div class="g-card-info">
-            <div class="g-card-name">Counter-Strike 2</div>
-            <div class="g-card-stat"><span class="dot-online"></span> Online 2.847</div>
-          </div>
-        </a>
-
-        <!-- 2. CS 1.6 -->
-        <a href="#cs16" class="g-card">
-          <div class="g-card-cover" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80');"></div>
-          <div class="g-card-info">
-            <div class="g-card-name">Counter-Strike 1.6</div>
-            <div class="g-card-stat"><span class="dot-online"></span> Online 1.203</div>
-          </div>
-        </a>
-
-        <!-- 3. HALF-LIFE -->
-        <a href="#halflife" class="g-card">
-          <div class="g-card-cover" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80');"></div>
-          <div class="g-card-info">
-            <div class="g-card-name">Half-Life</div>
-            <div class="g-card-stat"><span class="dot-online"></span> Online 542</div>
-          </div>
-        </a>
-
-        <!-- 4. MINECRAFT -->
-        <a href="#minecraft" class="g-card">
-          <div class="g-card-cover" style="background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=600&q=80');"></div>
-          <div class="g-card-info">
-            <div class="g-card-name">Minecraft</div>
-            <div class="g-card-stat"><span class="dot-online"></span> Online 3.176</div>
-          </div>
-        </a>
-
-        <!-- 5. CLASH OF CLANS -->
-        <a href="#clash" class="g-card">
-          <div class="g-card-cover" style="background-image: url('https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80');"></div>
-          <div class="g-card-info">
-            <div class="g-card-name">Clash of Clans</div>
-            <div class="g-card-stat"><span class="dot-amber"></span> Topluluk 12.4K</div>
-          </div>
-        </a>
-
-        <!-- 6. FIVEM SAVAGE -->
-        <a href="#fivem" class="g-card">
-          <div class="g-card-cover" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80');"></div>
-          <div class="g-card-info">
-            <div class="g-card-name">FiveM (Savage)</div>
-            <div class="g-card-stat"><span class="dot-online"></span> Online 892</div>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- BÖLÜM 2: POPÜLER SUNUCULAR -->
-    <section id="sunucular" style="margin-bottom: 20px;">
-      <div class="section-head">
-        <div>
-          <div class="sec-sub">SUNUCULARIMIZ</div>
-          <div class="sec-title">
-            <i class="fa-solid fa-server" style="color: var(--gold-bright); font-size: 20px;"></i>
-            POPÜLER <span>SUNUCULAR</span>
-          </div>
-        </div>
-        <a href="#" class="sec-link-all">Tüm Sunucuları Gör →</a>
-      </div>
-
-      <div class="server-cards-row">
-        
-        <!-- Sunucu 1: CS 1.6 #105 -->
-        <div class="s-card">
-          <div class="s-card-logo-area">
-            <div class="s-card-bg-subtle" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80');"></div>
-            <div class="s-badge-text">⚡ 1.6</div>
-          </div>
-          <div class="s-card-title">Legacy CS 1.6 #105</div>
-          <div class="s-status-tag"><span class="dot-online"></span> ONLINE</div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-users"></i> 32 / 32 Oyuncu</span>
-            <i class="fa-solid fa-signal" style="color:var(--online-green);"></i>
-          </div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-map"></i> jail_buyukisyan</span>
-          </div>
-          <a href="steam://connect/95.173.173.105" class="btn-s-connect">Sunucuya Bağlan</a>
-        </div>
-
-        <!-- Sunucu 2: CS2 -->
-        <div class="s-card">
-          <div class="s-card-logo-area">
-            <div class="s-card-bg-subtle" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80');"></div>
-            <div class="s-badge-text" style="color: #fff; letter-spacing: 1px;">CS<span style="color:var(--gold-bright);">2</span></div>
-          </div>
-          <div class="s-card-title">Legacy CS2 #01</div>
-          <div class="s-status-tag"><span class="dot-online"></span> ONLINE</div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-users"></i> 28 / 32 Oyuncu</span>
-            <i class="fa-solid fa-signal" style="color:var(--online-green);"></i>
-          </div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-map"></i> de_inferno</span>
-          </div>
-          <a href="steam://connect/127.0.0.1:27015" class="btn-s-connect">Sunucuya Bağlan</a>
-        </div>
-
-        <!-- Sunucu 3: RosherCraft (Minecraft) -->
-        <div class="s-card">
-          <div class="s-card-logo-area">
-            <div class="s-card-bg-subtle" style="background-image: url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=400&q=80');"></div>
-            <i class="fa-solid fa-cube" style="font-size: 38px; color: #10b981; z-index: 2;"></i>
-          </div>
-          <div class="s-card-title">RosherCraft MC</div>
-          <div class="s-status-tag"><span class="dot-online"></span> ONLINE</div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-users"></i> 142 / 250 Oyuncu</span>
-            <i class="fa-solid fa-signal" style="color:var(--online-green);"></i>
-          </div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-compass"></i> Skyblock & Survival</span>
-          </div>
-          <button class="btn-s-connect" onclick="copySnippet('play.roshercraft.com.tr')">IP Kopyala</button>
-        </div>
-
-        <!-- Sunucu 4: FiveM Savage -->
-        <div class="s-card">
-          <div class="s-card-logo-area">
-            <div class="s-card-bg-subtle" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=400&q=80');"></div>
-            <div class="s-badge-fivem">/// SAVAGE</div>
-          </div>
-          <div class="s-card-title">Legacy Savage FiveM</div>
-          <div class="s-status-tag"><span class="dot-online"></span> ONLINE</div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-users"></i> 64 / 128 Oyuncu</span>
-            <i class="fa-solid fa-signal" style="color:var(--online-green);"></i>
-          </div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-city"></i> Los Santos Savage</span>
-          </div>
-          <a href="fivem://connect/cfx.re/join/savage" class="btn-s-connect">Sunucuya Bağlan</a>
-        </div>
-
-        <!-- Sunucu 5: Half-Life -->
-        <div class="s-card">
-          <div class="s-card-logo-area">
-            <div class="s-card-bg-subtle" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80');"></div>
-            <div class="s-badge-hl">λ</div>
-          </div>
-          <div class="s-card-title">Legacy Half-Life</div>
-          <div class="s-status-tag"><span class="dot-online"></span> ONLINE</div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-users"></i> 16 / 24 Oyuncu</span>
-            <i class="fa-solid fa-signal" style="color:var(--online-green);"></i>
-          </div>
-          <div class="s-info-row">
-            <span><i class="fa-solid fa-map"></i> crossfire</span>
-          </div>
-          <a href="steam://connect/127.0.0.1:27016" class="btn-s-connect">Sunucuya Bağlan</a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- BÖLÜM 3: SAYAÇLAR & DİSCORD KUTUSU -->
-    <div class="stats-dashboard-grid" id="topluluk">
-      
-      <!-- Sayaçlar -->
-      <div class="stats-counter-box">
-        <div class="counter-col">
-          <div class="counter-icon"><i class="fa-solid fa-user-group"></i></div>
-          <div class="counter-val">6.284</div>
-          <div class="counter-lbl">Toplam Oyuncu</div>
-        </div>
-        <div class="counter-col">
-          <div class="counter-icon"><i class="fa-solid fa-hard-drive"></i></div>
-          <div class="counter-val">28</div>
-          <div class="counter-lbl">Aktif Sunucu</div>
-        </div>
-        <div class="counter-col">
-          <div class="counter-icon"><i class="fa-solid fa-gamepad"></i></div>
-          <div class="counter-val">6</div>
-          <div class="counter-lbl">Oyun</div>
-        </div>
-        <div class="counter-col">
-          <div class="counter-icon"><i class="fa-solid fa-shield-halved"></i></div>
-          <div class="counter-val">%99.9</div>
-          <div class="counter-lbl">Uptime</div>
-        </div>
-      </div>
-
-      <!-- Discord Callout -->
-      <div class="discord-callout-box">
-        <div class="dc-text-wrap">
-          <div style="color: var(--gold-bright); font-size: 18px; margin-bottom: 4px;"><i class="fa-solid fa-bolt"></i></div>
-          <h3>Daha fazlası için Discord'a katıl!</h3>
-          <p>Güncellemeler, etkinlikler ve topluluk seni bekliyor.</p>
-        </div>
-        <a href="https://discord.gg" target="_blank" class="btn-discord-nav" style="padding: 10px 18px;">
+        <a href="https://discord.gg" target="_blank" class="btn-discord" style="padding: 10px 16px;">
           <i class="fa-brands fa-discord"></i> Discord'a Katıl
         </a>
       </div>
-
     </div>
 
-    <!-- BÖLÜM 4: TOPLULUK & ALINTI ŞERİDİ -->
-    <div class="community-quote-banner">
-      <div class="comm-left">
-        <div class="comm-tag">LEGACY GAMING</div>
-        <h2 class="comm-title">Sadece Oyun Değil, Bir Topluluk.</h2>
-        <p class="comm-p">Birlikte oynar, birlikte gelişiriz. Legacy Gaming'de sadece sunucu değil, gerçek bir topluluk seni bekliyor.</p>
-        <a href="https://discord.gg" target="_blank" class="btn-join-comm">
-          <i class="fa-solid fa-bolt"></i> Hemen Katıl
-        </a>
+    <!-- 4. ALINTI BANNER -->
+    <div class="community-banner">
+      <div>
+        <div style="font-size: 11px; font-weight: 800; color: var(--gold-bright); letter-spacing: 2px;">LEGACY GAMING</div>
+        <h2 style="font-size: 24px; font-weight: 800; margin: 6px 0;">Sadece Oyun Değil, Bir Topluluk.</h2>
+        <p style="font-size: 13px; color: #94a3b8; max-width: 500px; margin-bottom: 16px;">Birlikte oynar, birlikte gelişiriz. Legacy Gaming'de sadece sunucu değil, gerçek bir topluluk seni bekliyor.</p>
+        <a href="https://discord.gg" target="_blank" class="btn-primary" style="display:inline-flex; padding: 10px 20px; font-size: 12px;"><i class="fa-solid fa-bolt"></i> Hemen Katıl</a>
       </div>
-
-      <div class="comm-quote">
-        <p class="quote-txt">“İyi oyuncular sunuculara bağlanır, efsaneler topluluklara.”</p>
-        <span class="quote-author">— Legacy Gaming</span>
+      <div style="text-align: right; max-width: 360px;">
+        <p style="font-style: italic; font-size: 15px; color: #e2e8f0; margin-bottom: 4px;">“İyi oyuncular sunuculara bağlanır, efsaneler topluluklara.”</p>
+        <span style="font-size: 12px; color: var(--text-muted);">— Legacy Gaming</span>
       </div>
     </div>
 
-  </main>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-left">
-      <svg class="brand-logo-bolt" viewBox="0 0 24 24" style="width:24px; height:24px;">
-        <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
-      </svg>
-      <div>
-        <div style="font-family: 'Rajdhani'; font-weight: 800; font-size: 16px; letter-spacing: 1px;">LEGACY GAMING</div>
-        <div class="copyright">&copy; 2011 - 2026 Legacy Gaming. Tüm hakları saklıdır.</div>
-      </div>
-    </div>
-
-    <ul class="footer-nav">
-      <li><a href="#">Ana Sayfa</a></li>
-      <li><a href="#sunucular">Sunucular</a></li>
-      <li><a href="#oyunlar">Oyunlar</a></li>
-      <li><a href="#topluluk">Topluluk</a></li>
-      <li><a href="#magaza">Mağaza</a></li>
-      <li><a href="https://discord.gg" target="_blank">Discord</a></li>
-    </ul>
-
-    <div class="footer-socials">
-      <a href="https://discord.gg" target="_blank"><i class="fa-brands fa-discord"></i></a>
-      <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-      <a href="steam://connect/95.173.173.105"><i class="fa-brands fa-steam"></i></a>
+    <div>&copy; 2026 Legacy Gaming. Tüm hakları saklıdır.</div>
+    <div style="display:flex; gap: 16px; font-size: 15px;">
+      <a href="https://discord.gg" style="color:inherit;"><i class="fa-brands fa-discord"></i></a>
+      <a href="https://youtube.com" style="color:inherit;"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://instagram.com" style="color:inherit;"><i class="fa-brands fa-instagram"></i></a>
     </div>
   </footer>
 
-  <script>
-    function copySnippet(val) {
-      navigator.clipboard.writeText(val).then(() => {
-        alert("Minecraft IP adresi panoya kopyalandı: " + val);
-      });
-    }
-  </script>
 </body>
 </html>
